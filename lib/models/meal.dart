@@ -1,33 +1,22 @@
-import 'package:meal/utils/enum/meal_enum.dart';
+import 'package:isar/isar.dart';
+import 'package:meal/models/category.dart';
+import 'package:meal/models/ingredient.dart';
+import 'package:meal/models/step.dart';
 
+part 'meal.g.dart';
+
+@Collection()
 class Meal {
-  final String id;
-  final List<String> categories;
-  final String title;
-  final String imageUrl;
-  final List<String> ingredients;
-  final List<String> steps;
-  final int duration;
-  final Complexity complexity;
-  final Affordability affordability;
-  final bool isGlutenFree;
-  final bool isLactoseFree;
-  final bool isVegan;
-  final bool isVegetarian;
-
-   const Meal({
-    required this.id,
-    required this.categories,
-    required this.title,
-    required this.imageUrl,
-    required this.ingredients,
-    required this.steps,
-    required this.duration,
-    required this.complexity,
-    required this.affordability,
-    required this.isGlutenFree,
-    required this.isLactoseFree,
-    required this.isVegan,
-    required this.isVegetarian,
-  });
+  Id mealId = Isar.autoIncrement;
+  late String? title;
+  late String? imageUrl;
+  late int? duration;
+  late String? complexity;
+  late String? affordability;
+  
+  
+  final ingredients = IsarLink<Ingredient>();
+  final steps = IsarLink<Steps>();
+  final categories = IsarLink<Category>();
+  
 }

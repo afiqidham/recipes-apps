@@ -1,29 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:meal/config/theme.dart';
+import 'package:meal/routes/app_route.dart';
+import 'package:meal/ui/screens/auth/login_screen.dart';
 import 'package:meal/ui/screens/category_screen.dart';
+import 'package:meal/ui/screens/meals/add_ingredient_screen.dart';
+import 'package:meal/utils/bindings/meal_binding.dart';
 
+import 'ui/screens/auth/register_screen.dart';
+import 'ui/screens/meals/add_step_screen.dart';
 
-
-void main() {
+void main() async {
+  await GetStorage.init();
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Recipes',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home:   CategoryScreen(),
-      // getPages: [GetPage(name: '/MealScreen', page: MealScreen(meals:  dummyMeals, title: '',))],
+      theme: buildTheme(),
+      home: AddStepScreen(),
+      // getPages: AppRoute.routes,
+      initialBinding: MealBinding(),
     );
   }
+
+  ThemeData buildTheme() {
+    var baseTheme = ThemeData(
+      primaryColor: ThemePalette.primaryColor,
+    );
+
+    return baseTheme;
+  }
 }
-
-

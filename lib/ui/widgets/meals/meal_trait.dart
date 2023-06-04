@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meal/ui/components/display_text.dart';
+import 'package:meal/ui/components/texts/display_text.dart';
 
 class MealTrait extends StatelessWidget {
   const MealTrait({super.key, required this.icon, required this.label});
