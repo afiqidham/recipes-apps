@@ -2,7 +2,8 @@ import 'dart:convert';
 
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:meal/models/category.dart';
+import 'package:meal/models/category/category.dart';
+
 
 class ApiService extends GetxController {
   var isLoading = false.obs;

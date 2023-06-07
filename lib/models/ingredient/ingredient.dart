@@ -1,5 +1,6 @@
 import 'package:isar/isar.dart';
-import 'package:meal/models/meal.dart';
+import 'package:meal/models/meal/meal.dart';
+
 
 part 'ingredient.g.dart';
 

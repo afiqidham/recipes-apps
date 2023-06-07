@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:meal/models/category.dart';
-import 'package:meal/models/meal.dart';
+import 'package:meal/models/category/category.dart';
+import 'package:meal/models/meal/meal.dart';
 
 
 class MealController extends GetxController {

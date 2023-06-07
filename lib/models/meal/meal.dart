@@ -1,7 +1,8 @@
 import 'package:isar/isar.dart';
-import 'package:meal/models/category.dart';
-import 'package:meal/models/ingredient.dart';
-import 'package:meal/models/step.dart';
+import 'package:meal/models/Steps/step.dart';
+import 'package:meal/models/category/category.dart';
+import 'package:meal/models/ingredient/ingredient.dart';
+
 
 part 'meal.g.dart';
 

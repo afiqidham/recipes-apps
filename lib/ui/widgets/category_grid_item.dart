@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meal/models/category.dart';
+import 'package:meal/models/category/category.dart';
 import 'package:meal/ui/components/texts/title_text.dart';
 
 class CategoryGridItem extends StatelessWidget {
