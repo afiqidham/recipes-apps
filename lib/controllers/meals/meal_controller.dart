@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:meal/models/category.dart';
@@ -6,16 +7,13 @@ import 'package:meal/models/meal.dart';
 
 class MealController extends GetxController {
   RxList<Meal> favouriteMeals = <Meal>[].obs;
-  RxList<Category> categories = <Category>[].obs;
-  Meal? meal;
   RxList<Meal> meals = <Meal>[].obs;
   Rx<bool> fav = false.obs;
-  final selectCategory = ''.obs;
+  final selected = ''.obs;
+  final dropDownValue = Rx<Category?>(null);
+  late final Meal meal;
 
   GlobalKey formKey = GlobalKey();
-  TextEditingController titleController = TextEditingController();
-  TextEditingController durationController = TextEditingController();
-  TextEditingController categoryController = TextEditingController();
 
 
   // void selectMeal(Meal meal) {
@@ -34,7 +32,9 @@ class MealController extends GetxController {
     }
   }
 
-  void selectCategories(String value) {
-    selectCategory.value = value;
+  void setSelected(String value) {
+    selected.value = value;
   }
+
+  
 }

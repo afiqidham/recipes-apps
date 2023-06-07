@@ -128,13 +128,14 @@ Meal _mealDeserialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  final object = Meal();
-  object.affordability = reader.readStringOrNull(offsets[0]);
-  object.complexity = reader.readStringOrNull(offsets[1]);
-  object.duration = reader.readLongOrNull(offsets[2]);
-  object.imageUrl = reader.readStringOrNull(offsets[3]);
+  final object = Meal(
+    affordability: reader.readStringOrNull(offsets[0]),
+    complexity: reader.readStringOrNull(offsets[1]),
+    duration: reader.readLongOrNull(offsets[2]),
+    imageUrl: reader.readStringOrNull(offsets[3]),
+    title: reader.readStringOrNull(offsets[4]),
+  );
   object.mealId = id;
-  object.title = reader.readStringOrNull(offsets[4]);
   return object;
 }
 

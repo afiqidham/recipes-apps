@@ -9,9 +9,9 @@ class Category {
   Id id = Isar.autoIncrement;
   late String? title;
   final meals = IsarLink<Meal>();
-  
+
   @ignore
   late Color? color;
 
- 
+  Category({this.title, this.color});
 }

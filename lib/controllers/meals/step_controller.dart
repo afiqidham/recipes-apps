@@ -11,6 +11,7 @@ class StepController extends GetxController {
   TextEditingController step6Controller = TextEditingController();
   TextEditingController step7Controller = TextEditingController();
   TextEditingController step8Controller = TextEditingController();
+  TextEditingController step9Controller = TextEditingController();
 
   final selected = 'Simple'.obs;
 

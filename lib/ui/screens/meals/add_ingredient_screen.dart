@@ -2,29 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:meal/config/theme.dart';
 import 'package:meal/controllers/meals/ingredient_controller.dart';
+import 'package:meal/services/isar_service.dart';
 import 'package:meal/ui/components/buttons/primary_button.dart';
 import 'package:meal/ui/components/inputs/ingredient_input.dart';
 import 'package:meal/ui/components/texts/custom_text.dart';
+import 'package:meal/ui/screens/meals/add_step_screen.dart';
+import 'package:meal/ui/widgets/logo_image.dart';
 
 class AddIngredientScreen extends StatelessWidget {
   AddIngredientScreen({super.key});
 
   final IngredientController ic = Get.put(IngredientController());
+  final IsarService isar = Get.put(IsarService());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ThemePalette.blackLiteColor,
+      backgroundColor: ThemePalette.whiteColor,
       body: SingleChildScrollView(
         child: Column(
           children: [
             const SizedBox(
               height: 50,
             ),
-            Image.asset(
-              'images/logo2.png',
-              height: 200,
-            ),
+            const LogoImage(),
             const CustomText(
               text: 'INGREDIENTS',
               fontSize: 25,
@@ -124,7 +125,6 @@ class AddIngredientScreen extends StatelessWidget {
                   width: 180,
                   padding: const EdgeInsets.all(5),
                   decoration: BoxDecoration(
-                      color: ThemePalette.darkgrayColor,
                       border: Border.all(
                         color: ThemePalette.backgroundColor,
                       ),
@@ -148,7 +148,12 @@ class AddIngredientScreen extends StatelessWidget {
                 ),
               ),
             ),
-            PrimaryButton(text: 'Add Ingredients', onPressed: () {}),
+            PrimaryButton(
+                text: 'Add Ingredients',
+                onPressed: () {
+                  isar.addNewMeal();
+                  Get.to(() => AddStepScreen());
+                }),
           ],
         ),
       ),

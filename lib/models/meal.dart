@@ -13,10 +13,16 @@ class Meal {
   late int? duration;
   late String? complexity;
   late String? affordability;
-  
-  
+
   final ingredients = IsarLink<Ingredient>();
   final steps = IsarLink<Steps>();
   final categories = IsarLink<Category>();
-  
+
+  Meal({
+    this.title,
+    this.affordability,
+    this.duration,
+    this.complexity,
+    this.imageUrl,
+  });
 }

@@ -170,16 +170,17 @@ Steps _stepsDeserialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  final object = Steps();
-  object.step1 = reader.readStringOrNull(offsets[0]);
-  object.step2 = reader.readStringOrNull(offsets[1]);
-  object.step3 = reader.readStringOrNull(offsets[2]);
-  object.step4 = reader.readStringOrNull(offsets[3]);
-  object.step5 = reader.readStringOrNull(offsets[4]);
-  object.step6 = reader.readStringOrNull(offsets[5]);
-  object.step7 = reader.readStringOrNull(offsets[6]);
-  object.step8 = reader.readStringOrNull(offsets[7]);
-  object.step9 = reader.readStringOrNull(offsets[8]);
+  final object = Steps(
+    step1: reader.readStringOrNull(offsets[0]),
+    step2: reader.readStringOrNull(offsets[1]),
+    step3: reader.readStringOrNull(offsets[2]),
+    step4: reader.readStringOrNull(offsets[3]),
+    step5: reader.readStringOrNull(offsets[4]),
+    step6: reader.readStringOrNull(offsets[5]),
+    step7: reader.readStringOrNull(offsets[6]),
+    step8: reader.readStringOrNull(offsets[7]),
+    step9: reader.readStringOrNull(offsets[8]),
+  );
   object.stepId = id;
   return object;
 }

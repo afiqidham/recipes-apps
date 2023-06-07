@@ -158,15 +158,16 @@ Ingredient _ingredientDeserialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  final object = Ingredient();
-  object.ingredient1 = reader.readStringOrNull(offsets[0]);
-  object.ingredient2 = reader.readStringOrNull(offsets[1]);
-  object.ingredient3 = reader.readStringOrNull(offsets[2]);
-  object.ingredient4 = reader.readStringOrNull(offsets[3]);
-  object.ingredient5 = reader.readStringOrNull(offsets[4]);
-  object.ingredient6 = reader.readStringOrNull(offsets[5]);
-  object.ingredient7 = reader.readStringOrNull(offsets[6]);
-  object.ingredient8 = reader.readStringOrNull(offsets[7]);
+  final object = Ingredient(
+    ingredient1: reader.readStringOrNull(offsets[0]),
+    ingredient2: reader.readStringOrNull(offsets[1]),
+    ingredient3: reader.readStringOrNull(offsets[2]),
+    ingredient4: reader.readStringOrNull(offsets[3]),
+    ingredient5: reader.readStringOrNull(offsets[4]),
+    ingredient6: reader.readStringOrNull(offsets[5]),
+    ingredient7: reader.readStringOrNull(offsets[6]),
+    ingredient8: reader.readStringOrNull(offsets[7]),
+  );
   object.ingredientId = id;
   return object;
 }

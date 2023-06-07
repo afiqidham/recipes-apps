@@ -2,15 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:meal/config/theme.dart';
 import 'package:meal/controllers/meals/step_controller.dart';
+import 'package:meal/services/isar_service.dart';
 import 'package:meal/ui/components/buttons/primary_button.dart';
 import 'package:meal/ui/components/inputs/step_input.dart';
 import 'package:meal/ui/components/sized_box.dart';
 import 'package:meal/ui/components/texts/custom_text.dart';
+import 'package:meal/ui/screens/meals/add_meal_screen.dart';
 
 class AddStepScreen extends StatelessWidget {
   AddStepScreen({super.key});
 
   final StepController sc = Get.put(StepController());
+  final IsarService isar = Get.put(IsarService());
 
   @override
   Widget build(BuildContext context) {
@@ -45,57 +48,43 @@ class AddStepScreen extends StatelessWidget {
                       textInputType: TextInputType.text,
                     ),
                   ),
-
                   const SizedBoxx(),
-                  
                   StepInput(
                     text: 'Step 2',
                     controller: sc.step2Controller,
                     textInputType: TextInputType.text,
                   ),
-
                   const SizedBoxx(),
-
                   StepInput(
                     text: 'Step 3',
                     controller: sc.step3Controller,
                     textInputType: TextInputType.text,
-                  ), 
-
+                  ),
                   const SizedBoxx(),
-
                   StepInput(
                     text: 'Step 4',
                     controller: sc.step4Controller,
                     textInputType: TextInputType.text,
                   ),
-
                   const SizedBoxx(),
-
                   StepInput(
                     text: 'Step 5',
                     controller: sc.step5Controller,
                     textInputType: TextInputType.text,
                   ),
-
                   const SizedBoxx(),
-
                   StepInput(
                     text: 'Step 6',
                     controller: sc.step6Controller,
                     textInputType: TextInputType.text,
                   ),
-
                   const SizedBoxx(),
-
-                   StepInput(
+                  StepInput(
                     text: 'Step 7',
                     controller: sc.step7Controller,
                     textInputType: TextInputType.text,
                   ),
-
                   const SizedBoxx(),
-
                   StepInput(
                     text: 'Step 8',
                     controller: sc.step8Controller,
@@ -104,7 +93,6 @@ class AddStepScreen extends StatelessWidget {
                 ],
               ),
             ),
-           
             Container(
               margin: const EdgeInsets.only(
                   top: 5, bottom: 20, left: 10, right: 10),
@@ -137,7 +125,13 @@ class AddStepScreen extends StatelessWidget {
                 ),
               ),
             ),
-            PrimaryButton(text: 'Add Steps', onPressed: () {}),
+            PrimaryButton(
+                text: 'Add Steps',
+                onPressed: () {
+                  isar.addNewMeal();
+                  Get.to(()=> AddMealScreen());
+
+                }),
           ],
         ),
       ),

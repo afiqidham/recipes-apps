@@ -35,10 +35,10 @@ class IngredientInput extends StatelessWidget {
         autovalidateMode: autovalidateMode,
         style: const TextStyle(color: Colors.black),
         decoration: InputDecoration(
-          filled: true,
+          filled: false,
           fillColor: ThemePalette.darkgrayColor,
           hintText: text,
-          hintStyle: const TextStyle(color: ThemePalette.whiteColor),
+          hintStyle: const TextStyle(color: ThemePalette.blackLiteColor),
           prefixText: prefixText,
           prefixStyle: const TextStyle(color: Colors.black54),
           suffixIcon: suffixIcon,

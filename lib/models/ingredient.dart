@@ -16,4 +16,13 @@ class Ingredient {
   late String? ingredient8;
   final meals = IsarLink<Meal>();
 
+  Ingredient(
+      {this.ingredient1,
+      this.ingredient2,
+      this.ingredient3,
+      this.ingredient4,
+      this.ingredient5,
+      this.ingredient6,
+      this.ingredient7,
+      this.ingredient8});
 }
