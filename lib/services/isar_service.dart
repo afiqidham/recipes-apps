@@ -15,8 +15,8 @@ class IsarService extends GetxController {
   TextEditingController titleController = TextEditingController();
   TextEditingController categoryController = TextEditingController();
   TextEditingController durationController = TextEditingController();
-  Category? selectCategory;
-  RxList<Category> cat = <Category>[].obs;
+  Rx<Category?> selectCategory = Rx<Category?>(null);
+  RxList<Category> categories = <Category>[].obs;
 
   late Future<Isar> db;
 
@@ -36,6 +36,12 @@ class IsarService extends GetxController {
     return Future.value(Isar.getInstance());
   }
 
+  @override
+  void onInit() {
+    super.onInit();
+    getCategory();
+  }
+
   Future<void> cleanDB() async {
     final isar = await db;
     await isar.writeTxn(() => isar.clear());
@@ -43,10 +49,10 @@ class IsarService extends GetxController {
 
   Future<void> addNewCategory() async {
     final isar = await db;
-    
+
     final newCategory = Category()..title = categoryController.text;
-    await isar.writeTxn(() async {
-      await isar.categorys.put(newCategory);
+    await isar.writeTxnSync(() async {
+      isar.categorys.putSync(newCategory);
     });
     categoryController.clear();
     getCategory();
@@ -54,12 +60,13 @@ class IsarService extends GetxController {
 
   Future<void> getCategory() async {
     final isar = await db;
-    final categories = await isar.categorys.where().findAll();
-    selectCategory = null;
-    cat.value = categories;
+
+    final getCategories = await isar.categorys.where().findAll();
+    selectCategory;
+    categories.value = getCategories;
   }
 
-   Stream<List<Category>> getAllCategories() async* {
+  Stream<List<Category>> getAllCategories() async* {
     final isar = await db;
     yield* isar.categorys.where().watch(fireImmediately: true);
   }
@@ -70,7 +77,7 @@ class IsarService extends GetxController {
     final newMeal = Meal()
       ..title = titleController.text
       ..duration = int.parse(durationController.text)
-      ..category.value = selectCategory
+      ..category.value = selectCategory.value
       ..ingredient1 = ic.ingredient1Controller.text
       ..ingredient2 = ic.ingredient2Controller.text
       ..ingredient3 = ic.ingredient3Controller.text
@@ -91,8 +98,33 @@ class IsarService extends GetxController {
       ..affordability = ic.selected.value
       ..complexity = sc.selected.value;
 
-    await isar.writeTxn(() async {
-      await isar.meals.put(newMeal);
+    await isar.writeTxnSync(() async {
+      isar.meals.putSync(newMeal);
     });
+    titleController.clear();
+    durationController.clear();
+    ic.ingredient1Controller.clear();
+    ic.ingredient2Controller.clear();
+    ic.ingredient3Controller.clear();
+    ic.ingredient4Controller.clear();
+    ic.ingredient5Controller.clear();
+    ic.ingredient6Controller.clear();
+    ic.ingredient7Controller.clear();
+    ic.ingredient8Controller.clear();
+    sc.step1Controller.clear();
+    sc.step2Controller.clear();
+    sc.step3Controller.clear();
+    sc.step4Controller.clear();
+    sc.step5Controller.clear();
+    sc.step6Controller.clear();
+    sc.step7Controller.clear();
+    sc.step8Controller.clear();
+    sc.step9Controller.clear();
+  }
+
+  Future<void> getMeal() async {
+    final isar = await db;
+
+    final getMeals = await isar.meals.where().findAll();
   }
 }

@@ -15,10 +15,10 @@ class DropdownCategory extends StatelessWidget {
         dropdownColor: ThemePalette.backgroundColor,
         borderRadius: BorderRadius.circular(10),
         onChanged: (Category? newValue) {
-          isar.selectCategory = newValue!;
+          isar.selectCategory.value = newValue!;
         },
-        value: isar.selectCategory,
-        items: isar.cat.map<DropdownMenuItem<Category>>((Category category) {
+        value: isar.selectCategory.value,
+        items: isar.categories.map<DropdownMenuItem<Category>>((Category category) {
           return DropdownMenuItem<Category>(
               value: category, 
               child: Text(category.title)

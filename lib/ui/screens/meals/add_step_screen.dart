@@ -7,7 +7,9 @@ import 'package:meal/ui/components/buttons/primary_button.dart';
 import 'package:meal/ui/components/inputs/step_input.dart';
 import 'package:meal/ui/components/sized_box.dart';
 import 'package:meal/ui/components/texts/custom_text.dart';
+import 'package:meal/ui/screens/category_screen.dart';
 import 'package:meal/ui/screens/meals/add_meal_screen.dart';
+import 'package:meal/ui/widgets/category_grid_item.dart';
 import 'package:meal/ui/widgets/dropdown/dropdown_complexity.dart';
 
 class AddStepScreen extends StatelessWidget {
@@ -113,7 +115,7 @@ class AddStepScreen extends StatelessWidget {
                 text: 'Add Steps',
                 onPressed: () {
                   isar.addNewMeal();
-                  Get.to(()=> AddMealScreen());
+                  Get.to(()=> CategoryScreen());
 
                 }),
           ],
