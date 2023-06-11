@@ -7,11 +7,12 @@ part 'category.g.dart';
 @Collection()
 class Category {
   Id id = Isar.autoIncrement;
-  late String? title;
-  final meals = IsarLink<Meal>();
+
+  @Index(unique: true)
+  late String title;
 
   @ignore
   late Color? color;
 
-  Category({this.title, this.color});
+  final meals = IsarLink<Meal>();
 }

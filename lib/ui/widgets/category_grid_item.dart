@@ -26,7 +26,7 @@ class CategoryGridItem extends StatelessWidget {
             end: Alignment.bottomRight,
           ),
         ),
-        child: TitleText(text: category.title!),
+        child: TitleText(text: category.title),
       ),
     );
   }

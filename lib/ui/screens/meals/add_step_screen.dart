@@ -8,6 +8,7 @@ import 'package:meal/ui/components/inputs/step_input.dart';
 import 'package:meal/ui/components/sized_box.dart';
 import 'package:meal/ui/components/texts/custom_text.dart';
 import 'package:meal/ui/screens/meals/add_meal_screen.dart';
+import 'package:meal/ui/widgets/dropdown/dropdown_complexity.dart';
 
 class AddStepScreen extends StatelessWidget {
   AddStepScreen({super.key});
@@ -96,8 +97,7 @@ class AddStepScreen extends StatelessWidget {
             Container(
               margin: const EdgeInsets.only(
                   top: 5, bottom: 20, left: 10, right: 10),
-              child: Obx(
-                () => Container(
+              child: Container(
                   alignment: Alignment.center,
                   width: 180,
                   padding: const EdgeInsets.all(5),
@@ -106,24 +106,8 @@ class AddStepScreen extends StatelessWidget {
                         color: ThemePalette.backgroundColor,
                       ),
                       borderRadius: BorderRadius.circular(10)),
-                  child: DropdownButton(
-                    borderRadius: BorderRadius.circular(10),
-                    dropdownColor: ThemePalette.backgroundColor,
-                    onChanged: (newValue) {
-                      sc.setSelected(newValue!);
-                    },
-                    value: sc.selected.value,
-                    items: sc.complexitytList.map((selectedType) {
-                      return DropdownMenuItem(
-                        value: selectedType,
-                        child: Text(
-                          selectedType,
-                        ),
-                      );
-                    }).toList(),
-                  ),
+                  child: DropdownComplexity()
                 ),
-              ),
             ),
             PrimaryButton(
                 text: 'Add Steps',

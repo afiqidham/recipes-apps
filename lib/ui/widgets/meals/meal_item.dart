@@ -29,7 +29,7 @@ class MealItem extends StatelessWidget {
               height: 300,
               width: double.infinity,
               placeholder: MemoryImage(kTransparentImage),
-              image: NetworkImage(meal.imageUrl!),
+              image: const NetworkImage(''),
               fit: BoxFit.cover,
               fadeInDuration: const Duration(seconds: 1),
             ),
@@ -63,14 +63,14 @@ class MealItem extends StatelessWidget {
                         const SizedBox(
                           width: 12,
                         ),
-                        MealTrait(
+                        const MealTrait(
                           icon: Icons.work,
                           label: '',
                         ),
                         const SizedBox(
                           width: 12,
                         ),
-                        MealTrait(
+                        const MealTrait(
                           icon: Icons.attach_money,
                           label: '',
                         ),

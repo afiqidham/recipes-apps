@@ -5,13 +5,13 @@ import 'package:meal/models/meal.dart';
 import 'package:meal/services/isar_service.dart';
 import 'package:meal/ui/components/buttons/text_button.dart';
 import 'package:meal/ui/components/inputs/primary_input.dart';
+import 'package:meal/ui/components/texts/display_text.dart';
 import 'package:meal/ui/components/texts/title_text.dart';
 
 class CategoryController extends GetxController {
   IsarService isar = Get.put(IsarService());
   RxList<Meal> meals = <Meal>[].obs;
   List<Category> categories = [];
-  
 
   // void selectCategory(Category category) {
   //   final filteredMeals = dummyMeals
@@ -39,6 +39,11 @@ class CategoryController extends GetxController {
           onPressed: () {
             if (isar.categoryController.text.isNotEmpty) {
               isar.addNewCategory();
+            } else {
+              Get.dialog(const AlertDialog(
+                title: TitleText(text: 'Error!'),
+                content: DisplayText(text: 'Need to put category'),
+              ));
             }
           },
           text: 'Add',

@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:meal/config/theme.dart';
 import 'package:meal/controllers/category_controller.dart';
 import 'package:meal/controllers/meals/meal_controller.dart';
-import 'package:meal/models/category.dart';
 import 'package:meal/services/isar_service.dart';
 import 'package:meal/ui/components/buttons/icon_button.dart';
 import 'package:meal/ui/components/buttons/primary_button.dart';
@@ -11,6 +10,7 @@ import 'package:meal/ui/components/inputs/primary_input.dart';
 import 'package:meal/ui/components/sized_box.dart';
 import 'package:meal/ui/components/texts/custom_text.dart';
 import 'package:meal/ui/screens/meals/add_ingredient_screen.dart';
+import 'package:meal/ui/widgets/dropdown/dropdown_category.dart';
 import 'package:meal/ui/widgets/logo_image.dart';
 
 class AddMealScreen extends StatelessWidget {
@@ -38,7 +38,6 @@ class AddMealScreen extends StatelessWidget {
             Form(
               child: PrimaryInput(
                 width: 250,
-                key: mc.formKey,
                 text: 'Meal Title',
                 controller: isar.titleController,
                 textInputType: TextInputType.text,
@@ -64,33 +63,7 @@ class AddMealScreen extends StatelessWidget {
                         color: ThemePalette.backgroundColor,
                       ),
                       borderRadius: BorderRadius.circular(10)),
-                  child: StreamBuilder<List<Category>>(
-                    stream: isar.getCategory(),
-                    builder: (context, AsyncSnapshot<List<Category>> snapshot) {
-                      if (snapshot.hasData) {
-                        List<Category> data = snapshot.data ?? [];
-                        final categories = data.map((selectedType) {
-                          return DropdownMenuItem<Category>(
-                            value: selectedType,
-                            child: Text(
-                              selectedType.title!,
-                            ),
-                          );
-                        }).toList();
-                        return DropdownButtonFormField<Category>(
-                            borderRadius: BorderRadius.circular(10),
-                            dropdownColor: ThemePalette.whiteColor,
-                            focusColor: ThemePalette.backgroundColor,
-                            items: categories,
-                            value: isar.selectCategory,
-                            onChanged: (category) =>
-                                isar.selectCategory = category);
-                      }
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    },
-                  ),
+                  child: DropdownCategory()
                 ),
                 IconsButton(
                   icon: const Icon(Icons.add),
@@ -104,7 +77,6 @@ class AddMealScreen extends StatelessWidget {
             PrimaryButton(
                 text: 'Add Meal',
                 onPressed: () {
-                  isar.addNewMeal();
                   Get.to(() => AddIngredientScreen());
                 }),
           ],

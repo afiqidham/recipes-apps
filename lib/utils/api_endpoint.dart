@@ -1,5 +1,5 @@
 class ApiEndpoint {
-  static final String baseUrl = 'http://restapi.adequateshop.com/api/';
+  static const String baseUrl = 'http://restapi.adequateshop.com/api/';
   static AuthEndPoint authEndPoint = AuthEndPoint();
 }
 

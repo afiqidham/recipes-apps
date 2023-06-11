@@ -16,6 +16,8 @@ class IsarService extends GetxController {
   TextEditingController categoryController = TextEditingController();
   TextEditingController durationController = TextEditingController();
   Category? selectCategory;
+  RxList<Category> cat = <Category>[].obs;
+
   late Future<Isar> db;
 
   IsarService() {
@@ -41,20 +43,34 @@ class IsarService extends GetxController {
 
   Future<void> addNewCategory() async {
     final isar = await db;
+    
     final newCategory = Category()..title = categoryController.text;
     await isar.writeTxn(() async {
       await isar.categorys.put(newCategory);
     });
+    categoryController.clear();
+    getCategory();
   }
 
-  Stream<List<Category>> getCategory() async* {
+  Future<void> getCategory() async {
+    final isar = await db;
+    final categories = await isar.categorys.where().findAll();
+    selectCategory = null;
+    cat.value = categories;
+  }
+
+   Stream<List<Category>> getAllCategories() async* {
     final isar = await db;
     yield* isar.categorys.where().watch(fireImmediately: true);
   }
 
   Future<void> addNewMeal() async {
     final isar = await db;
-    final newIngredient = Ingredient()
+
+    final newMeal = Meal()
+      ..title = titleController.text
+      ..duration = int.parse(durationController.text)
+      ..category.value = selectCategory
       ..ingredient1 = ic.ingredient1Controller.text
       ..ingredient2 = ic.ingredient2Controller.text
       ..ingredient3 = ic.ingredient3Controller.text
@@ -62,9 +78,7 @@ class IsarService extends GetxController {
       ..ingredient5 = ic.ingredient5Controller.text
       ..ingredient6 = ic.ingredient6Controller.text
       ..ingredient7 = ic.ingredient7Controller.text
-      ..ingredient8 = ic.ingredient8Controller.text;
-
-    final newSteps = Steps()
+      ..ingredient8 = ic.ingredient8Controller.text
       ..step1 = sc.step1Controller.text
       ..step2 = sc.step2Controller.text
       ..step3 = sc.step3Controller.text
@@ -73,16 +87,9 @@ class IsarService extends GetxController {
       ..step6 = sc.step6Controller.text
       ..step7 = sc.step7Controller.text
       ..step8 = sc.step8Controller.text
-      ..step9 = sc.step9Controller.text;
-
-    final newMeal = Meal()
-      ..title = titleController.text
-      ..duration = int.parse(durationController.text)
-      ..categories.value = selectCategory
-      ..ingredients.value = newIngredient
-      ..steps.value = newSteps
-      ..affordability = sc.selected 
-      ..complexity = ic.selected as String?;
+      ..step9 = sc.step9Controller.text
+      ..affordability = ic.selected.value
+      ..complexity = sc.selected.value;
 
     await isar.writeTxn(() async {
       await isar.meals.put(newMeal);

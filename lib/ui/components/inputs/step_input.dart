@@ -36,7 +36,7 @@ class StepInput extends StatelessWidget {
         style: const TextStyle(color: Colors.black),
         decoration: InputDecoration(
           filled: true,
-          fillColor: ThemePalette.darkBlueColor,
+          fillColor: ThemePalette.whiteColor,
           hintText: text,
           hintStyle: const TextStyle(color: ThemePalette.blackLiteColor),
           prefixText: prefixText,

@@ -28,7 +28,21 @@ const CategorySchema = CollectionSchema(
   deserialize: _categoryDeserialize,
   deserializeProp: _categoryDeserializeProp,
   idName: r'id',
-  indexes: {},
+  indexes: {
+    r'title': IndexSchema(
+      id: -7636685945352118059,
+      name: r'title',
+      unique: true,
+      replace: false,
+      properties: [
+        IndexPropertySchema(
+          name: r'title',
+          type: IndexType.hash,
+          caseSensitive: true,
+        )
+      ],
+    )
+  },
   links: {
     r'meals': LinkSchema(
       id: -3653465812062585993,
@@ -50,12 +64,7 @@ int _categoryEstimateSize(
   Map<Type, List<int>> allOffsets,
 ) {
   var bytesCount = offsets.last;
-  {
-    final value = object.title;
-    if (value != null) {
-      bytesCount += 3 + value.length * 3;
-    }
-  }
+  bytesCount += 3 + object.title.length * 3;
   return bytesCount;
 }
 
@@ -74,10 +83,9 @@ Category _categoryDeserialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  final object = Category(
-    title: reader.readStringOrNull(offsets[0]),
-  );
+  final object = Category();
   object.id = id;
+  object.title = reader.readString(offsets[0]);
   return object;
 }
 
@@ -89,7 +97,7 @@ P _categoryDeserializeProp<P>(
 ) {
   switch (propertyId) {
     case 0:
-      return (reader.readStringOrNull(offset)) as P;
+      return (reader.readString(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
   }
@@ -106,6 +114,60 @@ List<IsarLinkBase<dynamic>> _categoryGetLinks(Category object) {
 void _categoryAttach(IsarCollection<dynamic> col, Id id, Category object) {
   object.id = id;
   object.meals.attach(col, col.isar.collection<Meal>(), r'meals', id);
+}
+
+extension CategoryByIndex on IsarCollection<Category> {
+  Future<Category?> getByTitle(String title) {
+    return getByIndex(r'title', [title]);
+  }
+
+  Category? getByTitleSync(String title) {
+    return getByIndexSync(r'title', [title]);
+  }
+
+  Future<bool> deleteByTitle(String title) {
+    return deleteByIndex(r'title', [title]);
+  }
+
+  bool deleteByTitleSync(String title) {
+    return deleteByIndexSync(r'title', [title]);
+  }
+
+  Future<List<Category?>> getAllByTitle(List<String> titleValues) {
+    final values = titleValues.map((e) => [e]).toList();
+    return getAllByIndex(r'title', values);
+  }
+
+  List<Category?> getAllByTitleSync(List<String> titleValues) {
+    final values = titleValues.map((e) => [e]).toList();
+    return getAllByIndexSync(r'title', values);
+  }
+
+  Future<int> deleteAllByTitle(List<String> titleValues) {
+    final values = titleValues.map((e) => [e]).toList();
+    return deleteAllByIndex(r'title', values);
+  }
+
+  int deleteAllByTitleSync(List<String> titleValues) {
+    final values = titleValues.map((e) => [e]).toList();
+    return deleteAllByIndexSync(r'title', values);
+  }
+
+  Future<Id> putByTitle(Category object) {
+    return putByIndex(r'title', object);
+  }
+
+  Id putByTitleSync(Category object, {bool saveLinks = true}) {
+    return putByIndexSync(r'title', object, saveLinks: saveLinks);
+  }
+
+  Future<List<Id>> putAllByTitle(List<Category> objects) {
+    return putAllByIndex(r'title', objects);
+  }
+
+  List<Id> putAllByTitleSync(List<Category> objects, {bool saveLinks = true}) {
+    return putAllByIndexSync(r'title', objects, saveLinks: saveLinks);
+  }
 }
 
 extension CategoryQueryWhereSort on QueryBuilder<Category, Category, QWhere> {
@@ -181,6 +243,51 @@ extension CategoryQueryWhere on QueryBuilder<Category, Category, QWhereClause> {
       ));
     });
   }
+
+  QueryBuilder<Category, Category, QAfterWhereClause> titleEqualTo(
+      String title) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addWhereClause(IndexWhereClause.equalTo(
+        indexName: r'title',
+        value: [title],
+      ));
+    });
+  }
+
+  QueryBuilder<Category, Category, QAfterWhereClause> titleNotEqualTo(
+      String title) {
+    return QueryBuilder.apply(this, (query) {
+      if (query.whereSort == Sort.asc) {
+        return query
+            .addWhereClause(IndexWhereClause.between(
+              indexName: r'title',
+              lower: [],
+              upper: [title],
+              includeUpper: false,
+            ))
+            .addWhereClause(IndexWhereClause.between(
+              indexName: r'title',
+              lower: [title],
+              includeLower: false,
+              upper: [],
+            ));
+      } else {
+        return query
+            .addWhereClause(IndexWhereClause.between(
+              indexName: r'title',
+              lower: [title],
+              includeLower: false,
+              upper: [],
+            ))
+            .addWhereClause(IndexWhereClause.between(
+              indexName: r'title',
+              lower: [],
+              upper: [title],
+              includeUpper: false,
+            ));
+      }
+    });
+  }
 }
 
 extension CategoryQueryFilter
@@ -237,24 +344,8 @@ extension CategoryQueryFilter
     });
   }
 
-  QueryBuilder<Category, Category, QAfterFilterCondition> titleIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'title',
-      ));
-    });
-  }
-
-  QueryBuilder<Category, Category, QAfterFilterCondition> titleIsNotNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNotNull(
-        property: r'title',
-      ));
-    });
-  }
-
   QueryBuilder<Category, Category, QAfterFilterCondition> titleEqualTo(
-    String? value, {
+    String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -267,7 +358,7 @@ extension CategoryQueryFilter
   }
 
   QueryBuilder<Category, Category, QAfterFilterCondition> titleGreaterThan(
-    String? value, {
+    String value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -282,7 +373,7 @@ extension CategoryQueryFilter
   }
 
   QueryBuilder<Category, Category, QAfterFilterCondition> titleLessThan(
-    String? value, {
+    String value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -297,8 +388,8 @@ extension CategoryQueryFilter
   }
 
   QueryBuilder<Category, Category, QAfterFilterCondition> titleBetween(
-    String? lower,
-    String? upper, {
+    String lower,
+    String upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -462,7 +553,7 @@ extension CategoryQueryProperty
     });
   }
 
-  QueryBuilder<Category, String?, QQueryOperations> titleProperty() {
+  QueryBuilder<Category, String, QQueryOperations> titleProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'title');
     });

@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:meal/config/theme.dart';
 import 'package:meal/controllers/meals/ingredient_controller.dart';
-import 'package:meal/services/isar_service.dart';
 import 'package:meal/ui/components/buttons/primary_button.dart';
 import 'package:meal/ui/components/inputs/ingredient_input.dart';
 import 'package:meal/ui/components/texts/custom_text.dart';
 import 'package:meal/ui/screens/meals/add_step_screen.dart';
+import 'package:meal/ui/widgets/dropdown/dropdown_affordability.dart';
 import 'package:meal/ui/widgets/logo_image.dart';
 
 class AddIngredientScreen extends StatelessWidget {
   AddIngredientScreen({super.key});
 
   final IngredientController ic = Get.put(IngredientController());
-  final IsarService isar = Get.put(IsarService());
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,6 @@ class AddIngredientScreen extends StatelessWidget {
                 children: [
                   Form(
                     child: IngredientInput(
-                      key: ic.formKey,
                       text: 'Ingredient 1',
                       controller: ic.ingredient1Controller,
                       textInputType: TextInputType.text,
@@ -119,8 +118,7 @@ class AddIngredientScreen extends StatelessWidget {
             Container(
               margin: const EdgeInsets.only(
                   top: 5, bottom: 20, left: 10, right: 10),
-              child: Obx(
-                () => Container(
+              child: Container(
                   alignment: Alignment.center,
                   width: 180,
                   padding: const EdgeInsets.all(5),
@@ -129,29 +127,12 @@ class AddIngredientScreen extends StatelessWidget {
                         color: ThemePalette.backgroundColor,
                       ),
                       borderRadius: BorderRadius.circular(10)),
-                  child: DropdownButton(
-                    borderRadius: BorderRadius.circular(10),
-                    dropdownColor: ThemePalette.backgroundColor,
-                    onChanged: (newValue) {
-                      ic.setSelected(newValue!);
-                    },
-                    value: ic.selected.value,
-                    items: ic.affordabilityList.map((selectedType) {
-                      return DropdownMenuItem(
-                        value: selectedType,
-                        child: Text(
-                          selectedType,
-                        ),
-                      );
-                    }).toList(),
-                  ),
+                  child: DropdownAffordability()
                 ),
-              ),
             ),
             PrimaryButton(
                 text: 'Add Ingredients',
                 onPressed: () {
-                  isar.addNewMeal();
                   Get.to(() => AddStepScreen());
                 }),
           ],
