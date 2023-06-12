@@ -44,7 +44,7 @@ class MealItem extends StatelessWidget {
                 child: Column(
                   children: [
                     TitleText(
-                      text: meal.title!,
+                      text: meal.title,
                       maxlines: 2,
                       textAlign: TextAlign.center,
                       softWrap: true,

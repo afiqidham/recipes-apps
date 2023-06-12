@@ -4,8 +4,11 @@ import 'package:meal/config/theme.dart';
 import 'package:meal/controllers/meals/meal_controller.dart';
 import 'package:meal/models/meal/meal.dart';
 import 'package:meal/ui/components/dividers/divider.dart';
+import 'package:meal/ui/components/sized_box.dart';
 import 'package:meal/ui/components/texts/display_text.dart';
 import 'package:meal/ui/components/texts/title_text.dart';
+import 'package:meal/ui/widgets/meals/meal_ingredient.dart';
+import 'package:meal/ui/widgets/meals/meal_step.dart';
 
 class MealDetailScreen extends StatelessWidget {
   MealDetailScreen({
@@ -19,7 +22,7 @@ class MealDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ThemePalette.primaryColor,
+      backgroundColor: ThemePalette.whiteColor,
       appBar: AppBar(
         title: Text(meal.title!),
         backgroundColor: ThemePalette.backgroundColor,
@@ -53,28 +56,11 @@ class MealDetailScreen extends StatelessWidget {
               height: 14,
             ),
             const TitleText(text: 'Ingredients'),
-            const SizedBox(
-              height: 14,
-            ),
-           
-              
-            const SizedBox(
-              height: 20,
-            ),
-            const PrimaryDivider(),
+            MealIngredient(meal: meal),
+            const SizedBoxx(),
             const TitleText(text: 'Steps'),
-            const SizedBox(
-              height: 14,
-            ),
+            MealStep(meal: meal),
             
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-                child: DisplayText(
-                  text: 'step',
-                  textAlign: TextAlign.center,
-                ),
-              ),
           ],
         ),
       ),
