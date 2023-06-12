@@ -17,44 +17,47 @@ class MealIngredient extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.all(5),
       padding: const EdgeInsets.all(20),
+      height: 300,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
         color: ThemePalette.backgroundColor
       ),
-      child: Column(
-        children: [
-          DisplayContainer(
-            text: meal.ingredient1,
-          ),
-          const SizedBoxx(),
-          DisplayContainer(
-            text: meal.ingredient2
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            DisplayContainer(
+              text: meal.ingredient1,
             ),
-          const SizedBoxx(),
-          DisplayContainer(
-            text: meal.ingredient3
-            ),
-          const SizedBoxx(),
-          DisplayContainer(
-            text: meal.ingredient4
-            ),
-          const SizedBoxx(),
-          DisplayContainer(
-            text: meal.ingredient5
-            ),
-          const SizedBoxx(),
-          DisplayContainer(
-            text: meal.ingredient6
-            ),
-          const SizedBoxx(),
-          DisplayContainer(
-            text: meal.ingredient7
-            ),
-          const SizedBoxx(),
-          DisplayContainer(
-            text: meal.ingredient8
-            ),
-        ],
+            const SizedBoxx(),
+            DisplayContainer(
+              text: meal.ingredient2
+              ),
+            const SizedBoxx(),
+            DisplayContainer(
+              text: meal.ingredient3
+              ),
+            const SizedBoxx(),
+            DisplayContainer(
+              text: meal.ingredient4
+              ),
+            const SizedBoxx(),
+            DisplayContainer(
+              text: meal.ingredient5
+              ),
+            const SizedBoxx(),
+            DisplayContainer(
+              text: meal.ingredient6
+              ),
+            const SizedBoxx(),
+            DisplayContainer(
+              text: meal.ingredient7
+              ),
+            const SizedBoxx(),
+            DisplayContainer(
+              text: meal.ingredient8
+              ),
+          ],
+        ),
       ),
     );
   }

@@ -3,9 +3,7 @@ import 'package:get/get.dart';
 import 'package:meal/config/theme.dart';
 import 'package:meal/controllers/meals/meal_controller.dart';
 import 'package:meal/models/meal/meal.dart';
-import 'package:meal/ui/components/dividers/divider.dart';
 import 'package:meal/ui/components/sized_box.dart';
-import 'package:meal/ui/components/texts/display_text.dart';
 import 'package:meal/ui/components/texts/title_text.dart';
 import 'package:meal/ui/widgets/meals/meal_ingredient.dart';
 import 'package:meal/ui/widgets/meals/meal_step.dart';
@@ -24,7 +22,7 @@ class MealDetailScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: ThemePalette.whiteColor,
       appBar: AppBar(
-        title: Text(meal.title!),
+        title: Text(meal.title),
         backgroundColor: ThemePalette.backgroundColor,
         actions: [
           Obx(()=>
@@ -57,7 +55,9 @@ class MealDetailScreen extends StatelessWidget {
             ),
             const TitleText(text: 'Ingredients'),
             MealIngredient(meal: meal),
+
             const SizedBoxx(),
+            
             const TitleText(text: 'Steps'),
             MealStep(meal: meal),
             
