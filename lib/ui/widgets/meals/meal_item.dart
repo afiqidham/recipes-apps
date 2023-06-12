@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meal/models/meal.dart';
+import 'package:meal/models/meal/meal.dart';
 import 'package:meal/ui/components/texts/title_text.dart';
 import 'package:meal/ui/widgets/meals/meal_trait.dart';
 import 'package:transparent_image/transparent_image.dart';
@@ -63,16 +63,16 @@ class MealItem extends StatelessWidget {
                         const SizedBox(
                           width: 12,
                         ),
-                        const MealTrait(
+                         MealTrait(
                           icon: Icons.work,
-                          label: '',
+                          label: meal.complexity,
                         ),
                         const SizedBox(
                           width: 12,
                         ),
-                        const MealTrait(
+                         MealTrait(
                           icon: Icons.attach_money,
-                          label: '',
+                          label: meal.affordability,
                         ),
                       ],
                     ),

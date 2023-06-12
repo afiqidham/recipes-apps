@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:meal/config/theme.dart';
-import 'package:meal/models/category.dart';
+import 'package:meal/models/category/category.dart';
 import 'package:meal/services/isar_service.dart';
 
 class DropdownCategory extends StatelessWidget {

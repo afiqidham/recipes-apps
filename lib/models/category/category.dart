@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
+
 import 'package:isar/isar.dart';
-import 'package:meal/models/meal.dart';
+import 'package:meal/models/meal/meal.dart';
 
 part 'category.g.dart';
 
@@ -11,8 +11,6 @@ class Category {
   @Index(unique: true)
   late String title;
 
-  @ignore
-  late Color? color;
 
   final meals = IsarLink<Meal>();
 }

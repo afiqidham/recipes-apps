@@ -1,5 +1,5 @@
 import 'package:isar/isar.dart';
-import 'package:meal/models/category.dart';
+import 'package:meal/models/category/category.dart';
 
 part 'meal.g.dart';
 
@@ -7,7 +7,7 @@ part 'meal.g.dart';
 class Meal {
   Id mealId = Isar.autoIncrement;
   late String? title;
-  // late String? imageUrl;
+  late String? imageUrl;
   late int? duration;
 
   final category = IsarLink<Category>();

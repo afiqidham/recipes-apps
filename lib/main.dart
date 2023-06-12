@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:meal/config/theme.dart';
-import 'package:meal/ui/screens/meals/add_meal_screen.dart';
+import 'package:meal/ui/screens/category_screen.dart';
 import 'package:meal/utils/bindings/meal_binding.dart';
 
 void main() async {
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       title: 'Recipes',
       debugShowCheckedModeBanner: false,
       theme: buildTheme(),
-      home: AddMealScreen(),
+      home: CategoryScreen(),
       // getPages: AppRoute.routes,
       initialBinding: MealBinding(),
     );

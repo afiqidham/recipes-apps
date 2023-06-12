@@ -1,8 +1,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:meal/models/category.dart';
-import 'package:meal/models/meal.dart';
+import 'package:meal/models/category/category.dart';
+import 'package:meal/models/meal/meal.dart';
+import 'package:meal/ui/screens/meals/meal_detail_screen.dart';
 
 
 class MealController extends GetxController {
@@ -16,11 +17,11 @@ class MealController extends GetxController {
   GlobalKey formKey = GlobalKey();
 
 
-  // void selectMeal(Meal meal) {
-  //   Get.to(() => MealDetailScreen(
-  //         meal: meal,
-  //       ));
-  // }
+  void selectMeal(Meal meal) {
+    Get.to(() => MealDetailScreen(
+          meal: meal,
+        ));
+  }
 
   void mealFavouriteStatus(Meal meal) {
     fav.value = favouriteMeals.contains(meal);

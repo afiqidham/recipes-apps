@@ -3,10 +3,10 @@ import 'package:get/get.dart';
 import 'package:isar/isar.dart';
 import 'package:meal/controllers/meals/ingredient_controller.dart';
 import 'package:meal/controllers/meals/step_controller.dart';
-import 'package:meal/models/category.dart';
-import 'package:meal/models/ingredient.dart';
-import 'package:meal/models/meal.dart';
-import 'package:meal/models/step.dart';
+import 'package:meal/models/category/category.dart';
+import 'package:meal/models/meal/meal.dart';
+import 'package:meal/ui/screens/meals/meal_detail_screen.dart';
+import 'package:meal/ui/screens/meals/meal_screen.dart';
 import 'package:path_provider/path_provider.dart';
 
 class IsarService extends GetxController {
@@ -17,6 +17,7 @@ class IsarService extends GetxController {
   TextEditingController durationController = TextEditingController();
   Rx<Category?> selectCategory = Rx<Category?>(null);
   RxList<Category> categories = <Category>[].obs;
+  RxList<Meal> meals = <Meal>[].obs;
 
   late Future<Isar> db;
 
@@ -28,7 +29,7 @@ class IsarService extends GetxController {
     final dir = await getApplicationDocumentsDirectory();
     if (Isar.instanceNames.isEmpty) {
       return await Isar.open(
-        [CategorySchema, MealSchema, IngredientSchema, StepsSchema],
+        [CategorySchema, MealSchema,],
         inspector: true,
         directory: dir.path,
       );
@@ -122,9 +123,19 @@ class IsarService extends GetxController {
     sc.step9Controller.clear();
   }
 
-  Future<void> getMeal() async {
+  Future<void> getMeal(Category category) async {
     final isar = await db;
 
-    final getMeals = await isar.meals.where().findAll();
+    final getMeals = await isar.meals.where().filter().category((q) {
+      return q.idEqualTo(category.id);
+    }).findAll();
+    Get.to(() =>
+        MealScreen(title: isar.meals.name, meals: meals.value = getMeals));
   }
+
+  // Future<void> selectMeal(Meal meal) async {
+  //   final isar = await db;
+
+  //   Get.to(MealDetailScreen(meal: meal));
+  // }
 }
