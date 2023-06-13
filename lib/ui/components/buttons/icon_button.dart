@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:meal/config/theme.dart';
 
 class IconsButton extends StatelessWidget {
   final String? text;
   final Function() onPressed;
   final Widget icon;
+  final Color? color;
 
   const IconsButton(
-      {this.text, required this.icon, required this.onPressed, super.key});
+      {this.text, required this.icon, required this.onPressed, this.color, super.key});
+
 
   @override
   Widget build(BuildContext context) {
     return IconButton(
-        icon: icon, 
-        onPressed: onPressed, 
-        style: IconButton.styleFrom(
-          backgroundColor: ThemePalette.backgroundColor,
-        ));
+        icon: icon,
+        color: color,
+        onPressed: onPressed,
+       );
   }
 }

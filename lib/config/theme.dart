@@ -11,6 +11,7 @@ class ThemePalette {
   static const Color secondaryColor = Color.fromARGB(255, 241, 241, 241);
   static const Color backgroundColor = Colors.pink;
 
+  static const Color red = Color.fromARGB(221, 235, 2, 2);
   static const Color black = Colors.black87;
   static const Color borderColor = Color.fromARGB(255, 240, 240, 240);
 

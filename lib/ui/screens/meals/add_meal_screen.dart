@@ -35,11 +35,18 @@ class AddMealScreen extends StatelessWidget {
             addVerticalSpace(10),
             Form(
               child: PrimaryInput(
+                key: mc.formKey,
                 width: 250,
                 text: 'Meal Title',
                 controller: isar.titleController,
                 textInputType: TextInputType.text,
-                
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Please fill in meal title';
+                  }
+                  return null;
+                },
               ),
             ),
             addVerticalSpace(10),
@@ -48,6 +55,13 @@ class AddMealScreen extends StatelessWidget {
               text: 'Duration',
               controller: isar.durationController,
               textInputType: TextInputType.text,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              validator: (value) {
+                  if (value!.isEmpty && value.isNumericOnly) {
+                    return 'Please fill meal duration in minutes';
+                  }
+                  return null;
+                },
             ),
             addVerticalSpace(10),
             Row(
@@ -83,6 +97,7 @@ class AddMealScreen extends StatelessWidget {
             PrimaryButton(
                 text: 'Add Meal',
                 onPressed: () {
+                 
                   Get.to(() => AddIngredientScreen());
                 }),
           ],

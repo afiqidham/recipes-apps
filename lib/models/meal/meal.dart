@@ -9,10 +9,10 @@ class Meal {
   late String title;
   late String imageUrl;
   late int duration;
+  late bool favourite;
 
   final category = IsarLink<Category>();
 
-  
   late String complexity;
   late String affordability;
 

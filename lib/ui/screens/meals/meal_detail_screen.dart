@@ -32,10 +32,11 @@ class MealDetailScreen extends StatelessWidget {
         backgroundColor: ThemePalette.backgroundColor,
         actions: [
           Obx(
-            () => IconButton(
+            () => IconsButton(
               icon: Icon(mc.favouriteMeals.contains(meal)
                   ? Icons.favorite_rounded
                   : Icons.favorite_outline_rounded),
+              color: mc.favouriteMeals.contains(meal) ? ThemePalette.red : ThemePalette.whiteColor,
               onPressed: () {
                 mc.mealFavouriteStatus(meal);
               },

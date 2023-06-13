@@ -6,7 +6,7 @@ import 'package:meal/services/isar_service.dart';
 import 'package:meal/ui/components/buttons/primary_button.dart';
 import 'package:meal/ui/components/inputs/step_input.dart';
 import 'package:meal/ui/components/texts/custom_text.dart';
-import 'package:meal/ui/screens/category_screen.dart';
+import 'package:meal/ui/screens/main_screen.dart';
 import 'package:meal/ui/widgets/dropdown/dropdown_complexity.dart';
 import 'package:meal/utils/widget.dart';
 
@@ -106,15 +106,13 @@ class AddStepScreen extends StatelessWidget {
                         color: ThemePalette.backgroundColor,
                       ),
                       borderRadius: BorderRadius.circular(10)),
-                  child: DropdownComplexity()
-                ),
+                  child: DropdownComplexity()),
             ),
             PrimaryButton(
                 text: 'Add Steps',
                 onPressed: () {
                   isar.addNewMeal();
-                  Get.to(()=> CategoryScreen());
-
+                  Get.off(() => MainScreen());
                 }),
           ],
         ),
