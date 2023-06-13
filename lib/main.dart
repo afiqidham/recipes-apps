@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:meal/config/theme.dart';
-import 'package:meal/ui/screens/category_screen.dart';
 import 'package:meal/ui/screens/main_screen.dart';
 import 'package:meal/utils/bindings/meal_binding.dart';
 

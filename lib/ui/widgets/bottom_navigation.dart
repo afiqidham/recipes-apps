@@ -17,7 +17,6 @@ class BottomNavigation extends StatelessWidget {
       elevation: 0,
       notchMargin: 10,
       child: Container(
-
         padding: const EdgeInsets.symmetric(horizontal: 55, vertical: 20),
         child: Obx(
           () => Row(

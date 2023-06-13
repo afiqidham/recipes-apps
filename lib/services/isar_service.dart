@@ -140,9 +140,12 @@ class IsarService extends GetxController {
         MealScreen(title: isar.meals.name, meals: meals.value = getMeals));
   }
 
-  // Future<void> selectMeal(Meal meal) async {
-  //   final isar = await db;
+  Future<void> deleteMeal(Meal meal) async {
+    final isar = await db;
 
-  //   Get.to(MealDetailScreen(meal: meal));
-  // }
+     await isar.writeTxn(() async {
+      await isar.meals.delete(meal.mealId);
+    });
+    
+  }
 }
