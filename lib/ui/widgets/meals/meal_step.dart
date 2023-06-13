@@ -4,7 +4,8 @@ import 'package:meal/config/theme.dart';
 import 'package:meal/models/meal/meal.dart';
 import 'package:meal/services/isar_service.dart';
 import 'package:meal/ui/components/display_container.dart';
-import 'package:meal/ui/components/sized_box.dart';
+import 'package:meal/utils/widget.dart';
+
 
 class MealStep extends StatelessWidget {
   MealStep({required this.meal, super.key});
@@ -28,31 +29,31 @@ class MealStep extends StatelessWidget {
             DisplayContainer(
               text: meal.step1,
             ),
-            const SizedBoxx(),
+            addVerticalSpace(10),
             DisplayContainer(
               text: meal.step2
               ),
-            const SizedBoxx(),
+            addVerticalSpace(10),
             DisplayContainer(
               text: meal.step3
               ),
-            const SizedBoxx(),
+            addVerticalSpace(10),
             DisplayContainer(
               text: meal.step4
               ),
-            const SizedBoxx(),
+            addVerticalSpace(10),
             DisplayContainer(
               text: meal.step5
               ),
-            const SizedBoxx(),
+            addVerticalSpace(10),
             DisplayContainer(
               text: meal.step6
               ),
-            const SizedBoxx(),
+            addVerticalSpace(10),
             DisplayContainer(
               text: meal.step7
               ),
-            const SizedBoxx(),
+            addVerticalSpace(10),
             DisplayContainer(
               text: meal.step8
               ),

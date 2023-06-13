@@ -4,7 +4,7 @@ import 'package:meal/config/theme.dart';
 import 'package:meal/models/meal/meal.dart';
 import 'package:meal/services/isar_service.dart';
 import 'package:meal/ui/components/display_container.dart';
-import 'package:meal/ui/components/sized_box.dart';
+import 'package:meal/utils/widget.dart';
 
 class MealIngredient extends StatelessWidget {
   MealIngredient({required this.meal, super.key});
@@ -28,31 +28,31 @@ class MealIngredient extends StatelessWidget {
             DisplayContainer(
               text: meal.ingredient1,
             ),
-            const SizedBoxx(),
+            addVerticalSpace(10),
             DisplayContainer(
               text: meal.ingredient2
               ),
-            const SizedBoxx(),
+            addVerticalSpace(10),
             DisplayContainer(
               text: meal.ingredient3
               ),
-            const SizedBoxx(),
+            addVerticalSpace(10),
             DisplayContainer(
               text: meal.ingredient4
               ),
-            const SizedBoxx(),
+            addVerticalSpace(10),
             DisplayContainer(
               text: meal.ingredient5
               ),
-            const SizedBoxx(),
+            addVerticalSpace(10),
             DisplayContainer(
               text: meal.ingredient6
               ),
-            const SizedBoxx(),
+            addVerticalSpace(10),
             DisplayContainer(
               text: meal.ingredient7
               ),
-            const SizedBoxx(),
+            addVerticalSpace(10),
             DisplayContainer(
               text: meal.ingredient8
               ),

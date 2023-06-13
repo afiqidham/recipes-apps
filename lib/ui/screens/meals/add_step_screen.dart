@@ -5,10 +5,10 @@ import 'package:meal/controllers/meals/step_controller.dart';
 import 'package:meal/services/isar_service.dart';
 import 'package:meal/ui/components/buttons/primary_button.dart';
 import 'package:meal/ui/components/inputs/step_input.dart';
-import 'package:meal/ui/components/sized_box.dart';
 import 'package:meal/ui/components/texts/custom_text.dart';
 import 'package:meal/ui/screens/category_screen.dart';
 import 'package:meal/ui/widgets/dropdown/dropdown_complexity.dart';
+import 'package:meal/utils/widget.dart';
 
 class AddStepScreen extends StatelessWidget {
   AddStepScreen({super.key});
@@ -49,43 +49,43 @@ class AddStepScreen extends StatelessWidget {
                       textInputType: TextInputType.text,
                     ),
                   ),
-                  const SizedBoxx(),
+                  addVerticalSpace(10),
                   StepInput(
                     text: 'Step 2',
                     controller: sc.step2Controller,
                     textInputType: TextInputType.text,
                   ),
-                  const SizedBoxx(),
+                  addVerticalSpace(10),
                   StepInput(
                     text: 'Step 3',
                     controller: sc.step3Controller,
                     textInputType: TextInputType.text,
                   ),
-                  const SizedBoxx(),
+                  addVerticalSpace(10),
                   StepInput(
                     text: 'Step 4',
                     controller: sc.step4Controller,
                     textInputType: TextInputType.text,
                   ),
-                  const SizedBoxx(),
+                  addVerticalSpace(10),
                   StepInput(
                     text: 'Step 5',
                     controller: sc.step5Controller,
                     textInputType: TextInputType.text,
                   ),
-                  const SizedBoxx(),
+                  addVerticalSpace(10),
                   StepInput(
                     text: 'Step 6',
                     controller: sc.step6Controller,
                     textInputType: TextInputType.text,
                   ),
-                  const SizedBoxx(),
+                  addVerticalSpace(10),
                   StepInput(
                     text: 'Step 7',
                     controller: sc.step7Controller,
                     textInputType: TextInputType.text,
                   ),
-                  const SizedBoxx(),
+                  addVerticalSpace(10),
                   StepInput(
                     text: 'Step 8',
                     controller: sc.step8Controller,

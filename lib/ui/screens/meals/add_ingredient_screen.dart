@@ -7,7 +7,7 @@ import 'package:meal/ui/components/inputs/ingredient_input.dart';
 import 'package:meal/ui/components/texts/custom_text.dart';
 import 'package:meal/ui/screens/meals/add_step_screen.dart';
 import 'package:meal/ui/widgets/dropdown/dropdown_affordability.dart';
-import 'package:meal/ui/widgets/logo_image.dart';
+import 'package:meal/utils/widget.dart';
 
 class AddIngredientScreen extends StatelessWidget {
   AddIngredientScreen({super.key});
@@ -25,7 +25,7 @@ class AddIngredientScreen extends StatelessWidget {
             const SizedBox(
               height: 50,
             ),
-            const LogoImage(),
+            logo(),
             const CustomText(
               text: 'INGREDIENTS',
               fontSize: 25,

@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:isar/isar.dart';
 import 'package:meal/controllers/meals/ingredient_controller.dart';
+import 'package:meal/controllers/meals/meal_controller.dart';
 import 'package:meal/controllers/meals/step_controller.dart';
 import 'package:meal/models/category/category.dart';
 import 'package:meal/models/meal/meal.dart';
@@ -12,9 +15,12 @@ import 'package:path_provider/path_provider.dart';
 class IsarService extends GetxController {
   IngredientController ic = Get.put(IngredientController());
   StepController sc = Get.put(StepController());
+  MealController mc = Get.put(MealController());
+
   TextEditingController titleController = TextEditingController();
   TextEditingController categoryController = TextEditingController();
   TextEditingController durationController = TextEditingController();
+
   Rx<Category?> selectCategory = Rx<Category?>(null);
   RxList<Category> categories = <Category>[].obs;
   RxList<Meal> meals = <Meal>[].obs;
@@ -29,7 +35,10 @@ class IsarService extends GetxController {
     final dir = await getApplicationDocumentsDirectory();
     if (Isar.instanceNames.isEmpty) {
       return await Isar.open(
-        [CategorySchema, MealSchema,],
+        [
+          CategorySchema,
+          MealSchema,
+        ],
         inspector: true,
         directory: dir.path,
       );
@@ -79,6 +88,7 @@ class IsarService extends GetxController {
       ..title = titleController.text
       ..duration = int.parse(durationController.text)
       ..category.value = selectCategory.value
+      ..imageUrl = mc.image!.path
       ..ingredient1 = ic.ingredient1Controller.text
       ..ingredient2 = ic.ingredient2Controller.text
       ..ingredient3 = ic.ingredient3Controller.text

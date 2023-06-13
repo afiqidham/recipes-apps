@@ -32,93 +32,98 @@ const MealSchema = CollectionSchema(
       name: r'duration',
       type: IsarType.long,
     ),
-    r'ingredient1': PropertySchema(
+    r'imageUrl': PropertySchema(
       id: 3,
+      name: r'imageUrl',
+      type: IsarType.string,
+    ),
+    r'ingredient1': PropertySchema(
+      id: 4,
       name: r'ingredient1',
       type: IsarType.string,
     ),
     r'ingredient2': PropertySchema(
-      id: 4,
+      id: 5,
       name: r'ingredient2',
       type: IsarType.string,
     ),
     r'ingredient3': PropertySchema(
-      id: 5,
+      id: 6,
       name: r'ingredient3',
       type: IsarType.string,
     ),
     r'ingredient4': PropertySchema(
-      id: 6,
+      id: 7,
       name: r'ingredient4',
       type: IsarType.string,
     ),
     r'ingredient5': PropertySchema(
-      id: 7,
+      id: 8,
       name: r'ingredient5',
       type: IsarType.string,
     ),
     r'ingredient6': PropertySchema(
-      id: 8,
+      id: 9,
       name: r'ingredient6',
       type: IsarType.string,
     ),
     r'ingredient7': PropertySchema(
-      id: 9,
+      id: 10,
       name: r'ingredient7',
       type: IsarType.string,
     ),
     r'ingredient8': PropertySchema(
-      id: 10,
+      id: 11,
       name: r'ingredient8',
       type: IsarType.string,
     ),
     r'step1': PropertySchema(
-      id: 11,
+      id: 12,
       name: r'step1',
       type: IsarType.string,
     ),
     r'step2': PropertySchema(
-      id: 12,
+      id: 13,
       name: r'step2',
       type: IsarType.string,
     ),
     r'step3': PropertySchema(
-      id: 13,
+      id: 14,
       name: r'step3',
       type: IsarType.string,
     ),
     r'step4': PropertySchema(
-      id: 14,
+      id: 15,
       name: r'step4',
       type: IsarType.string,
     ),
     r'step5': PropertySchema(
-      id: 15,
+      id: 16,
       name: r'step5',
       type: IsarType.string,
     ),
     r'step6': PropertySchema(
-      id: 16,
+      id: 17,
       name: r'step6',
       type: IsarType.string,
     ),
     r'step7': PropertySchema(
-      id: 17,
+      id: 18,
       name: r'step7',
       type: IsarType.string,
     ),
     r'step8': PropertySchema(
-      id: 18,
+      id: 19,
       name: r'step8',
       type: IsarType.string,
     ),
     r'step9': PropertySchema(
-      id: 19,
+      id: 20,
       name: r'step9',
       type: IsarType.string,
     ),
     r'title': PropertySchema(
-      id: 20,
+      id: 21,
       name: r'title',
       type: IsarType.string,
     )
@@ -152,6 +157,7 @@ int _mealEstimateSize(
   var bytesCount = offsets.last;
   bytesCount += 3 + object.affordability.length * 3;
   bytesCount += 3 + object.complexity.length * 3;
+  bytesCount += 3 + object.imageUrl.length * 3;
   bytesCount += 3 + object.ingredient1.length * 3;
   bytesCount += 3 + object.ingredient2.length * 3;
   bytesCount += 3 + object.ingredient3.length * 3;
@@ -182,24 +188,25 @@ void _mealSerialize(
   writer.writeString(offsets[0], object.affordability);
   writer.writeString(offsets[1], object.complexity);
   writer.writeLong(offsets[2], object.duration);
-  writer.writeString(offsets[3], object.ingredient1);
-  writer.writeString(offsets[4], object.ingredient2);
-  writer.writeString(offsets[5], object.ingredient3);
-  writer.writeString(offsets[6], object.ingredient4);
-  writer.writeString(offsets[7], object.ingredient5);
-  writer.writeString(offsets[8], object.ingredient6);
-  writer.writeString(offsets[9], object.ingredient7);
-  writer.writeString(offsets[10], object.ingredient8);
-  writer.writeString(offsets[11], object.step1);
-  writer.writeString(offsets[12], object.step2);
-  writer.writeString(offsets[13], object.step3);
-  writer.writeString(offsets[14], object.step4);
-  writer.writeString(offsets[15], object.step5);
-  writer.writeString(offsets[16], object.step6);
-  writer.writeString(offsets[17], object.step7);
-  writer.writeString(offsets[18], object.step8);
-  writer.writeString(offsets[19], object.step9);
-  writer.writeString(offsets[20], object.title);
+  writer.writeString(offsets[3], object.imageUrl);
+  writer.writeString(offsets[4], object.ingredient1);
+  writer.writeString(offsets[5], object.ingredient2);
+  writer.writeString(offsets[6], object.ingredient3);
+  writer.writeString(offsets[7], object.ingredient4);
+  writer.writeString(offsets[8], object.ingredient5);
+  writer.writeString(offsets[9], object.ingredient6);
+  writer.writeString(offsets[10], object.ingredient7);
+  writer.writeString(offsets[11], object.ingredient8);
+  writer.writeString(offsets[12], object.step1);
+  writer.writeString(offsets[13], object.step2);
+  writer.writeString(offsets[14], object.step3);
+  writer.writeString(offsets[15], object.step4);
+  writer.writeString(offsets[16], object.step5);
+  writer.writeString(offsets[17], object.step6);
+  writer.writeString(offsets[18], object.step7);
+  writer.writeString(offsets[19], object.step8);
+  writer.writeString(offsets[20], object.step9);
+  writer.writeString(offsets[21], object.title);
 }
 
 Meal _mealDeserialize(
@@ -212,25 +219,26 @@ Meal _mealDeserialize(
   object.affordability = reader.readString(offsets[0]);
   object.complexity = reader.readString(offsets[1]);
   object.duration = reader.readLong(offsets[2]);
-  object.ingredient1 = reader.readString(offsets[3]);
-  object.ingredient2 = reader.readString(offsets[4]);
-  object.ingredient3 = reader.readString(offsets[5]);
-  object.ingredient4 = reader.readString(offsets[6]);
-  object.ingredient5 = reader.readString(offsets[7]);
-  object.ingredient6 = reader.readString(offsets[8]);
-  object.ingredient7 = reader.readString(offsets[9]);
-  object.ingredient8 = reader.readString(offsets[10]);
+  object.imageUrl = reader.readString(offsets[3]);
+  object.ingredient1 = reader.readString(offsets[4]);
+  object.ingredient2 = reader.readString(offsets[5]);
+  object.ingredient3 = reader.readString(offsets[6]);
+  object.ingredient4 = reader.readString(offsets[7]);
+  object.ingredient5 = reader.readString(offsets[8]);
+  object.ingredient6 = reader.readString(offsets[9]);
+  object.ingredient7 = reader.readString(offsets[10]);
+  object.ingredient8 = reader.readString(offsets[11]);
   object.mealId = id;
-  object.step1 = reader.readString(offsets[11]);
-  object.step2 = reader.readString(offsets[12]);
-  object.step3 = reader.readString(offsets[13]);
-  object.step4 = reader.readString(offsets[14]);
-  object.step5 = reader.readString(offsets[15]);
-  object.step6 = reader.readString(offsets[16]);
-  object.step7 = reader.readString(offsets[17]);
-  object.step8 = reader.readString(offsets[18]);
-  object.step9 = reader.readString(offsets[19]);
-  object.title = reader.readString(offsets[20]);
+  object.step1 = reader.readString(offsets[12]);
+  object.step2 = reader.readString(offsets[13]);
+  object.step3 = reader.readString(offsets[14]);
+  object.step4 = reader.readString(offsets[15]);
+  object.step5 = reader.readString(offsets[16]);
+  object.step6 = reader.readString(offsets[17]);
+  object.step7 = reader.readString(offsets[18]);
+  object.step8 = reader.readString(offsets[19]);
+  object.step9 = reader.readString(offsets[20]);
+  object.title = reader.readString(offsets[21]);
   return object;
 }
 
@@ -282,6 +290,8 @@ P _mealDeserializeProp<P>(
     case 19:
       return (reader.readString(offset)) as P;
     case 20:
+      return (reader.readString(offset)) as P;
+    case 21:
       return (reader.readString(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -685,6 +695,135 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
         includeLower: includeLower,
         upper: upper,
         includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> imageUrlEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'imageUrl',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> imageUrlGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'imageUrl',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> imageUrlLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'imageUrl',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> imageUrlBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'imageUrl',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> imageUrlStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'imageUrl',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> imageUrlEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'imageUrl',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> imageUrlContains(String value,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'imageUrl',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> imageUrlMatches(
+      String pattern,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'imageUrl',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> imageUrlIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'imageUrl',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> imageUrlIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'imageUrl',
+        value: '',
       ));
     });
   }
@@ -3116,6 +3255,18 @@ extension MealQuerySortBy on QueryBuilder<Meal, Meal, QSortBy> {
     });
   }
 
+  QueryBuilder<Meal, Meal, QAfterSortBy> sortByImageUrl() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'imageUrl', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Meal, Meal, QAfterSortBy> sortByImageUrlDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'imageUrl', Sort.desc);
+    });
+  }
+
   QueryBuilder<Meal, Meal, QAfterSortBy> sortByIngredient1() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'ingredient1', Sort.asc);
@@ -3370,6 +3521,18 @@ extension MealQuerySortThenBy on QueryBuilder<Meal, Meal, QSortThenBy> {
     });
   }
 
+  QueryBuilder<Meal, Meal, QAfterSortBy> thenByImageUrl() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'imageUrl', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Meal, Meal, QAfterSortBy> thenByImageUrlDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'imageUrl', Sort.desc);
+    });
+  }
+
   QueryBuilder<Meal, Meal, QAfterSortBy> thenByIngredient1() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'ingredient1', Sort.asc);
@@ -3621,6 +3784,13 @@ extension MealQueryWhereDistinct on QueryBuilder<Meal, Meal, QDistinct> {
     });
   }
 
+  QueryBuilder<Meal, Meal, QDistinct> distinctByImageUrl(
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'imageUrl', caseSensitive: caseSensitive);
+    });
+  }
+
   QueryBuilder<Meal, Meal, QDistinct> distinctByIngredient1(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -3770,6 +3940,12 @@ extension MealQueryProperty on QueryBuilder<Meal, Meal, QQueryProperty> {
   QueryBuilder<Meal, int, QQueryOperations> durationProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'duration');
+    });
+  }
+
+  QueryBuilder<Meal, String, QQueryOperations> imageUrlProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'imageUrl');
     });
   }
 

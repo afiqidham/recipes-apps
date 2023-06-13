@@ -1,10 +1,14 @@
+import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:meal/models/category/category.dart';
 import 'package:meal/models/meal/meal.dart';
+import 'package:meal/ui/components/texts/display_text.dart';
+import 'package:meal/ui/components/texts/title_text.dart';
 import 'package:meal/ui/screens/meals/meal_detail_screen.dart';
-
 
 class MealController extends GetxController {
   RxList<Meal> favouriteMeals = <Meal>[].obs;
@@ -13,9 +17,9 @@ class MealController extends GetxController {
   final selected = ''.obs;
   final dropDownValue = Rx<Category?>(null);
   late final Meal meal;
+  File? image;
 
   GlobalKey formKey = GlobalKey();
-
 
   void selectMeal(Meal meal) {
     Get.to(() => MealDetailScreen(
@@ -37,5 +41,19 @@ class MealController extends GetxController {
     selected.value = value;
   }
 
-  
+  Future uploadImage() async {
+    try {
+      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+      if (image == null) return;
+
+      final imageTemp = File(image.path);
+
+      this.image = imageTemp;
+    } on PlatformException catch(e) {
+      Get.dialog(const AlertDialog(
+        title: TitleText(text: 'Error'),
+        content: DisplayText(text: 'Failed to upload image..'),
+      ));
+    }
+  }
 }

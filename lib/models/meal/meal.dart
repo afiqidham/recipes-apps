@@ -7,7 +7,7 @@ part 'meal.g.dart';
 class Meal {
   Id mealId = Isar.autoIncrement;
   late String title;
-  // late String imageUrl;
+  late String imageUrl;
   late int duration;
 
   final category = IsarLink<Category>();
