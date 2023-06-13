@@ -29,7 +29,7 @@ class MealDetailScreen extends StatelessWidget {
         actions: [
           Obx(()=>
              IconButton(
-              icon: Icon(mc.fav.value ? Icons.star : Icons.star_border_outlined),
+              icon: Icon(mc.favouriteMeals.contains(meal) ? Icons.favorite_rounded : Icons.favorite_outline_rounded),
               onPressed: () {
                 mc.mealFavouriteStatus(meal);
               },

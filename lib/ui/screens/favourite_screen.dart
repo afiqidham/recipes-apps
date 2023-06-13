@@ -30,17 +30,19 @@ class FavouriteScreen extends StatelessWidget {
       ),
     );
 
-    if (isar.meals.isNotEmpty) {
-      content = ListView.builder(
-        itemCount: isar.meals.length,
-        itemBuilder: (context, index) {
-          return MealItem(
-            meal: isar.meals[index],
-            onSelectMeal: (meal) {
-              mc.selectMeal(meal);
-            },
-          );
-        },
+    if (mc.favouriteMeals.isNotEmpty) {
+      content = Obx(()=>
+         ListView.builder(
+          itemCount: mc.favouriteMeals.length,
+          itemBuilder: (context, index) {
+            return MealItem(
+              meal: mc.favouriteMeals[index],
+              onSelectMeal: (meal) {
+                mc.selectMeal(meal);
+              },
+            );
+          },
+        ),
       );
     }
 
