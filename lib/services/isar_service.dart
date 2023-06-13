@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:isar/isar.dart';
@@ -8,7 +6,6 @@ import 'package:meal/controllers/meals/meal_controller.dart';
 import 'package:meal/controllers/meals/step_controller.dart';
 import 'package:meal/models/category/category.dart';
 import 'package:meal/models/meal/meal.dart';
-import 'package:meal/ui/screens/meals/meal_detail_screen.dart';
 import 'package:meal/ui/screens/meals/meal_screen.dart';
 import 'package:path_provider/path_provider.dart';
 

@@ -49,7 +49,7 @@ class MealController extends GetxController {
       final imageTemp = File(image.path);
 
       this.image = imageTemp;
-    } on PlatformException catch(e) {
+    } on PlatformException {
       Get.dialog(const AlertDialog(
         title: TitleText(text: 'Error'),
         content: DisplayText(text: 'Failed to upload image..'),

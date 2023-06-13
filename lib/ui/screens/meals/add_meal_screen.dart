@@ -39,6 +39,7 @@ class AddMealScreen extends StatelessWidget {
                 text: 'Meal Title',
                 controller: isar.titleController,
                 textInputType: TextInputType.text,
+                
               ),
             ),
             addVerticalSpace(10),

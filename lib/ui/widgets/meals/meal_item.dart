@@ -3,8 +3,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:meal/models/meal/meal.dart';
 import 'package:meal/ui/components/texts/custom_text.dart';
-import 'package:meal/ui/components/texts/display_text.dart';
-import 'package:meal/ui/components/texts/title_text.dart';
 import 'package:meal/ui/widgets/meals/meal_trait.dart';
 import 'package:meal/utils/widget.dart';
 import 'package:transparent_image/transparent_image.dart';
