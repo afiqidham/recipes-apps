@@ -143,9 +143,14 @@ class IsarService extends GetxController {
   Future<void> deleteMeal(Meal meal) async {
     final isar = await db;
 
-     await isar.writeTxn(() async {
+    await isar.writeTxn(() async {
       await isar.meals.delete(meal.mealId);
     });
-    
   }
+
+  Future<void> getFavouriteMeal() async {
+      final isar = await db;
+
+      final favourites = await isar.meals.where().filter().favouriteEqualTo(true).findAll();
+    }
 }
