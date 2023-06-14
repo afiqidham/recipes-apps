@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:meal/config/theme.dart';
 import 'package:meal/controllers/category_controller.dart';
 import 'package:meal/controllers/meals/meal_controller.dart';
-import 'package:meal/services/isar_service.dart';
 import 'package:meal/ui/components/buttons/icon_button.dart';
 import 'package:meal/ui/components/buttons/label_icon_button.dart';
 import 'package:meal/ui/components/buttons/primary_button.dart';
@@ -17,7 +16,6 @@ class AddMealScreen extends StatelessWidget {
   AddMealScreen({super.key});
 
   final MealController mc = Get.put(MealController());
-  final IsarService isar = Get.put(IsarService());
   final CategoryController cc = Get.put(CategoryController());
 
   @override
@@ -38,7 +36,7 @@ class AddMealScreen extends StatelessWidget {
                 key: mc.formKey,
                 width: 250,
                 text: 'Meal Title',
-                controller: isar.titleController,
+                controller: mc.titleController,
                 textInputType: TextInputType.text,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator: (value) {
@@ -53,12 +51,26 @@ class AddMealScreen extends StatelessWidget {
             PrimaryInput(
               width: 250,
               text: 'Duration',
-              controller: isar.durationController,
+              controller: mc.durationController,
               textInputType: TextInputType.text,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: (value) {
                   if (value!.isEmpty && value.isNumericOnly) {
                     return 'Please fill meal duration in minutes';
+                  }
+                  return null;
+                },
+            ),
+            addVerticalSpace(10),
+            PrimaryInput(
+              width: 250,
+              text: 'Serving',
+              controller: mc.servingController,
+              textInputType: TextInputType.text,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              validator: (value) {
+                  if (value!.isEmpty && value.isNumericOnly) {
+                    return 'Please fill serving in number';
                   }
                   return null;
                 },

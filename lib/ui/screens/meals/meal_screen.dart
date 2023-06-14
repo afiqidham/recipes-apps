@@ -9,7 +9,7 @@ import 'package:meal/ui/widgets/meals/meal_item.dart';
 class MealScreen extends StatelessWidget {
   MealScreen({super.key, required this.title, required this.meals});
 
-  final MealController mc = Get.find();
+  final MealController mc = Get.put(MealController());
 
   final String title;
   final List<Meal> meals;
@@ -33,17 +33,16 @@ class MealScreen extends StatelessWidget {
 
     if (meals.isNotEmpty) {
       content = ListView.builder(
-            itemCount: meals.length,
-            itemBuilder: (context, index) {
-              return MealItem(
-                
-                meal: meals[index],
-                onSelectMeal: (meal) {
-                  mc.selectMeal(meal);
-                },
-              );
+        itemCount: meals.length,
+        itemBuilder: (context, index) {
+          return MealItem(
+            meal: meals[index],
+            onSelectMeal: (meal) {
+              mc.selectMeal(meal);
             },
-            );
+          );
+        },
+      );
     }
 
     return Scaffold(

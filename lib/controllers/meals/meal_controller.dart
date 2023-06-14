@@ -11,6 +11,11 @@ import 'package:meal/ui/components/texts/title_text.dart';
 import 'package:meal/ui/screens/meals/meal_detail_screen.dart';
 
 class MealController extends GetxController {
+
+  TextEditingController titleController = TextEditingController();
+  TextEditingController durationController = TextEditingController();
+  TextEditingController servingController = TextEditingController();
+  
   RxList<Meal> favouriteMeals = <Meal>[].obs;
   RxList<Meal> meals = <Meal>[].obs;
   Rx<bool> fav = false.obs;
@@ -27,18 +32,18 @@ class MealController extends GetxController {
         ));
   }
 
-  void mealFavouriteStatus(Meal meal) {
-    fav.value = favouriteMeals.contains(meal);
-
+  void mealFavouriteStatus(Meal meal) async {
+ 
+    // fav.value = meal.favourite;
+    // meal.favourite = meals.contains(meal);
+    fav.value = meals.contains(meal);
     if (fav.value) {
-      favouriteMeals.remove(meal);
+      meal.favourite = false;
+      // favouriteMeals.remove(meal);
     } else {
-      favouriteMeals.add(meal);
+      // favouriteMeals.add(meal);
+      meal.favourite = true;
     }
-  }
-
-  void setSelected(String value) {
-    selected.value = value;
   }
 
   Future uploadImage() async {

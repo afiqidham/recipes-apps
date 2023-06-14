@@ -12,7 +12,7 @@ import 'package:meal/utils/widget.dart';
 class AddIngredientScreen extends StatelessWidget {
   AddIngredientScreen({super.key});
 
-  final IngredientController ic = Get.put(IngredientController());
+  final IngredientController ic = Get.find();
  
 
   @override
@@ -21,6 +21,7 @@ class AddIngredientScreen extends StatelessWidget {
       backgroundColor: ThemePalette.whiteColor,
       body: SingleChildScrollView(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const SizedBox(
               height: 50,

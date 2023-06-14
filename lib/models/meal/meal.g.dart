@@ -82,53 +82,58 @@ const MealSchema = CollectionSchema(
       name: r'ingredient8',
       type: IsarType.string,
     ),
-    r'step1': PropertySchema(
+    r'serving': PropertySchema(
       id: 13,
+      name: r'serving',
+      type: IsarType.long,
+    ),
+    r'step1': PropertySchema(
+      id: 14,
       name: r'step1',
       type: IsarType.string,
     ),
     r'step2': PropertySchema(
-      id: 14,
+      id: 15,
       name: r'step2',
       type: IsarType.string,
     ),
     r'step3': PropertySchema(
-      id: 15,
+      id: 16,
       name: r'step3',
       type: IsarType.string,
     ),
     r'step4': PropertySchema(
-      id: 16,
+      id: 17,
       name: r'step4',
       type: IsarType.string,
     ),
     r'step5': PropertySchema(
-      id: 17,
+      id: 18,
       name: r'step5',
       type: IsarType.string,
     ),
     r'step6': PropertySchema(
-      id: 18,
+      id: 19,
       name: r'step6',
       type: IsarType.string,
     ),
     r'step7': PropertySchema(
-      id: 19,
+      id: 20,
       name: r'step7',
       type: IsarType.string,
     ),
     r'step8': PropertySchema(
-      id: 20,
+      id: 21,
       name: r'step8',
       type: IsarType.string,
     ),
     r'step9': PropertySchema(
-      id: 21,
+      id: 22,
       name: r'step9',
       type: IsarType.string,
     ),
     r'title': PropertySchema(
-      id: 22,
+      id: 23,
       name: r'title',
       type: IsarType.string,
     )
@@ -203,16 +208,17 @@ void _mealSerialize(
   writer.writeString(offsets[10], object.ingredient6);
   writer.writeString(offsets[11], object.ingredient7);
   writer.writeString(offsets[12], object.ingredient8);
-  writer.writeString(offsets[13], object.step1);
-  writer.writeString(offsets[14], object.step2);
-  writer.writeString(offsets[15], object.step3);
-  writer.writeString(offsets[16], object.step4);
-  writer.writeString(offsets[17], object.step5);
-  writer.writeString(offsets[18], object.step6);
-  writer.writeString(offsets[19], object.step7);
-  writer.writeString(offsets[20], object.step8);
-  writer.writeString(offsets[21], object.step9);
-  writer.writeString(offsets[22], object.title);
+  writer.writeLong(offsets[13], object.serving);
+  writer.writeString(offsets[14], object.step1);
+  writer.writeString(offsets[15], object.step2);
+  writer.writeString(offsets[16], object.step3);
+  writer.writeString(offsets[17], object.step4);
+  writer.writeString(offsets[18], object.step5);
+  writer.writeString(offsets[19], object.step6);
+  writer.writeString(offsets[20], object.step7);
+  writer.writeString(offsets[21], object.step8);
+  writer.writeString(offsets[22], object.step9);
+  writer.writeString(offsets[23], object.title);
 }
 
 Meal _mealDeserialize(
@@ -236,16 +242,17 @@ Meal _mealDeserialize(
   object.ingredient7 = reader.readString(offsets[11]);
   object.ingredient8 = reader.readString(offsets[12]);
   object.mealId = id;
-  object.step1 = reader.readString(offsets[13]);
-  object.step2 = reader.readString(offsets[14]);
-  object.step3 = reader.readString(offsets[15]);
-  object.step4 = reader.readString(offsets[16]);
-  object.step5 = reader.readString(offsets[17]);
-  object.step6 = reader.readString(offsets[18]);
-  object.step7 = reader.readString(offsets[19]);
-  object.step8 = reader.readString(offsets[20]);
-  object.step9 = reader.readString(offsets[21]);
-  object.title = reader.readString(offsets[22]);
+  object.serving = reader.readLong(offsets[13]);
+  object.step1 = reader.readString(offsets[14]);
+  object.step2 = reader.readString(offsets[15]);
+  object.step3 = reader.readString(offsets[16]);
+  object.step4 = reader.readString(offsets[17]);
+  object.step5 = reader.readString(offsets[18]);
+  object.step6 = reader.readString(offsets[19]);
+  object.step7 = reader.readString(offsets[20]);
+  object.step8 = reader.readString(offsets[21]);
+  object.step9 = reader.readString(offsets[22]);
+  object.title = reader.readString(offsets[23]);
   return object;
 }
 
@@ -283,7 +290,7 @@ P _mealDeserializeProp<P>(
     case 12:
       return (reader.readString(offset)) as P;
     case 13:
-      return (reader.readString(offset)) as P;
+      return (reader.readLong(offset)) as P;
     case 14:
       return (reader.readString(offset)) as P;
     case 15:
@@ -301,6 +308,8 @@ P _mealDeserializeProp<P>(
     case 21:
       return (reader.readString(offset)) as P;
     case 22:
+      return (reader.readString(offset)) as P;
+    case 23:
       return (reader.readString(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -1938,6 +1947,58 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
     });
   }
 
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> servingEqualTo(int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'serving',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> servingGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'serving',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> servingLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'serving',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> servingBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'serving',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
   QueryBuilder<Meal, Meal, QAfterFilterCondition> step1EqualTo(
     String value, {
     bool caseSensitive = true,
@@ -3393,6 +3454,18 @@ extension MealQuerySortBy on QueryBuilder<Meal, Meal, QSortBy> {
     });
   }
 
+  QueryBuilder<Meal, Meal, QAfterSortBy> sortByServing() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'serving', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Meal, Meal, QAfterSortBy> sortByServingDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'serving', Sort.desc);
+    });
+  }
+
   QueryBuilder<Meal, Meal, QAfterSortBy> sortByStep1() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'step1', Sort.asc);
@@ -3683,6 +3756,18 @@ extension MealQuerySortThenBy on QueryBuilder<Meal, Meal, QSortThenBy> {
     });
   }
 
+  QueryBuilder<Meal, Meal, QAfterSortBy> thenByServing() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'serving', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Meal, Meal, QAfterSortBy> thenByServingDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'serving', Sort.desc);
+    });
+  }
+
   QueryBuilder<Meal, Meal, QAfterSortBy> thenByStep1() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'step1', Sort.asc);
@@ -3895,6 +3980,12 @@ extension MealQueryWhereDistinct on QueryBuilder<Meal, Meal, QDistinct> {
     });
   }
 
+  QueryBuilder<Meal, Meal, QDistinct> distinctByServing() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'serving');
+    });
+  }
+
   QueryBuilder<Meal, Meal, QDistinct> distinctByStep1(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -4048,6 +4139,12 @@ extension MealQueryProperty on QueryBuilder<Meal, Meal, QQueryProperty> {
   QueryBuilder<Meal, String, QQueryOperations> ingredient8Property() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'ingredient8');
+    });
+  }
+
+  QueryBuilder<Meal, int, QQueryOperations> servingProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'serving');
     });
   }
 

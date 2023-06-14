@@ -14,10 +14,8 @@ class IsarService extends GetxController {
   StepController sc = Get.put(StepController());
   MealController mc = Get.put(MealController());
 
-  TextEditingController titleController = TextEditingController();
-  TextEditingController categoryController = TextEditingController();
-  TextEditingController durationController = TextEditingController();
 
+  TextEditingController categoryController = TextEditingController();
   Rx<Category?> selectCategory = Rx<Category?>(null);
   RxList<Category> categories = <Category>[].obs;
   RxList<Meal> meals = <Meal>[].obs;
@@ -82,10 +80,12 @@ class IsarService extends GetxController {
     final isar = await db;
 
     final newMeal = Meal()
-      ..title = titleController.text
-      ..duration = int.parse(durationController.text)
+      ..title = mc.titleController.text
+      ..duration = int.parse(mc.durationController.text)
+      ..serving = int.parse(mc.servingController.text)
       ..category.value = selectCategory.value
       ..imageUrl = mc.image!.path
+      ..favourite = mc.fav.value
       ..ingredient1 = ic.ingredient1Controller.text
       ..ingredient2 = ic.ingredient2Controller.text
       ..ingredient3 = ic.ingredient3Controller.text
@@ -109,8 +109,9 @@ class IsarService extends GetxController {
     await isar.writeTxnSync(() async {
       isar.meals.putSync(newMeal);
     });
-    titleController.clear();
-    durationController.clear();
+    mc.titleController.clear();
+    mc.durationController.clear();
+    mc.servingController.clear();
     ic.ingredient1Controller.clear();
     ic.ingredient2Controller.clear();
     ic.ingredient3Controller.clear();
@@ -148,9 +149,32 @@ class IsarService extends GetxController {
     });
   }
 
-  Future<void> getFavouriteMeal() async {
-      final isar = await db;
+  Stream<List<Meal>> getFavouriteMeal() async* {
+    final isar = await db;
 
-      final favourites = await isar.meals.where().filter().favouriteEqualTo(true).findAll();
+    yield* isar.meals
+        .where()
+        .filter()
+        .favouriteEqualTo(true)
+        .watch(fireImmediately: true);
+  }
+
+  void mealFavouriteStatus(Meal meal) async {
+    final isar = await db;
+    // fav.value = meal.favourite;
+    // meal.favourite = meals.contains(meal);
+    final favourite = Meal()..favourite = mc.fav.value;
+    mc.fav.value = meals.contains(meal);
+    if (mc.fav.value) {
+      meal.favourite = false;
+      // favouriteMeals.remove(meal);
+    } else {
+      // favouriteMeals.add(meal);
+      meal.favourite = true;
     }
+    await isar.writeTxn(() async {
+      isar.meals.put(favourite);
+    },
+    );
+  }
 }

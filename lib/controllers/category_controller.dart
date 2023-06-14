@@ -9,6 +9,7 @@ import 'package:meal/ui/components/texts/display_text.dart';
 import 'package:meal/ui/components/texts/title_text.dart';
 
 class CategoryController extends GetxController {
+
   IsarService isar = Get.put(IsarService());
   RxList<Meal> meals = <Meal>[].obs;
   List<Category> categories = [];

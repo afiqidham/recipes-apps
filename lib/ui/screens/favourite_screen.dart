@@ -8,9 +8,11 @@ import 'package:meal/ui/components/texts/title_text.dart';
 import 'package:meal/ui/widgets/meals/meal_item.dart';
 
 class FavouriteScreen extends StatelessWidget {
-  FavouriteScreen({super.key,});
+  FavouriteScreen({
+    super.key,
+  });
 
-  final MealController mc = Get.find();
+  final MealController mc = Get.put(MealController());
   final IsarService isar = Get.find();
 
   @override
@@ -30,26 +32,31 @@ class FavouriteScreen extends StatelessWidget {
       ),
     );
 
-    if (mc.favouriteMeals.isNotEmpty) {
-      content = Obx(()=>
-         ListView.builder(
-          itemCount: mc.favouriteMeals.length,
-          itemBuilder: (context, index) {
-            return MealItem(
-              meal: mc.favouriteMeals[index],
-              onSelectMeal: (meal) {
-                mc.selectMeal(meal);
-              },
-            );
-          },
-        ),
+    if (isar.meals.isNotEmpty) {
+      content = StreamBuilder(
+        stream: isar.getFavouriteMeal(),
+        builder: (context, snapshot) {
+          return ListView.builder(
+            itemCount: isar.meals.length,
+            itemBuilder: (context, index) {
+              return MealItem(
+                meal: isar.meals[index],
+                onSelectMeal: (meal) {
+                  mc.selectMeal(meal);
+                },
+              );
+            },
+          );
+        },
       );
     }
 
     return Scaffold(
       backgroundColor: ThemePalette.whiteColor,
       appBar: AppBar(
-        title: const CustomText(text: 'Favourite',),
+        title: const CustomText(
+          text: 'Favourite',
+        ),
         backgroundColor: ThemePalette.backgroundColor,
       ),
       body: content,

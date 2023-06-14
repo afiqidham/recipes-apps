@@ -9,6 +9,7 @@ import 'package:meal/services/isar_service.dart';
 import 'package:meal/ui/components/buttons/icon_button.dart';
 import 'package:meal/ui/components/texts/title_text.dart';
 import 'package:meal/ui/screens/main_screen.dart';
+import 'package:meal/ui/widgets/meals/meal_info.dart';
 import 'package:meal/ui/widgets/meals/meal_ingredient.dart';
 import 'package:meal/ui/widgets/meals/meal_step.dart';
 import 'package:meal/utils/widget.dart';
@@ -20,7 +21,7 @@ class MealDetailScreen extends StatelessWidget {
   });
 
   final Meal meal;
-  final MealController mc = Get.find();
+  final MealController mc = Get.put(MealController());
   final IsarService isar = Get.find();
 
   @override
@@ -33,12 +34,12 @@ class MealDetailScreen extends StatelessWidget {
         actions: [
           Obx(
             () => IconsButton(
-              icon: Icon(mc.favouriteMeals.contains(meal)
+              icon: Icon(mc.meals.contains(meal)
                   ? Icons.favorite_rounded
                   : Icons.favorite_outline_rounded),
-              color: mc.favouriteMeals.contains(meal) ? ThemePalette.red : ThemePalette.whiteColor,
+              color: mc.meals.contains(meal) ? ThemePalette.red : ThemePalette.whiteColor,
               onPressed: () {
-                mc.mealFavouriteStatus(meal);
+                isar.mealFavouriteStatus(meal);
               },
             ),
           ),
@@ -67,6 +68,8 @@ class MealDetailScreen extends StatelessWidget {
                 ),
               ),
             ),
+            addVerticalSpace(10),
+            MealInfo(meal: meal),
             addVerticalSpace(20),
             const TitleText(text: 'Ingredients'),
             MealIngredient(meal: meal),

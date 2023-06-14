@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:meal/config/theme.dart';
 import 'package:meal/models/meal/meal.dart';
-import 'package:meal/services/isar_service.dart';
 import 'package:meal/ui/components/display_container.dart';
 import 'package:meal/utils/widget.dart';
 
 class MealIngredient extends StatelessWidget {
-  MealIngredient({required this.meal, super.key});
+  const MealIngredient({required this.meal, super.key});
 
-  final IsarService isar = Get.find();
   final Meal meal;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(5),
+      margin: const EdgeInsets.only(left: 5,right: 5, bottom: 15),
       padding: const EdgeInsets.all(20),
       height: 300,
       decoration: BoxDecoration(
