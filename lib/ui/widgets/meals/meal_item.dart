@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:iconly/iconly.dart';
+import 'package:meal/config/theme.dart';
 import 'package:meal/models/meal/meal.dart';
 import 'package:meal/ui/components/texts/custom_text.dart';
 import 'package:meal/ui/widgets/meals/meal_trait.dart';
@@ -41,9 +43,9 @@ class MealItem extends StatelessWidget {
               right: 0,
               left: 0,
               child: Container(
-                color: Colors.black54,
+                color: ThemePalette.lightPink,
                 padding:
-                    const EdgeInsets.symmetric(vertical: 6, horizontal: 44),
+                    const EdgeInsets.symmetric(vertical: 6, horizontal: 10),
                 child: Column(
                   children: [
                     CustomText(
@@ -58,19 +60,24 @@ class MealItem extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         MealTrait(
-                          icon: Icons.timer,
+                          icon: IconlyBold.time_square,
                           label: '${meal.duration} Min',
                         ),
-                        addHorizontalSpace(12),
+                        addHorizontalSpace(15),
                          MealTrait(
-                          icon: Icons.work,
+                          icon: IconlyBold.work,
                           label: meal.complexity,
                         ),
-                        addHorizontalSpace(12),
+                        addHorizontalSpace(15),
                          MealTrait(
-                          icon: Icons.attach_money,
+                          icon: IconlyBold.wallet,
                           label: meal.affordability,
                         ),
+                        addHorizontalSpace(15),
+                         MealTrait(
+                          icon: IconlyBold.user_2, 
+                          label: '${meal.serving} Servings'
+                          ),
                       ],
                     ),
                   ],

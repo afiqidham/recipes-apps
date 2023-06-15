@@ -19,7 +19,7 @@ class CategoryGridItem extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: ThemePalette.secondaryColor,
+          color: ThemePalette.lightPink,
           border: Border.all(
             color: ThemePalette.actionColor
           )

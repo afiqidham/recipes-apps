@@ -13,7 +13,7 @@ class BottomNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
-      color: const Color.fromARGB(255, 204, 107, 139),
+      color: ThemePalette.lightPink,
       elevation: 0,
       notchMargin: 10,
       child: Container(
@@ -53,7 +53,7 @@ class BottomNavigation extends StatelessWidget {
             Icon(
               icon,
               color: mc.currentPage == page
-                  ? ThemePalette.backgroundColor
+                  ? ThemePalette.whiteColor
                   : ThemePalette.black,
               size: 25,
             ),
@@ -61,8 +61,8 @@ class BottomNavigation extends StatelessWidget {
               label,
               style: TextStyle(
                 color: mc.currentPage == page
-                    ? ThemePalette.backgroundColor
-                    : ThemePalette.whiteColor,
+                    ? ThemePalette.whiteColor
+                    : ThemePalette.black,
                 fontSize: 13,
                 fontWeight: mc.currentPage == page ? FontWeight.bold : null,
               ),

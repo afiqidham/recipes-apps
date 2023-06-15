@@ -109,7 +109,9 @@ class AddMealScreen extends StatelessWidget {
             PrimaryButton(
                 text: 'Add Meal',
                 onPressed: () {
-                 
+                  if(mc.titleController.text.isEmpty){
+                    
+                  }
                   Get.to(() => AddIngredientScreen());
                 }),
           ],

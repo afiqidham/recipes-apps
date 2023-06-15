@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meal/config/theme.dart';
 
 Widget addVerticalSpace(double height) {
   return SizedBox(height: height);
@@ -11,6 +12,16 @@ Widget addHorizontalSpace(double width) {
 }
 
 Widget logo() {
-  return Image.asset('images/logo2.png',
-  height: 200,);
+  return Image.asset(
+    'images/logo2.png',
+    height: 200,
+  );
+}
+
+Widget divider(double height, double thickness) {
+  return Divider(
+    height: height,
+    thickness: thickness,
+  
+  );
 }

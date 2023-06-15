@@ -10,6 +10,7 @@ class MealTrait extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Icon(icon, size: 17, color: Colors.white,),
         const SizedBox(width: 6,),

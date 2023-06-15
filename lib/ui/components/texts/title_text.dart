@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meal/config/theme.dart';
 
 class TitleText extends StatelessWidget {
   final String text;
@@ -15,7 +16,7 @@ class TitleText extends StatelessWidget {
       style: const TextStyle(
         fontSize: 15,
         fontWeight: FontWeight.bold,
-        color: Colors.black,
+        color: ThemePalette.whiteColor,
       ),
     );
   }

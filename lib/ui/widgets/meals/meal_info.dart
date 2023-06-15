@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iconly/iconly.dart';
 import 'package:meal/config/theme.dart';
 import 'package:meal/ui/widgets/meals/meal_trait.dart';
 import 'package:meal/utils/widget.dart';
@@ -13,42 +14,43 @@ class MealInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(10),
-      padding: const EdgeInsets.symmetric(horizontal: 28.5, vertical: 20),
-      width: 350,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: ThemePalette.backgroundColor,
-      ),
-      child: Column(
-       mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+        margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+        padding: const EdgeInsets.all(20),
+        width: 380,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: ThemePalette.lightPink,
+        ),
+        child: Center(
+          child: Column(
             children: [
-              MealTrait(
-                icon: Icons.timer,
-                label: '${meal.duration} Min',
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  MealTrait(
+                    icon: IconlyBold.time_square,
+                    label: '${meal.duration} Min',
+                  ),
+                  addHorizontalSpace(15),
+                  MealTrait(
+                    icon: IconlyBold.work,
+                    label: meal.complexity,
+                  ),
+                  addHorizontalSpace(15),
+                  MealTrait(
+                    icon: IconlyBold.wallet,
+                    label: meal.affordability,
+                  ),
+                  addHorizontalSpace(15),
+                  MealTrait(
+                    icon: IconlyBold.user_2, 
+                    label: '${meal.serving} Servings'
+                    ),
+                ],
               ),
-              addHorizontalSpace(45),
-              MealTrait(
-                icon: Icons.work,
-                label: meal.complexity,
-              ),
-              addHorizontalSpace(45),
-              MealTrait(
-                icon: Icons.attach_money,
-                label: meal.affordability,
-              ),
+              
             ],
           ),
-          addVerticalSpace(10),
-          MealTrait(
-            icon: Icons.person, 
-            label: '${meal.serving.toString()} Servings',
-            ),
-        ],
-      ),
-    );
+        ));
   }
 }

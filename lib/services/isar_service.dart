@@ -14,7 +14,6 @@ class IsarService extends GetxController {
   StepController sc = Get.put(StepController());
   MealController mc = Get.put(MealController());
 
-
   TextEditingController categoryController = TextEditingController();
   Rx<Category?> selectCategory = Rx<Category?>(null);
   RxList<Category> categories = <Category>[].obs;
@@ -146,6 +145,7 @@ class IsarService extends GetxController {
 
     await isar.writeTxn(() async {
       await isar.meals.delete(meal.mealId);
+      Get.snackbar('Delete', 'Meal has been delete');
     });
   }
 
@@ -172,9 +172,10 @@ class IsarService extends GetxController {
       // favouriteMeals.add(meal);
       meal.favourite = true;
     }
-    await isar.writeTxn(() async {
-      isar.meals.put(favourite);
-    },
+    await isar.writeTxn(
+      () async {
+        isar.meals.put(favourite);
+      },
     );
   }
 }

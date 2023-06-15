@@ -57,6 +57,7 @@ class FavouriteScreen extends StatelessWidget {
         title: const CustomText(
           text: 'Favourite',
         ),
+        centerTitle: true,
         backgroundColor: ThemePalette.backgroundColor,
       ),
       body: content,

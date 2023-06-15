@@ -49,7 +49,8 @@ class MealScreen extends StatelessWidget {
       backgroundColor: ThemePalette.whiteColor,
       appBar: AppBar(
         title: Text(title),
-        backgroundColor: ThemePalette.backgroundColor,
+        centerTitle: true,
+        backgroundColor: ThemePalette.lightPink,
       ),
       body: content,
     );
