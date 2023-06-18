@@ -165,27 +165,132 @@ int _mealEstimateSize(
   Map<Type, List<int>> allOffsets,
 ) {
   var bytesCount = offsets.last;
-  bytesCount += 3 + object.affordability.length * 3;
-  bytesCount += 3 + object.complexity.length * 3;
-  bytesCount += 3 + object.imageUrl.length * 3;
-  bytesCount += 3 + object.ingredient1.length * 3;
-  bytesCount += 3 + object.ingredient2.length * 3;
-  bytesCount += 3 + object.ingredient3.length * 3;
-  bytesCount += 3 + object.ingredient4.length * 3;
-  bytesCount += 3 + object.ingredient5.length * 3;
-  bytesCount += 3 + object.ingredient6.length * 3;
-  bytesCount += 3 + object.ingredient7.length * 3;
-  bytesCount += 3 + object.ingredient8.length * 3;
-  bytesCount += 3 + object.step1.length * 3;
-  bytesCount += 3 + object.step2.length * 3;
-  bytesCount += 3 + object.step3.length * 3;
-  bytesCount += 3 + object.step4.length * 3;
-  bytesCount += 3 + object.step5.length * 3;
-  bytesCount += 3 + object.step6.length * 3;
-  bytesCount += 3 + object.step7.length * 3;
-  bytesCount += 3 + object.step8.length * 3;
-  bytesCount += 3 + object.step9.length * 3;
-  bytesCount += 3 + object.title.length * 3;
+  {
+    final value = object.affordability;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final value = object.complexity;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final value = object.imageUrl;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final value = object.ingredient1;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final value = object.ingredient2;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final value = object.ingredient3;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final value = object.ingredient4;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final value = object.ingredient5;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final value = object.ingredient6;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final value = object.ingredient7;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final value = object.ingredient8;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final value = object.step1;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final value = object.step2;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final value = object.step3;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final value = object.step4;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final value = object.step5;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final value = object.step6;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final value = object.step7;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final value = object.step8;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final value = object.step9;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final value = object.title;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
   return bytesCount;
 }
 
@@ -228,31 +333,31 @@ Meal _mealDeserialize(
   Map<Type, List<int>> allOffsets,
 ) {
   final object = Meal();
-  object.affordability = reader.readString(offsets[0]);
-  object.complexity = reader.readString(offsets[1]);
-  object.duration = reader.readLong(offsets[2]);
-  object.favourite = reader.readBool(offsets[3]);
-  object.imageUrl = reader.readString(offsets[4]);
-  object.ingredient1 = reader.readString(offsets[5]);
-  object.ingredient2 = reader.readString(offsets[6]);
-  object.ingredient3 = reader.readString(offsets[7]);
-  object.ingredient4 = reader.readString(offsets[8]);
-  object.ingredient5 = reader.readString(offsets[9]);
-  object.ingredient6 = reader.readString(offsets[10]);
-  object.ingredient7 = reader.readString(offsets[11]);
-  object.ingredient8 = reader.readString(offsets[12]);
+  object.affordability = reader.readStringOrNull(offsets[0]);
+  object.complexity = reader.readStringOrNull(offsets[1]);
+  object.duration = reader.readLongOrNull(offsets[2]);
+  object.favourite = reader.readBoolOrNull(offsets[3]);
+  object.imageUrl = reader.readStringOrNull(offsets[4]);
+  object.ingredient1 = reader.readStringOrNull(offsets[5]);
+  object.ingredient2 = reader.readStringOrNull(offsets[6]);
+  object.ingredient3 = reader.readStringOrNull(offsets[7]);
+  object.ingredient4 = reader.readStringOrNull(offsets[8]);
+  object.ingredient5 = reader.readStringOrNull(offsets[9]);
+  object.ingredient6 = reader.readStringOrNull(offsets[10]);
+  object.ingredient7 = reader.readStringOrNull(offsets[11]);
+  object.ingredient8 = reader.readStringOrNull(offsets[12]);
   object.mealId = id;
-  object.serving = reader.readLong(offsets[13]);
-  object.step1 = reader.readString(offsets[14]);
-  object.step2 = reader.readString(offsets[15]);
-  object.step3 = reader.readString(offsets[16]);
-  object.step4 = reader.readString(offsets[17]);
-  object.step5 = reader.readString(offsets[18]);
-  object.step6 = reader.readString(offsets[19]);
-  object.step7 = reader.readString(offsets[20]);
-  object.step8 = reader.readString(offsets[21]);
-  object.step9 = reader.readString(offsets[22]);
-  object.title = reader.readString(offsets[23]);
+  object.serving = reader.readLongOrNull(offsets[13]);
+  object.step1 = reader.readStringOrNull(offsets[14]);
+  object.step2 = reader.readStringOrNull(offsets[15]);
+  object.step3 = reader.readStringOrNull(offsets[16]);
+  object.step4 = reader.readStringOrNull(offsets[17]);
+  object.step5 = reader.readStringOrNull(offsets[18]);
+  object.step6 = reader.readStringOrNull(offsets[19]);
+  object.step7 = reader.readStringOrNull(offsets[20]);
+  object.step8 = reader.readStringOrNull(offsets[21]);
+  object.step9 = reader.readStringOrNull(offsets[22]);
+  object.title = reader.readStringOrNull(offsets[23]);
   return object;
 }
 
@@ -264,53 +369,53 @@ P _mealDeserializeProp<P>(
 ) {
   switch (propertyId) {
     case 0:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 1:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 2:
-      return (reader.readLong(offset)) as P;
+      return (reader.readLongOrNull(offset)) as P;
     case 3:
-      return (reader.readBool(offset)) as P;
+      return (reader.readBoolOrNull(offset)) as P;
     case 4:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 5:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 6:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 7:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 8:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 9:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 10:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 11:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 12:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 13:
-      return (reader.readLong(offset)) as P;
+      return (reader.readLongOrNull(offset)) as P;
     case 14:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 15:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 16:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 17:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 18:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 19:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 20:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 21:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 22:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 23:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
   }
@@ -405,8 +510,24 @@ extension MealQueryWhere on QueryBuilder<Meal, Meal, QWhereClause> {
 }
 
 extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> affordabilityIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'affordability',
+      ));
+    });
+  }
+
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> affordabilityIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'affordability',
+      ));
+    });
+  }
+
   QueryBuilder<Meal, Meal, QAfterFilterCondition> affordabilityEqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -419,7 +540,7 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> affordabilityGreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -434,7 +555,7 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> affordabilityLessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -449,8 +570,8 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> affordabilityBetween(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -535,8 +656,24 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
     });
   }
 
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> complexityIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'complexity',
+      ));
+    });
+  }
+
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> complexityIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'complexity',
+      ));
+    });
+  }
+
   QueryBuilder<Meal, Meal, QAfterFilterCondition> complexityEqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -549,7 +686,7 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> complexityGreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -564,7 +701,7 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> complexityLessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -579,8 +716,8 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> complexityBetween(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -665,7 +802,23 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Meal, Meal, QAfterFilterCondition> durationEqualTo(int value) {
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> durationIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'duration',
+      ));
+    });
+  }
+
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> durationIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'duration',
+      ));
+    });
+  }
+
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> durationEqualTo(int? value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'duration',
@@ -675,7 +828,7 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> durationGreaterThan(
-    int value, {
+    int? value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -688,7 +841,7 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> durationLessThan(
-    int value, {
+    int? value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -701,8 +854,8 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> durationBetween(
-    int lower,
-    int upper, {
+    int? lower,
+    int? upper, {
     bool includeLower = true,
     bool includeUpper = true,
   }) {
@@ -717,7 +870,24 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Meal, Meal, QAfterFilterCondition> favouriteEqualTo(bool value) {
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> favouriteIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'favourite',
+      ));
+    });
+  }
+
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> favouriteIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'favourite',
+      ));
+    });
+  }
+
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> favouriteEqualTo(
+      bool? value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'favourite',
@@ -726,8 +896,24 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
     });
   }
 
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> imageUrlIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'imageUrl',
+      ));
+    });
+  }
+
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> imageUrlIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'imageUrl',
+      ));
+    });
+  }
+
   QueryBuilder<Meal, Meal, QAfterFilterCondition> imageUrlEqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -740,7 +926,7 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> imageUrlGreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -755,7 +941,7 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> imageUrlLessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -770,8 +956,8 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> imageUrlBetween(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -855,8 +1041,24 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
     });
   }
 
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> ingredient1IsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'ingredient1',
+      ));
+    });
+  }
+
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> ingredient1IsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'ingredient1',
+      ));
+    });
+  }
+
   QueryBuilder<Meal, Meal, QAfterFilterCondition> ingredient1EqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -869,7 +1071,7 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> ingredient1GreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -884,7 +1086,7 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> ingredient1LessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -899,8 +1101,8 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> ingredient1Between(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -985,8 +1187,24 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
     });
   }
 
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> ingredient2IsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'ingredient2',
+      ));
+    });
+  }
+
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> ingredient2IsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'ingredient2',
+      ));
+    });
+  }
+
   QueryBuilder<Meal, Meal, QAfterFilterCondition> ingredient2EqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -999,7 +1217,7 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> ingredient2GreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -1014,7 +1232,7 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> ingredient2LessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -1029,8 +1247,8 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> ingredient2Between(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -1115,8 +1333,24 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
     });
   }
 
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> ingredient3IsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'ingredient3',
+      ));
+    });
+  }
+
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> ingredient3IsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'ingredient3',
+      ));
+    });
+  }
+
   QueryBuilder<Meal, Meal, QAfterFilterCondition> ingredient3EqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -1129,7 +1363,7 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> ingredient3GreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -1144,7 +1378,7 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> ingredient3LessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -1159,8 +1393,8 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> ingredient3Between(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -1245,8 +1479,24 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
     });
   }
 
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> ingredient4IsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'ingredient4',
+      ));
+    });
+  }
+
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> ingredient4IsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'ingredient4',
+      ));
+    });
+  }
+
   QueryBuilder<Meal, Meal, QAfterFilterCondition> ingredient4EqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -1259,7 +1509,7 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> ingredient4GreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -1274,7 +1524,7 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> ingredient4LessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -1289,8 +1539,8 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> ingredient4Between(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -1375,8 +1625,24 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
     });
   }
 
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> ingredient5IsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'ingredient5',
+      ));
+    });
+  }
+
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> ingredient5IsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'ingredient5',
+      ));
+    });
+  }
+
   QueryBuilder<Meal, Meal, QAfterFilterCondition> ingredient5EqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -1389,7 +1655,7 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> ingredient5GreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -1404,7 +1670,7 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> ingredient5LessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -1419,8 +1685,8 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> ingredient5Between(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -1505,8 +1771,24 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
     });
   }
 
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> ingredient6IsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'ingredient6',
+      ));
+    });
+  }
+
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> ingredient6IsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'ingredient6',
+      ));
+    });
+  }
+
   QueryBuilder<Meal, Meal, QAfterFilterCondition> ingredient6EqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -1519,7 +1801,7 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> ingredient6GreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -1534,7 +1816,7 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> ingredient6LessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -1549,8 +1831,8 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> ingredient6Between(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -1635,8 +1917,24 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
     });
   }
 
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> ingredient7IsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'ingredient7',
+      ));
+    });
+  }
+
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> ingredient7IsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'ingredient7',
+      ));
+    });
+  }
+
   QueryBuilder<Meal, Meal, QAfterFilterCondition> ingredient7EqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -1649,7 +1947,7 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> ingredient7GreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -1664,7 +1962,7 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> ingredient7LessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -1679,8 +1977,8 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> ingredient7Between(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -1765,8 +2063,24 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
     });
   }
 
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> ingredient8IsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'ingredient8',
+      ));
+    });
+  }
+
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> ingredient8IsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'ingredient8',
+      ));
+    });
+  }
+
   QueryBuilder<Meal, Meal, QAfterFilterCondition> ingredient8EqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -1779,7 +2093,7 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> ingredient8GreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -1794,7 +2108,7 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> ingredient8LessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -1809,8 +2123,8 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> ingredient8Between(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -1947,7 +2261,23 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Meal, Meal, QAfterFilterCondition> servingEqualTo(int value) {
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> servingIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'serving',
+      ));
+    });
+  }
+
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> servingIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'serving',
+      ));
+    });
+  }
+
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> servingEqualTo(int? value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'serving',
@@ -1957,7 +2287,7 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> servingGreaterThan(
-    int value, {
+    int? value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -1970,7 +2300,7 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> servingLessThan(
-    int value, {
+    int? value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -1983,8 +2313,8 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> servingBetween(
-    int lower,
-    int upper, {
+    int? lower,
+    int? upper, {
     bool includeLower = true,
     bool includeUpper = true,
   }) {
@@ -1999,8 +2329,24 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
     });
   }
 
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> step1IsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'step1',
+      ));
+    });
+  }
+
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> step1IsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'step1',
+      ));
+    });
+  }
+
   QueryBuilder<Meal, Meal, QAfterFilterCondition> step1EqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -2013,7 +2359,7 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> step1GreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -2028,7 +2374,7 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> step1LessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -2043,8 +2389,8 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> step1Between(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -2127,8 +2473,24 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
     });
   }
 
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> step2IsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'step2',
+      ));
+    });
+  }
+
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> step2IsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'step2',
+      ));
+    });
+  }
+
   QueryBuilder<Meal, Meal, QAfterFilterCondition> step2EqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -2141,7 +2503,7 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> step2GreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -2156,7 +2518,7 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> step2LessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -2171,8 +2533,8 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> step2Between(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -2255,8 +2617,24 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
     });
   }
 
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> step3IsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'step3',
+      ));
+    });
+  }
+
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> step3IsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'step3',
+      ));
+    });
+  }
+
   QueryBuilder<Meal, Meal, QAfterFilterCondition> step3EqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -2269,7 +2647,7 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> step3GreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -2284,7 +2662,7 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> step3LessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -2299,8 +2677,8 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> step3Between(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -2383,8 +2761,24 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
     });
   }
 
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> step4IsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'step4',
+      ));
+    });
+  }
+
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> step4IsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'step4',
+      ));
+    });
+  }
+
   QueryBuilder<Meal, Meal, QAfterFilterCondition> step4EqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -2397,7 +2791,7 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> step4GreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -2412,7 +2806,7 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> step4LessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -2427,8 +2821,8 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> step4Between(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -2511,8 +2905,24 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
     });
   }
 
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> step5IsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'step5',
+      ));
+    });
+  }
+
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> step5IsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'step5',
+      ));
+    });
+  }
+
   QueryBuilder<Meal, Meal, QAfterFilterCondition> step5EqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -2525,7 +2935,7 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> step5GreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -2540,7 +2950,7 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> step5LessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -2555,8 +2965,8 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> step5Between(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -2639,8 +3049,24 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
     });
   }
 
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> step6IsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'step6',
+      ));
+    });
+  }
+
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> step6IsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'step6',
+      ));
+    });
+  }
+
   QueryBuilder<Meal, Meal, QAfterFilterCondition> step6EqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -2653,7 +3079,7 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> step6GreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -2668,7 +3094,7 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> step6LessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -2683,8 +3109,8 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> step6Between(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -2767,8 +3193,24 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
     });
   }
 
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> step7IsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'step7',
+      ));
+    });
+  }
+
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> step7IsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'step7',
+      ));
+    });
+  }
+
   QueryBuilder<Meal, Meal, QAfterFilterCondition> step7EqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -2781,7 +3223,7 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> step7GreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -2796,7 +3238,7 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> step7LessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -2811,8 +3253,8 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> step7Between(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -2895,8 +3337,24 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
     });
   }
 
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> step8IsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'step8',
+      ));
+    });
+  }
+
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> step8IsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'step8',
+      ));
+    });
+  }
+
   QueryBuilder<Meal, Meal, QAfterFilterCondition> step8EqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -2909,7 +3367,7 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> step8GreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -2924,7 +3382,7 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> step8LessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -2939,8 +3397,8 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> step8Between(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -3023,8 +3481,24 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
     });
   }
 
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> step9IsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'step9',
+      ));
+    });
+  }
+
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> step9IsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'step9',
+      ));
+    });
+  }
+
   QueryBuilder<Meal, Meal, QAfterFilterCondition> step9EqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -3037,7 +3511,7 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> step9GreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -3052,7 +3526,7 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> step9LessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -3067,8 +3541,8 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> step9Between(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -3151,8 +3625,24 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
     });
   }
 
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> titleIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'title',
+      ));
+    });
+  }
+
+  QueryBuilder<Meal, Meal, QAfterFilterCondition> titleIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'title',
+      ));
+    });
+  }
+
   QueryBuilder<Meal, Meal, QAfterFilterCondition> titleEqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -3165,7 +3655,7 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> titleGreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -3180,7 +3670,7 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> titleLessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -3195,8 +3685,8 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
   }
 
   QueryBuilder<Meal, Meal, QAfterFilterCondition> titleBetween(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -4064,145 +4554,145 @@ extension MealQueryProperty on QueryBuilder<Meal, Meal, QQueryProperty> {
     });
   }
 
-  QueryBuilder<Meal, String, QQueryOperations> affordabilityProperty() {
+  QueryBuilder<Meal, String?, QQueryOperations> affordabilityProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'affordability');
     });
   }
 
-  QueryBuilder<Meal, String, QQueryOperations> complexityProperty() {
+  QueryBuilder<Meal, String?, QQueryOperations> complexityProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'complexity');
     });
   }
 
-  QueryBuilder<Meal, int, QQueryOperations> durationProperty() {
+  QueryBuilder<Meal, int?, QQueryOperations> durationProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'duration');
     });
   }
 
-  QueryBuilder<Meal, bool, QQueryOperations> favouriteProperty() {
+  QueryBuilder<Meal, bool?, QQueryOperations> favouriteProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'favourite');
     });
   }
 
-  QueryBuilder<Meal, String, QQueryOperations> imageUrlProperty() {
+  QueryBuilder<Meal, String?, QQueryOperations> imageUrlProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'imageUrl');
     });
   }
 
-  QueryBuilder<Meal, String, QQueryOperations> ingredient1Property() {
+  QueryBuilder<Meal, String?, QQueryOperations> ingredient1Property() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'ingredient1');
     });
   }
 
-  QueryBuilder<Meal, String, QQueryOperations> ingredient2Property() {
+  QueryBuilder<Meal, String?, QQueryOperations> ingredient2Property() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'ingredient2');
     });
   }
 
-  QueryBuilder<Meal, String, QQueryOperations> ingredient3Property() {
+  QueryBuilder<Meal, String?, QQueryOperations> ingredient3Property() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'ingredient3');
     });
   }
 
-  QueryBuilder<Meal, String, QQueryOperations> ingredient4Property() {
+  QueryBuilder<Meal, String?, QQueryOperations> ingredient4Property() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'ingredient4');
     });
   }
 
-  QueryBuilder<Meal, String, QQueryOperations> ingredient5Property() {
+  QueryBuilder<Meal, String?, QQueryOperations> ingredient5Property() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'ingredient5');
     });
   }
 
-  QueryBuilder<Meal, String, QQueryOperations> ingredient6Property() {
+  QueryBuilder<Meal, String?, QQueryOperations> ingredient6Property() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'ingredient6');
     });
   }
 
-  QueryBuilder<Meal, String, QQueryOperations> ingredient7Property() {
+  QueryBuilder<Meal, String?, QQueryOperations> ingredient7Property() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'ingredient7');
     });
   }
 
-  QueryBuilder<Meal, String, QQueryOperations> ingredient8Property() {
+  QueryBuilder<Meal, String?, QQueryOperations> ingredient8Property() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'ingredient8');
     });
   }
 
-  QueryBuilder<Meal, int, QQueryOperations> servingProperty() {
+  QueryBuilder<Meal, int?, QQueryOperations> servingProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'serving');
     });
   }
 
-  QueryBuilder<Meal, String, QQueryOperations> step1Property() {
+  QueryBuilder<Meal, String?, QQueryOperations> step1Property() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'step1');
     });
   }
 
-  QueryBuilder<Meal, String, QQueryOperations> step2Property() {
+  QueryBuilder<Meal, String?, QQueryOperations> step2Property() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'step2');
     });
   }
 
-  QueryBuilder<Meal, String, QQueryOperations> step3Property() {
+  QueryBuilder<Meal, String?, QQueryOperations> step3Property() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'step3');
     });
   }
 
-  QueryBuilder<Meal, String, QQueryOperations> step4Property() {
+  QueryBuilder<Meal, String?, QQueryOperations> step4Property() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'step4');
     });
   }
 
-  QueryBuilder<Meal, String, QQueryOperations> step5Property() {
+  QueryBuilder<Meal, String?, QQueryOperations> step5Property() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'step5');
     });
   }
 
-  QueryBuilder<Meal, String, QQueryOperations> step6Property() {
+  QueryBuilder<Meal, String?, QQueryOperations> step6Property() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'step6');
     });
   }
 
-  QueryBuilder<Meal, String, QQueryOperations> step7Property() {
+  QueryBuilder<Meal, String?, QQueryOperations> step7Property() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'step7');
     });
   }
 
-  QueryBuilder<Meal, String, QQueryOperations> step8Property() {
+  QueryBuilder<Meal, String?, QQueryOperations> step8Property() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'step8');
     });
   }
 
-  QueryBuilder<Meal, String, QQueryOperations> step9Property() {
+  QueryBuilder<Meal, String?, QQueryOperations> step9Property() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'step9');
     });
   }
 
-  QueryBuilder<Meal, String, QQueryOperations> titleProperty() {
+  QueryBuilder<Meal, String?, QQueryOperations> titleProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'title');
     });

@@ -1,22 +1,26 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:meal/config/theme.dart';
 import 'package:meal/controllers/category_controller.dart';
 import 'package:meal/controllers/meals/meal_controller.dart';
+import 'package:meal/models/meal/meal.dart';
 import 'package:meal/ui/components/buttons/icon_button.dart';
 import 'package:meal/ui/components/buttons/label_icon_button.dart';
 import 'package:meal/ui/components/buttons/primary_button.dart';
 import 'package:meal/ui/components/inputs/primary_input.dart';
 import 'package:meal/ui/components/texts/custom_text.dart';
-import 'package:meal/ui/screens/meals/add_ingredient_screen.dart';
+import 'package:meal/ui/screens/meals/update/update_ingredient_screen.dart';
 import 'package:meal/ui/widgets/dropdown/dropdown_category.dart';
 import 'package:meal/utils/widget.dart';
 
-class AddMealScreen extends StatelessWidget {
-  AddMealScreen({super.key});
+class UpdateMealScreen extends StatelessWidget {
+  UpdateMealScreen({required this.meal, super.key});
 
   final MealController mc = Get.put(MealController());
   final CategoryController cc = Get.put(CategoryController());
+  final Meal meal;
 
   @override
   Widget build(BuildContext context) {
@@ -26,14 +30,25 @@ class AddMealScreen extends StatelessWidget {
           children: [
             addVerticalSpace(50),
             logo(),
+            // Container(
+            //   margin: const EdgeInsets.symmetric(horizontal: 20,),
+            //   child: ClipRRect(
+            //     borderRadius: BorderRadius.circular(10),
+            //     child: Image.file(
+            //       File('${meal.imageUrl}'),
+            //       height: 250,
+            //       width: 250,
+            //       fit: BoxFit.cover,
+            //     ),
+            //   ),
+            // ),
             const CustomText(
-              text: 'Add Meal',
+              text: 'Update Meal',
               fontSize: 25,
             ),
-            addVerticalSpace(10),
+            addVerticalSpace(5),
             Form(
               child: PrimaryInput(
-                key: mc.formKey,
                 width: 250,
                 text: 'Meal Title',
                 controller: mc.titleController,
@@ -55,11 +70,11 @@ class AddMealScreen extends StatelessWidget {
               textInputType: TextInputType.text,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: (value) {
-                  if (value!.isEmpty && value.isNumericOnly) {
-                    return 'Please fill meal duration in minutes';
-                  }
-                  return null;
-                },
+                if (value!.isEmpty && value.isNumericOnly) {
+                  return 'Please fill meal duration in minutes';
+                }
+                return null;
+              },
             ),
             addVerticalSpace(10),
             PrimaryInput(
@@ -69,11 +84,11 @@ class AddMealScreen extends StatelessWidget {
               textInputType: TextInputType.text,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: (value) {
-                  if (value!.isEmpty && value.isNumericOnly) {
-                    return 'Please fill serving in number';
-                  }
-                  return null;
-                },
+                if (value!.isEmpty && value.isNumericOnly) {
+                  return 'Please fill serving in number';
+                }
+                return null;
+              },
             ),
             addVerticalSpace(10),
             Row(
@@ -109,10 +124,8 @@ class AddMealScreen extends StatelessWidget {
             PrimaryButton(
                 text: 'Add Meal',
                 onPressed: () {
-                  if(mc.titleController.text.isEmpty){
-                    
-                  }
-                  Get.to(() => AddIngredientScreen());
+                  if (mc.titleController.text.isEmpty) {}
+                  Get.to(UpdateIngredientScreen(meal: meal));
                 }),
           ],
         ),

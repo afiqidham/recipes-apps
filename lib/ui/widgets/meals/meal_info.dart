@@ -34,12 +34,12 @@ class MealInfo extends StatelessWidget {
                   addHorizontalSpace(15),
                   MealTrait(
                     icon: IconlyBold.work,
-                    label: meal.complexity,
+                    label: '${meal.complexity}',
                   ),
                   addHorizontalSpace(15),
                   MealTrait(
                     icon: IconlyBold.wallet,
-                    label: meal.affordability,
+                    label: '${meal.affordability}'
                   ),
                   addHorizontalSpace(15),
                   MealTrait(

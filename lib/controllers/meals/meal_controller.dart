@@ -11,20 +11,31 @@ import 'package:meal/ui/components/texts/title_text.dart';
 import 'package:meal/ui/screens/meals/meal_detail_screen.dart';
 
 class MealController extends GetxController {
-
   TextEditingController titleController = TextEditingController();
   TextEditingController durationController = TextEditingController();
   TextEditingController servingController = TextEditingController();
-  
+
   RxList<Meal> favouriteMeals = <Meal>[].obs;
   RxList<Meal> meals = <Meal>[].obs;
   Rx<bool> fav = false.obs;
   final selected = ''.obs;
   final dropDownValue = Rx<Category?>(null);
-  late final Meal meal;
+  Meal meal = Meal();
   File? image;
 
   GlobalKey formKey = GlobalKey();
+
+  @override
+  void onInit() {
+    titleController.text = '${meal.title}';
+    super.onInit();
+  }
+
+  @override
+  void dispose() {
+    titleController.dispose();
+    super.dispose();
+  }
 
   void selectMeal(Meal meal) {
     Get.to(() => MealDetailScreen(
@@ -32,19 +43,18 @@ class MealController extends GetxController {
         ));
   }
 
-  void mealFavouriteStatus(Meal meal) async {
- 
-    // fav.value = meal.favourite;
-    // meal.favourite = meals.contains(meal);
-    fav.value = meals.contains(meal);
-    if (fav.value) {
-      meal.favourite = false;
-      // favouriteMeals.remove(meal);
-    } else {
-      // favouriteMeals.add(meal);
-      meal.favourite = true;
-    }
-  }
+  // void mealFavouriteStatus(Meal meal) async {
+  //   // fav.value = meal.favourite;
+  //   // meal.favourite = meals.contains(meal);
+  //   fav.value = meals.contains(meal);
+  //   if (fav.value) {
+  //     meal.favourite = false;
+  //     // favouriteMeals.remove(meal);
+  //   } else {
+  //     // favouriteMeals.add(meal);
+  //     meal.favourite = true;
+  //   }
+  // }
 
   Future uploadImage() async {
     try {

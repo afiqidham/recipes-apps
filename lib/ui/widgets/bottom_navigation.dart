@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
 import 'package:meal/config/theme.dart';
 import 'package:meal/controllers/main_controller.dart';
+import 'package:meal/utils/widget.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 class BottomNavigation extends StatelessWidget {
@@ -20,7 +21,7 @@ class BottomNavigation extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 55, vertical: 20),
         child: Obx(
           () => Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               bottomAppBarItem(
                 context,
@@ -28,6 +29,7 @@ class BottomNavigation extends StatelessWidget {
                 icon: IconlyLight.category,
                 page: 0,
               ),
+              addHorizontalSpace(100),
               bottomAppBarItem(
                 context,
                 label: 'Favourite',

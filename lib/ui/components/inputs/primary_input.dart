@@ -12,6 +12,8 @@ class PrimaryInput extends StatelessWidget {
   final String? Function(String?)? validator;
   final AutovalidateMode? autovalidateMode;
   final double? width;
+  final Function(String)? onChanged;
+  final String? initialValue;
 
   const PrimaryInput(
       {required this.text,
@@ -24,6 +26,8 @@ class PrimaryInput extends StatelessWidget {
       this.prefixText,
       this.validator,
       this.autovalidateMode,
+      this.onChanged,
+      this.initialValue,
       super.key});
 
   @override
@@ -35,6 +39,8 @@ class PrimaryInput extends StatelessWidget {
         keyboardType: textInputType,
         validator: validator,
         autovalidateMode: autovalidateMode,
+        onChanged: onChanged,
+        initialValue: initialValue,
         style: const TextStyle(color: Colors.black),
         decoration: InputDecoration(
           filled: true,

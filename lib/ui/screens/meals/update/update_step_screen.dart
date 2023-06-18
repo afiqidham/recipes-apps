@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:meal/config/theme.dart';
 import 'package:meal/controllers/meals/step_controller.dart';
+import 'package:meal/models/meal/meal.dart';
 import 'package:meal/services/isar_service.dart';
 import 'package:meal/ui/components/buttons/primary_button.dart';
 import 'package:meal/ui/components/inputs/step_input.dart';
@@ -10,11 +11,12 @@ import 'package:meal/ui/screens/main_screen.dart';
 import 'package:meal/ui/widgets/dropdown/dropdown_complexity.dart';
 import 'package:meal/utils/widget.dart';
 
-class AddStepScreen extends StatelessWidget {
-  AddStepScreen({super.key});
+class UpdateStepScreen extends StatelessWidget {
+  UpdateStepScreen({required this.meal, super.key});
 
   final StepController sc = Get.find();
   final IsarService isar = Get.find();
+  final Meal meal;
 
   @override
   Widget build(BuildContext context) {
@@ -111,8 +113,8 @@ class AddStepScreen extends StatelessWidget {
             PrimaryButton(
                 text: 'Add Steps',
                 onPressed: () {
-                  isar.addNewMeal();
-                  Get.off(() => MainScreen());
+                  isar.updateMeal(meal);
+                  Get.offAll(() => MainScreen());
                 }),
           ],
         ),

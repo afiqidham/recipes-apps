@@ -23,7 +23,7 @@ class CategoryScreen extends StatelessWidget {
         backgroundColor: ThemePalette.lightPink,
         title: const CustomText(text: 'Recipes Categories'),
         centerTitle: true,
-        actions: [
+        actions: const [
           ProfilePicture(),
         ],
        

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:meal/config/theme.dart';
 import 'package:meal/controllers/main_controller.dart';
-import 'package:meal/ui/screens/meals/add_meal_screen.dart';
+import 'package:meal/ui/screens/meals/add/add_meal_screen.dart';
 import 'package:meal/ui/widgets/bottom_navigation.dart';
 
 class MainScreen extends StatelessWidget {

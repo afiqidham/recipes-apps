@@ -1,7 +1,7 @@
 import 'package:get/route_manager.dart';
-import 'package:meal/ui/screens/meals/add_ingredient_screen.dart';
-import 'package:meal/ui/screens/meals/add_meal_screen.dart';
-import 'package:meal/ui/screens/meals/add_step_screen.dart';
+import 'package:meal/ui/screens/meals/add/add_meal_screen.dart';
+import 'package:meal/ui/screens/meals/add/add_step_screen.dart';
+import 'package:meal/ui/screens/meals/update/add_ingredient_screen.dart';
 import 'package:meal/utils/routes.dart';
 
 

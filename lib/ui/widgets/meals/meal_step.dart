@@ -30,35 +30,35 @@ class MealStep extends StatelessWidget {
             const TitleText(text: 'STEPS'),
             divider(20, 2),
             DisplayContainer(
-              text: meal.step1,
+              text:'${meal.step1}',
             ),
             addVerticalSpace(10),
             DisplayContainer(
-              text: meal.step2
+              text: '${meal.step2}'
               ),
             addVerticalSpace(10),
             DisplayContainer(
-              text: meal.step3
+              text: '${meal.step3}'
               ),
             addVerticalSpace(10),
             DisplayContainer(
-              text: meal.step4
+              text: '${meal.step4}'
               ),
             addVerticalSpace(10),
             DisplayContainer(
-              text: meal.step5
+              text: '${meal.step5}'
               ),
             addVerticalSpace(10),
             DisplayContainer(
-              text: meal.step6
+              text: '${meal.step6}'
               ),
             addVerticalSpace(10),
             DisplayContainer(
-              text: meal.step7
+              text: '${meal.step7}'
               ),
             addVerticalSpace(10),
             DisplayContainer(
-              text: meal.step8
+              text: '${meal.step8}'
               ),
           ],
         ),

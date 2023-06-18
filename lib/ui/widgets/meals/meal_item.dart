@@ -34,7 +34,7 @@ class MealItem extends StatelessWidget {
               height: 300,
               width: double.infinity,
               placeholder: MemoryImage(kTransparentImage),
-              image: FileImage(File(meal.imageUrl)),
+              image: FileImage(File('${meal.imageUrl}')),
               fit: BoxFit.cover,
               fadeInDuration: const Duration(seconds: 1),
             ),
@@ -49,7 +49,7 @@ class MealItem extends StatelessWidget {
                 child: Column(
                   children: [
                     CustomText(
-                      text: meal.title,
+                      text: '${meal.title}',
                       maxlines: 2,
                       textAlign: TextAlign.center,
                       softWrap: true,
@@ -66,12 +66,12 @@ class MealItem extends StatelessWidget {
                         addHorizontalSpace(15),
                          MealTrait(
                           icon: IconlyBold.work,
-                          label: meal.complexity,
+                          label: '${meal.complexity}',
                         ),
                         addHorizontalSpace(15),
                          MealTrait(
                           icon: IconlyBold.wallet,
-                          label: meal.affordability,
+                          label: '${meal.affordability}',
                         ),
                         addHorizontalSpace(15),
                          MealTrait(

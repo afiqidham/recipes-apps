@@ -18,6 +18,7 @@ class IsarService extends GetxController {
   Rx<Category?> selectCategory = Rx<Category?>(null);
   RxList<Category> categories = <Category>[].obs;
   RxList<Meal> meals = <Meal>[].obs;
+  RxBool favourites = false.obs;
 
   late Future<Isar> db;
 
@@ -140,6 +141,62 @@ class IsarService extends GetxController {
         MealScreen(title: isar.meals.name, meals: meals.value = getMeals));
   }
 
+  Future<void> updateMeal(Meal meal) async {
+    final isar = await db;
+
+    await isar.writeTxn(() async {
+      final update = await isar.meals.get(meal.mealId);
+
+      update!.title = mc.titleController.text;
+      update.duration = int.parse(mc.durationController.text);
+      update.serving = int.parse(mc.servingController.text);
+      update.category.value = selectCategory.value;
+      update.imageUrl = mc.image!.path;
+      update.favourite = mc.fav.value;
+      update.ingredient1 = ic.ingredient1Controller.text;
+      update.ingredient2 = ic.ingredient2Controller.text;
+      update.ingredient3 = ic.ingredient3Controller.text;
+      update.ingredient4 = ic.ingredient4Controller.text;
+      update.ingredient5 = ic.ingredient5Controller.text;
+      update.ingredient6 = ic.ingredient6Controller.text;
+      update.ingredient7 = ic.ingredient7Controller.text;
+      update.ingredient8 = ic.ingredient8Controller.text;
+      update.step1 = sc.step1Controller.text;
+      update.step2 = sc.step2Controller.text;
+      update.step3 = sc.step3Controller.text;
+      update.step4 = sc.step4Controller.text;
+      update.step5 = sc.step5Controller.text;
+      update.step6 = sc.step6Controller.text;
+      update.step7 = sc.step7Controller.text;
+      update.step8 = sc.step8Controller.text;
+      update.step9 = sc.step9Controller.text;
+      update.affordability = ic.selected.value;
+      update.complexity = sc.selected.value;
+
+      isar.meals.put(update);
+    });
+    mc.titleController.clear();
+    mc.durationController.clear();
+    mc.servingController.clear();
+    ic.ingredient1Controller.clear();
+    ic.ingredient2Controller.clear();
+    ic.ingredient3Controller.clear();
+    ic.ingredient4Controller.clear();
+    ic.ingredient5Controller.clear();
+    ic.ingredient6Controller.clear();
+    ic.ingredient7Controller.clear();
+    ic.ingredient8Controller.clear();
+    sc.step1Controller.clear();
+    sc.step2Controller.clear();
+    sc.step3Controller.clear();
+    sc.step4Controller.clear();
+    sc.step5Controller.clear();
+    sc.step6Controller.clear();
+    sc.step7Controller.clear();
+    sc.step8Controller.clear();
+    sc.step9Controller.clear();
+  }
+
   Future<void> deleteMeal(Meal meal) async {
     final isar = await db;
 
@@ -149,33 +206,27 @@ class IsarService extends GetxController {
     });
   }
 
-  Stream<List<Meal>> getFavouriteMeal() async* {
+  Future<void> mealFavouriteStatus(Meal meal) async {
     final isar = await db;
 
-    yield* isar.meals
-        .where()
-        .filter()
-        .favouriteEqualTo(true)
-        .watch(fireImmediately: true);
+    if (favourites.value) {
+      favourites.value = false;
+    } else {
+      favourites.value = true;
+    }
+
+    await isar.writeTxn(() async {
+      final fav = await isar.meals.get(meal.mealId);
+      fav!.favourite = favourites.value;
+      await isar.meals.put(fav);
+    });
   }
 
-  void mealFavouriteStatus(Meal meal) async {
+  Stream<List<Meal>> getFavouriteMeal() async* {
     final isar = await db;
-    // fav.value = meal.favourite;
-    // meal.favourite = meals.contains(meal);
-    final favourite = Meal()..favourite = mc.fav.value;
-    mc.fav.value = meals.contains(meal);
-    if (mc.fav.value) {
-      meal.favourite = false;
-      // favouriteMeals.remove(meal);
-    } else {
-      // favouriteMeals.add(meal);
-      meal.favourite = true;
-    }
-    await isar.writeTxn(
-      () async {
-        isar.meals.put(favourite);
-      },
-    );
+    yield* isar.meals
+        .filter()
+        .favouriteEqualTo(true)
+        .watch(fireImmediately: false);
   }
 }

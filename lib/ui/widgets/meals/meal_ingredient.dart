@@ -26,35 +26,35 @@ class MealIngredient extends StatelessWidget {
             const TitleText(text: 'INGREDIENTS'),
             divider(20, 2),
             DisplayContainer(
-              text: meal.ingredient1,
+              text: '${meal.ingredient1}',
             ),
             addVerticalSpace(10),
             DisplayContainer(
-              text: meal.ingredient2
+              text: '${meal.ingredient2}'
               ),
             addVerticalSpace(10),
             DisplayContainer(
-              text: meal.ingredient3
+              text: '${meal.ingredient3}'
               ),
             addVerticalSpace(10),
             DisplayContainer(
-              text: meal.ingredient4
+              text: '${meal.ingredient4}'
               ),
             addVerticalSpace(10),
             DisplayContainer(
-              text: meal.ingredient5
+              text: '${meal.ingredient5}'
               ),
             addVerticalSpace(10),
             DisplayContainer(
-              text: meal.ingredient6
+              text: '${meal.ingredient6}'
               ),
             addVerticalSpace(10),
             DisplayContainer(
-              text: meal.ingredient7
+              text: '${meal.ingredient7}'
               ),
             addVerticalSpace(10),
             DisplayContainer(
-              text: meal.ingredient8
+              text: '${meal.ingredient8}'
               ),
           ],
         ),
