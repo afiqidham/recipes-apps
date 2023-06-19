@@ -9,7 +9,7 @@ import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 class BottomNavigation extends StatelessWidget {
   BottomNavigation({super.key});
 
-  final MainController mc = Get.find();
+  final MainController mc = Get.put(MainController());
 
   @override
   Widget build(BuildContext context) {

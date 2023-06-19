@@ -20,16 +20,12 @@ class MealController extends GetxController {
   Rx<bool> fav = false.obs;
   final selected = ''.obs;
   final dropDownValue = Rx<Category?>(null);
-  Meal meal = Meal();
   File? image;
+  late Meal meal;
 
   GlobalKey formKey = GlobalKey();
 
-  @override
-  void onInit() {
-    titleController.text = '${meal.title}';
-    super.onInit();
-  }
+  
 
   @override
   void dispose() {
@@ -59,15 +55,19 @@ class MealController extends GetxController {
   Future uploadImage() async {
     try {
       final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-      if (image == null) return;
 
-      final imageTemp = File(image.path);
+      final imageTemp = File(image!.path);
 
       this.image = imageTemp;
     } on PlatformException {
       Get.dialog(const AlertDialog(
         title: TitleText(text: 'Error'),
         content: DisplayText(text: 'Failed to upload image..'),
+      ));
+    } catch (e) {
+      Get.dialog(const AlertDialog(
+        title: Text('Error'),
+        content: Text('Please upload image'),
       ));
     }
   }

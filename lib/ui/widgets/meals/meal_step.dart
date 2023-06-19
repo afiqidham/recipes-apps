@@ -11,7 +11,7 @@ import 'package:meal/utils/widget.dart';
 class MealStep extends StatelessWidget {
   MealStep({required this.meal, super.key});
 
-  final IsarService isar = Get.find();
+  final IsarService isar = Get.put(IsarService());
   final Meal meal;
 
   @override

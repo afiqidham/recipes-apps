@@ -56,11 +56,6 @@ const StepsSchema = CollectionSchema(
       id: 7,
       name: r'step8',
       type: IsarType.string,
-    ),
-    r'step9': PropertySchema(
-      id: 8,
-      name: r'step9',
-      type: IsarType.string,
     )
   },
   estimateSize: _stepsEstimateSize,
@@ -83,15 +78,54 @@ int _stepsEstimateSize(
   Map<Type, List<int>> allOffsets,
 ) {
   var bytesCount = offsets.last;
-  bytesCount += 3 + object.step1.length * 3;
-  bytesCount += 3 + object.step2.length * 3;
-  bytesCount += 3 + object.step3.length * 3;
-  bytesCount += 3 + object.step4.length * 3;
-  bytesCount += 3 + object.step5.length * 3;
-  bytesCount += 3 + object.step6.length * 3;
-  bytesCount += 3 + object.step7.length * 3;
-  bytesCount += 3 + object.step8.length * 3;
-  bytesCount += 3 + object.step9.length * 3;
+  {
+    final value = object.step1;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final value = object.step2;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final value = object.step3;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final value = object.step4;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final value = object.step5;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final value = object.step6;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final value = object.step7;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final value = object.step8;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
   return bytesCount;
 }
 
@@ -109,7 +143,6 @@ void _stepsSerialize(
   writer.writeString(offsets[5], object.step6);
   writer.writeString(offsets[6], object.step7);
   writer.writeString(offsets[7], object.step8);
-  writer.writeString(offsets[8], object.step9);
 }
 
 Steps _stepsDeserialize(
@@ -118,16 +151,16 @@ Steps _stepsDeserialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  final object = Steps();
-  object.step1 = reader.readString(offsets[0]);
-  object.step2 = reader.readString(offsets[1]);
-  object.step3 = reader.readString(offsets[2]);
-  object.step4 = reader.readString(offsets[3]);
-  object.step5 = reader.readString(offsets[4]);
-  object.step6 = reader.readString(offsets[5]);
-  object.step7 = reader.readString(offsets[6]);
-  object.step8 = reader.readString(offsets[7]);
-  object.step9 = reader.readString(offsets[8]);
+  final object = Steps(
+    step1: reader.readStringOrNull(offsets[0]),
+    step2: reader.readStringOrNull(offsets[1]),
+    step3: reader.readStringOrNull(offsets[2]),
+    step4: reader.readStringOrNull(offsets[3]),
+    step5: reader.readStringOrNull(offsets[4]),
+    step6: reader.readStringOrNull(offsets[5]),
+    step7: reader.readStringOrNull(offsets[6]),
+    step8: reader.readStringOrNull(offsets[7]),
+  );
   object.stepId = id;
   return object;
 }
@@ -140,23 +173,21 @@ P _stepsDeserializeProp<P>(
 ) {
   switch (propertyId) {
     case 0:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 1:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 2:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 3:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 4:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 5:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 6:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 7:
-      return (reader.readString(offset)) as P;
-    case 8:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
   }
@@ -250,8 +281,24 @@ extension StepsQueryWhere on QueryBuilder<Steps, Steps, QWhereClause> {
 }
 
 extension StepsQueryFilter on QueryBuilder<Steps, Steps, QFilterCondition> {
+  QueryBuilder<Steps, Steps, QAfterFilterCondition> step1IsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'step1',
+      ));
+    });
+  }
+
+  QueryBuilder<Steps, Steps, QAfterFilterCondition> step1IsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'step1',
+      ));
+    });
+  }
+
   QueryBuilder<Steps, Steps, QAfterFilterCondition> step1EqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -264,7 +311,7 @@ extension StepsQueryFilter on QueryBuilder<Steps, Steps, QFilterCondition> {
   }
 
   QueryBuilder<Steps, Steps, QAfterFilterCondition> step1GreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -279,7 +326,7 @@ extension StepsQueryFilter on QueryBuilder<Steps, Steps, QFilterCondition> {
   }
 
   QueryBuilder<Steps, Steps, QAfterFilterCondition> step1LessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -294,8 +341,8 @@ extension StepsQueryFilter on QueryBuilder<Steps, Steps, QFilterCondition> {
   }
 
   QueryBuilder<Steps, Steps, QAfterFilterCondition> step1Between(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -378,8 +425,24 @@ extension StepsQueryFilter on QueryBuilder<Steps, Steps, QFilterCondition> {
     });
   }
 
+  QueryBuilder<Steps, Steps, QAfterFilterCondition> step2IsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'step2',
+      ));
+    });
+  }
+
+  QueryBuilder<Steps, Steps, QAfterFilterCondition> step2IsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'step2',
+      ));
+    });
+  }
+
   QueryBuilder<Steps, Steps, QAfterFilterCondition> step2EqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -392,7 +455,7 @@ extension StepsQueryFilter on QueryBuilder<Steps, Steps, QFilterCondition> {
   }
 
   QueryBuilder<Steps, Steps, QAfterFilterCondition> step2GreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -407,7 +470,7 @@ extension StepsQueryFilter on QueryBuilder<Steps, Steps, QFilterCondition> {
   }
 
   QueryBuilder<Steps, Steps, QAfterFilterCondition> step2LessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -422,8 +485,8 @@ extension StepsQueryFilter on QueryBuilder<Steps, Steps, QFilterCondition> {
   }
 
   QueryBuilder<Steps, Steps, QAfterFilterCondition> step2Between(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -506,8 +569,24 @@ extension StepsQueryFilter on QueryBuilder<Steps, Steps, QFilterCondition> {
     });
   }
 
+  QueryBuilder<Steps, Steps, QAfterFilterCondition> step3IsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'step3',
+      ));
+    });
+  }
+
+  QueryBuilder<Steps, Steps, QAfterFilterCondition> step3IsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'step3',
+      ));
+    });
+  }
+
   QueryBuilder<Steps, Steps, QAfterFilterCondition> step3EqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -520,7 +599,7 @@ extension StepsQueryFilter on QueryBuilder<Steps, Steps, QFilterCondition> {
   }
 
   QueryBuilder<Steps, Steps, QAfterFilterCondition> step3GreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -535,7 +614,7 @@ extension StepsQueryFilter on QueryBuilder<Steps, Steps, QFilterCondition> {
   }
 
   QueryBuilder<Steps, Steps, QAfterFilterCondition> step3LessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -550,8 +629,8 @@ extension StepsQueryFilter on QueryBuilder<Steps, Steps, QFilterCondition> {
   }
 
   QueryBuilder<Steps, Steps, QAfterFilterCondition> step3Between(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -634,8 +713,24 @@ extension StepsQueryFilter on QueryBuilder<Steps, Steps, QFilterCondition> {
     });
   }
 
+  QueryBuilder<Steps, Steps, QAfterFilterCondition> step4IsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'step4',
+      ));
+    });
+  }
+
+  QueryBuilder<Steps, Steps, QAfterFilterCondition> step4IsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'step4',
+      ));
+    });
+  }
+
   QueryBuilder<Steps, Steps, QAfterFilterCondition> step4EqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -648,7 +743,7 @@ extension StepsQueryFilter on QueryBuilder<Steps, Steps, QFilterCondition> {
   }
 
   QueryBuilder<Steps, Steps, QAfterFilterCondition> step4GreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -663,7 +758,7 @@ extension StepsQueryFilter on QueryBuilder<Steps, Steps, QFilterCondition> {
   }
 
   QueryBuilder<Steps, Steps, QAfterFilterCondition> step4LessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -678,8 +773,8 @@ extension StepsQueryFilter on QueryBuilder<Steps, Steps, QFilterCondition> {
   }
 
   QueryBuilder<Steps, Steps, QAfterFilterCondition> step4Between(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -762,8 +857,24 @@ extension StepsQueryFilter on QueryBuilder<Steps, Steps, QFilterCondition> {
     });
   }
 
+  QueryBuilder<Steps, Steps, QAfterFilterCondition> step5IsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'step5',
+      ));
+    });
+  }
+
+  QueryBuilder<Steps, Steps, QAfterFilterCondition> step5IsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'step5',
+      ));
+    });
+  }
+
   QueryBuilder<Steps, Steps, QAfterFilterCondition> step5EqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -776,7 +887,7 @@ extension StepsQueryFilter on QueryBuilder<Steps, Steps, QFilterCondition> {
   }
 
   QueryBuilder<Steps, Steps, QAfterFilterCondition> step5GreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -791,7 +902,7 @@ extension StepsQueryFilter on QueryBuilder<Steps, Steps, QFilterCondition> {
   }
 
   QueryBuilder<Steps, Steps, QAfterFilterCondition> step5LessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -806,8 +917,8 @@ extension StepsQueryFilter on QueryBuilder<Steps, Steps, QFilterCondition> {
   }
 
   QueryBuilder<Steps, Steps, QAfterFilterCondition> step5Between(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -890,8 +1001,24 @@ extension StepsQueryFilter on QueryBuilder<Steps, Steps, QFilterCondition> {
     });
   }
 
+  QueryBuilder<Steps, Steps, QAfterFilterCondition> step6IsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'step6',
+      ));
+    });
+  }
+
+  QueryBuilder<Steps, Steps, QAfterFilterCondition> step6IsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'step6',
+      ));
+    });
+  }
+
   QueryBuilder<Steps, Steps, QAfterFilterCondition> step6EqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -904,7 +1031,7 @@ extension StepsQueryFilter on QueryBuilder<Steps, Steps, QFilterCondition> {
   }
 
   QueryBuilder<Steps, Steps, QAfterFilterCondition> step6GreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -919,7 +1046,7 @@ extension StepsQueryFilter on QueryBuilder<Steps, Steps, QFilterCondition> {
   }
 
   QueryBuilder<Steps, Steps, QAfterFilterCondition> step6LessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -934,8 +1061,8 @@ extension StepsQueryFilter on QueryBuilder<Steps, Steps, QFilterCondition> {
   }
 
   QueryBuilder<Steps, Steps, QAfterFilterCondition> step6Between(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -1018,8 +1145,24 @@ extension StepsQueryFilter on QueryBuilder<Steps, Steps, QFilterCondition> {
     });
   }
 
+  QueryBuilder<Steps, Steps, QAfterFilterCondition> step7IsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'step7',
+      ));
+    });
+  }
+
+  QueryBuilder<Steps, Steps, QAfterFilterCondition> step7IsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'step7',
+      ));
+    });
+  }
+
   QueryBuilder<Steps, Steps, QAfterFilterCondition> step7EqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -1032,7 +1175,7 @@ extension StepsQueryFilter on QueryBuilder<Steps, Steps, QFilterCondition> {
   }
 
   QueryBuilder<Steps, Steps, QAfterFilterCondition> step7GreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -1047,7 +1190,7 @@ extension StepsQueryFilter on QueryBuilder<Steps, Steps, QFilterCondition> {
   }
 
   QueryBuilder<Steps, Steps, QAfterFilterCondition> step7LessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -1062,8 +1205,8 @@ extension StepsQueryFilter on QueryBuilder<Steps, Steps, QFilterCondition> {
   }
 
   QueryBuilder<Steps, Steps, QAfterFilterCondition> step7Between(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -1146,8 +1289,24 @@ extension StepsQueryFilter on QueryBuilder<Steps, Steps, QFilterCondition> {
     });
   }
 
+  QueryBuilder<Steps, Steps, QAfterFilterCondition> step8IsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'step8',
+      ));
+    });
+  }
+
+  QueryBuilder<Steps, Steps, QAfterFilterCondition> step8IsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'step8',
+      ));
+    });
+  }
+
   QueryBuilder<Steps, Steps, QAfterFilterCondition> step8EqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -1160,7 +1319,7 @@ extension StepsQueryFilter on QueryBuilder<Steps, Steps, QFilterCondition> {
   }
 
   QueryBuilder<Steps, Steps, QAfterFilterCondition> step8GreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -1175,7 +1334,7 @@ extension StepsQueryFilter on QueryBuilder<Steps, Steps, QFilterCondition> {
   }
 
   QueryBuilder<Steps, Steps, QAfterFilterCondition> step8LessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -1190,8 +1349,8 @@ extension StepsQueryFilter on QueryBuilder<Steps, Steps, QFilterCondition> {
   }
 
   QueryBuilder<Steps, Steps, QAfterFilterCondition> step8Between(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -1269,134 +1428,6 @@ extension StepsQueryFilter on QueryBuilder<Steps, Steps, QFilterCondition> {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         property: r'step8',
-        value: '',
-      ));
-    });
-  }
-
-  QueryBuilder<Steps, Steps, QAfterFilterCondition> step9EqualTo(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'step9',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<Steps, Steps, QAfterFilterCondition> step9GreaterThan(
-    String value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'step9',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<Steps, Steps, QAfterFilterCondition> step9LessThan(
-    String value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'step9',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<Steps, Steps, QAfterFilterCondition> step9Between(
-    String lower,
-    String upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'step9',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<Steps, Steps, QAfterFilterCondition> step9StartsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'step9',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<Steps, Steps, QAfterFilterCondition> step9EndsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'step9',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<Steps, Steps, QAfterFilterCondition> step9Contains(String value,
-      {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.contains(
-        property: r'step9',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<Steps, Steps, QAfterFilterCondition> step9Matches(String pattern,
-      {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.matches(
-        property: r'step9',
-        wildcard: pattern,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<Steps, Steps, QAfterFilterCondition> step9IsEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'step9',
-        value: '',
-      ));
-    });
-  }
-
-  QueryBuilder<Steps, Steps, QAfterFilterCondition> step9IsNotEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        property: r'step9',
         value: '',
       ));
     });
@@ -1555,18 +1586,6 @@ extension StepsQuerySortBy on QueryBuilder<Steps, Steps, QSortBy> {
       return query.addSortBy(r'step8', Sort.desc);
     });
   }
-
-  QueryBuilder<Steps, Steps, QAfterSortBy> sortByStep9() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'step9', Sort.asc);
-    });
-  }
-
-  QueryBuilder<Steps, Steps, QAfterSortBy> sortByStep9Desc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'step9', Sort.desc);
-    });
-  }
 }
 
 extension StepsQuerySortThenBy on QueryBuilder<Steps, Steps, QSortThenBy> {
@@ -1666,18 +1685,6 @@ extension StepsQuerySortThenBy on QueryBuilder<Steps, Steps, QSortThenBy> {
     });
   }
 
-  QueryBuilder<Steps, Steps, QAfterSortBy> thenByStep9() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'step9', Sort.asc);
-    });
-  }
-
-  QueryBuilder<Steps, Steps, QAfterSortBy> thenByStep9Desc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'step9', Sort.desc);
-    });
-  }
-
   QueryBuilder<Steps, Steps, QAfterSortBy> thenByStepId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'stepId', Sort.asc);
@@ -1747,13 +1754,6 @@ extension StepsQueryWhereDistinct on QueryBuilder<Steps, Steps, QDistinct> {
       return query.addDistinctBy(r'step8', caseSensitive: caseSensitive);
     });
   }
-
-  QueryBuilder<Steps, Steps, QDistinct> distinctByStep9(
-      {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'step9', caseSensitive: caseSensitive);
-    });
-  }
 }
 
 extension StepsQueryProperty on QueryBuilder<Steps, Steps, QQueryProperty> {
@@ -1763,57 +1763,51 @@ extension StepsQueryProperty on QueryBuilder<Steps, Steps, QQueryProperty> {
     });
   }
 
-  QueryBuilder<Steps, String, QQueryOperations> step1Property() {
+  QueryBuilder<Steps, String?, QQueryOperations> step1Property() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'step1');
     });
   }
 
-  QueryBuilder<Steps, String, QQueryOperations> step2Property() {
+  QueryBuilder<Steps, String?, QQueryOperations> step2Property() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'step2');
     });
   }
 
-  QueryBuilder<Steps, String, QQueryOperations> step3Property() {
+  QueryBuilder<Steps, String?, QQueryOperations> step3Property() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'step3');
     });
   }
 
-  QueryBuilder<Steps, String, QQueryOperations> step4Property() {
+  QueryBuilder<Steps, String?, QQueryOperations> step4Property() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'step4');
     });
   }
 
-  QueryBuilder<Steps, String, QQueryOperations> step5Property() {
+  QueryBuilder<Steps, String?, QQueryOperations> step5Property() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'step5');
     });
   }
 
-  QueryBuilder<Steps, String, QQueryOperations> step6Property() {
+  QueryBuilder<Steps, String?, QQueryOperations> step6Property() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'step6');
     });
   }
 
-  QueryBuilder<Steps, String, QQueryOperations> step7Property() {
+  QueryBuilder<Steps, String?, QQueryOperations> step7Property() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'step7');
     });
   }
 
-  QueryBuilder<Steps, String, QQueryOperations> step8Property() {
+  QueryBuilder<Steps, String?, QQueryOperations> step8Property() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'step8');
-    });
-  }
-
-  QueryBuilder<Steps, String, QQueryOperations> step9Property() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'step9');
     });
   }
 }

@@ -11,7 +11,7 @@ class Meal {
   int? duration;
   int? serving;
   bool? favourite;
-  
+
   final category = IsarLink<Category>();
 
   String? complexity;
@@ -34,5 +34,30 @@ class Meal {
   String? step6;
   String? step7;
   String? step8;
-  String? step9;
+
+  Meal(
+      {this.title,
+      this.duration,
+      this.serving,
+      this.affordability,
+      this.complexity,
+      this.favourite,
+      this.imageUrl,
+      this.ingredient1,
+      this.ingredient2,
+      this.ingredient3,
+      this.ingredient4,
+      this.ingredient5,
+      this.ingredient6,
+      this.ingredient7,
+      this.ingredient8,
+      this.step1,
+      this.step2,
+      this.step3,
+      this.step4,
+      this.step5,
+      this.step6,
+      this.step7,
+      this.step8,
+      });
 }

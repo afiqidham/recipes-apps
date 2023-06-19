@@ -1,4 +1,3 @@
-
 import 'package:isar/isar.dart';
 import 'package:meal/models/meal/meal.dart';
 
@@ -9,8 +8,9 @@ class Category {
   Id id = Isar.autoIncrement;
 
   @Index(unique: true)
-  late String title;
-
+  String? title;
 
   final meals = IsarLink<Meal>();
+
+  Category({this.title});
 }

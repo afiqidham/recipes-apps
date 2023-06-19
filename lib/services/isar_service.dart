@@ -4,8 +4,10 @@ import 'package:isar/isar.dart';
 import 'package:meal/controllers/meals/ingredient_controller.dart';
 import 'package:meal/controllers/meals/meal_controller.dart';
 import 'package:meal/controllers/meals/step_controller.dart';
+import 'package:meal/models/auth/auth.dart';
 import 'package:meal/models/category/category.dart';
 import 'package:meal/models/meal/meal.dart';
+import 'package:meal/models/user/user.dart';
 import 'package:meal/ui/screens/meals/meal_screen.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -33,6 +35,8 @@ class IsarService extends GetxController {
         [
           CategorySchema,
           MealSchema,
+          UserSchema,
+          AuthSchema,
         ],
         inspector: true,
         directory: dir.path,
@@ -102,7 +106,6 @@ class IsarService extends GetxController {
       ..step6 = sc.step6Controller.text
       ..step7 = sc.step7Controller.text
       ..step8 = sc.step8Controller.text
-      ..step9 = sc.step9Controller.text
       ..affordability = ic.selected.value
       ..complexity = sc.selected.value;
 
@@ -169,7 +172,6 @@ class IsarService extends GetxController {
       update.step6 = sc.step6Controller.text;
       update.step7 = sc.step7Controller.text;
       update.step8 = sc.step8Controller.text;
-      update.step9 = sc.step9Controller.text;
       update.affordability = ic.selected.value;
       update.complexity = sc.selected.value;
 

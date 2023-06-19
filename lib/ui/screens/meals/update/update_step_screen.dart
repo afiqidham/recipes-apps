@@ -14,12 +14,22 @@ import 'package:meal/utils/widget.dart';
 class UpdateStepScreen extends StatelessWidget {
   UpdateStepScreen({required this.meal, super.key});
 
-  final StepController sc = Get.find();
-  final IsarService isar = Get.find();
+  final StepController sc = Get.put(StepController());
+  final IsarService isar = Get.put(IsarService());
   final Meal meal;
 
   @override
   Widget build(BuildContext context) {
+    
+    sc.step1Controller.text ='${meal.step1}';
+    sc.step2Controller.text ='${meal.step2}';
+    sc.step3Controller.text ='${meal.step3}';
+    sc.step4Controller.text ='${meal.step4}';
+    sc.step5Controller.text ='${meal.step5}';
+    sc.step6Controller.text ='${meal.step6}';
+    sc.step7Controller.text ='${meal.step7}';
+    sc.step8Controller.text ='${meal.step8}';
+
     return Scaffold(
       backgroundColor: ThemePalette.whiteColor,
       body: SingleChildScrollView(

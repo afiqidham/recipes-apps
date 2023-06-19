@@ -127,13 +127,8 @@ const MealSchema = CollectionSchema(
       name: r'step8',
       type: IsarType.string,
     ),
-    r'step9': PropertySchema(
-      id: 22,
-      name: r'step9',
-      type: IsarType.string,
-    ),
     r'title': PropertySchema(
-      id: 23,
+      id: 22,
       name: r'title',
       type: IsarType.string,
     )
@@ -280,12 +275,6 @@ int _mealEstimateSize(
     }
   }
   {
-    final value = object.step9;
-    if (value != null) {
-      bytesCount += 3 + value.length * 3;
-    }
-  }
-  {
     final value = object.title;
     if (value != null) {
       bytesCount += 3 + value.length * 3;
@@ -322,8 +311,7 @@ void _mealSerialize(
   writer.writeString(offsets[19], object.step6);
   writer.writeString(offsets[20], object.step7);
   writer.writeString(offsets[21], object.step8);
-  writer.writeString(offsets[22], object.step9);
-  writer.writeString(offsets[23], object.title);
+  writer.writeString(offsets[22], object.title);
 }
 
 Meal _mealDeserialize(
@@ -332,32 +320,32 @@ Meal _mealDeserialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  final object = Meal();
-  object.affordability = reader.readStringOrNull(offsets[0]);
-  object.complexity = reader.readStringOrNull(offsets[1]);
-  object.duration = reader.readLongOrNull(offsets[2]);
-  object.favourite = reader.readBoolOrNull(offsets[3]);
-  object.imageUrl = reader.readStringOrNull(offsets[4]);
-  object.ingredient1 = reader.readStringOrNull(offsets[5]);
-  object.ingredient2 = reader.readStringOrNull(offsets[6]);
-  object.ingredient3 = reader.readStringOrNull(offsets[7]);
-  object.ingredient4 = reader.readStringOrNull(offsets[8]);
-  object.ingredient5 = reader.readStringOrNull(offsets[9]);
-  object.ingredient6 = reader.readStringOrNull(offsets[10]);
-  object.ingredient7 = reader.readStringOrNull(offsets[11]);
-  object.ingredient8 = reader.readStringOrNull(offsets[12]);
+  final object = Meal(
+    affordability: reader.readStringOrNull(offsets[0]),
+    complexity: reader.readStringOrNull(offsets[1]),
+    duration: reader.readLongOrNull(offsets[2]),
+    favourite: reader.readBoolOrNull(offsets[3]),
+    imageUrl: reader.readStringOrNull(offsets[4]),
+    ingredient1: reader.readStringOrNull(offsets[5]),
+    ingredient2: reader.readStringOrNull(offsets[6]),
+    ingredient3: reader.readStringOrNull(offsets[7]),
+    ingredient4: reader.readStringOrNull(offsets[8]),
+    ingredient5: reader.readStringOrNull(offsets[9]),
+    ingredient6: reader.readStringOrNull(offsets[10]),
+    ingredient7: reader.readStringOrNull(offsets[11]),
+    ingredient8: reader.readStringOrNull(offsets[12]),
+    serving: reader.readLongOrNull(offsets[13]),
+    step1: reader.readStringOrNull(offsets[14]),
+    step2: reader.readStringOrNull(offsets[15]),
+    step3: reader.readStringOrNull(offsets[16]),
+    step4: reader.readStringOrNull(offsets[17]),
+    step5: reader.readStringOrNull(offsets[18]),
+    step6: reader.readStringOrNull(offsets[19]),
+    step7: reader.readStringOrNull(offsets[20]),
+    step8: reader.readStringOrNull(offsets[21]),
+    title: reader.readStringOrNull(offsets[22]),
+  );
   object.mealId = id;
-  object.serving = reader.readLongOrNull(offsets[13]);
-  object.step1 = reader.readStringOrNull(offsets[14]);
-  object.step2 = reader.readStringOrNull(offsets[15]);
-  object.step3 = reader.readStringOrNull(offsets[16]);
-  object.step4 = reader.readStringOrNull(offsets[17]);
-  object.step5 = reader.readStringOrNull(offsets[18]);
-  object.step6 = reader.readStringOrNull(offsets[19]);
-  object.step7 = reader.readStringOrNull(offsets[20]);
-  object.step8 = reader.readStringOrNull(offsets[21]);
-  object.step9 = reader.readStringOrNull(offsets[22]);
-  object.title = reader.readStringOrNull(offsets[23]);
   return object;
 }
 
@@ -413,8 +401,6 @@ P _mealDeserializeProp<P>(
     case 21:
       return (reader.readStringOrNull(offset)) as P;
     case 22:
-      return (reader.readStringOrNull(offset)) as P;
-    case 23:
       return (reader.readStringOrNull(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -3481,150 +3467,6 @@ extension MealQueryFilter on QueryBuilder<Meal, Meal, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Meal, Meal, QAfterFilterCondition> step9IsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'step9',
-      ));
-    });
-  }
-
-  QueryBuilder<Meal, Meal, QAfterFilterCondition> step9IsNotNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNotNull(
-        property: r'step9',
-      ));
-    });
-  }
-
-  QueryBuilder<Meal, Meal, QAfterFilterCondition> step9EqualTo(
-    String? value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'step9',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<Meal, Meal, QAfterFilterCondition> step9GreaterThan(
-    String? value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'step9',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<Meal, Meal, QAfterFilterCondition> step9LessThan(
-    String? value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'step9',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<Meal, Meal, QAfterFilterCondition> step9Between(
-    String? lower,
-    String? upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'step9',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<Meal, Meal, QAfterFilterCondition> step9StartsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'step9',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<Meal, Meal, QAfterFilterCondition> step9EndsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'step9',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<Meal, Meal, QAfterFilterCondition> step9Contains(String value,
-      {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.contains(
-        property: r'step9',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<Meal, Meal, QAfterFilterCondition> step9Matches(String pattern,
-      {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.matches(
-        property: r'step9',
-        wildcard: pattern,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<Meal, Meal, QAfterFilterCondition> step9IsEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'step9',
-        value: '',
-      ));
-    });
-  }
-
-  QueryBuilder<Meal, Meal, QAfterFilterCondition> step9IsNotEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        property: r'step9',
-        value: '',
-      ));
-    });
-  }
-
   QueryBuilder<Meal, Meal, QAfterFilterCondition> titleIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -4052,18 +3894,6 @@ extension MealQuerySortBy on QueryBuilder<Meal, Meal, QSortBy> {
     });
   }
 
-  QueryBuilder<Meal, Meal, QAfterSortBy> sortByStep9() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'step9', Sort.asc);
-    });
-  }
-
-  QueryBuilder<Meal, Meal, QAfterSortBy> sortByStep9Desc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'step9', Sort.desc);
-    });
-  }
-
   QueryBuilder<Meal, Meal, QAfterSortBy> sortByTitle() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'title', Sort.asc);
@@ -4354,18 +4184,6 @@ extension MealQuerySortThenBy on QueryBuilder<Meal, Meal, QSortThenBy> {
     });
   }
 
-  QueryBuilder<Meal, Meal, QAfterSortBy> thenByStep9() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'step9', Sort.asc);
-    });
-  }
-
-  QueryBuilder<Meal, Meal, QAfterSortBy> thenByStep9Desc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'step9', Sort.desc);
-    });
-  }
-
   QueryBuilder<Meal, Meal, QAfterSortBy> thenByTitle() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'title', Sort.asc);
@@ -4532,13 +4350,6 @@ extension MealQueryWhereDistinct on QueryBuilder<Meal, Meal, QDistinct> {
     });
   }
 
-  QueryBuilder<Meal, Meal, QDistinct> distinctByStep9(
-      {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'step9', caseSensitive: caseSensitive);
-    });
-  }
-
   QueryBuilder<Meal, Meal, QDistinct> distinctByTitle(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -4683,12 +4494,6 @@ extension MealQueryProperty on QueryBuilder<Meal, Meal, QQueryProperty> {
   QueryBuilder<Meal, String?, QQueryOperations> step8Property() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'step8');
-    });
-  }
-
-  QueryBuilder<Meal, String?, QQueryOperations> step9Property() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'step9');
     });
   }
 

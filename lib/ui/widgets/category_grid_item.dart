@@ -24,7 +24,7 @@ class CategoryGridItem extends StatelessWidget {
             color: ThemePalette.actionColor
           )
         ),
-        child: TitleText(text: category.title),
+        child: TitleText(text:' ${category.title}'),
       ),
     );
   }

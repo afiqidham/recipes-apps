@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:meal/config/theme.dart';
@@ -24,6 +22,11 @@ class UpdateMealScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    mc.titleController.text = '${meal.title}';
+    mc.durationController.text = '${meal.duration}';
+    mc.servingController.text = '${meal.serving}';
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(

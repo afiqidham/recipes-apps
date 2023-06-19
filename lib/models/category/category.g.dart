@@ -64,7 +64,12 @@ int _categoryEstimateSize(
   Map<Type, List<int>> allOffsets,
 ) {
   var bytesCount = offsets.last;
-  bytesCount += 3 + object.title.length * 3;
+  {
+    final value = object.title;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
   return bytesCount;
 }
 
@@ -83,9 +88,10 @@ Category _categoryDeserialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  final object = Category();
+  final object = Category(
+    title: reader.readStringOrNull(offsets[0]),
+  );
   object.id = id;
-  object.title = reader.readString(offsets[0]);
   return object;
 }
 
@@ -97,7 +103,7 @@ P _categoryDeserializeProp<P>(
 ) {
   switch (propertyId) {
     case 0:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
   }
@@ -117,38 +123,38 @@ void _categoryAttach(IsarCollection<dynamic> col, Id id, Category object) {
 }
 
 extension CategoryByIndex on IsarCollection<Category> {
-  Future<Category?> getByTitle(String title) {
+  Future<Category?> getByTitle(String? title) {
     return getByIndex(r'title', [title]);
   }
 
-  Category? getByTitleSync(String title) {
+  Category? getByTitleSync(String? title) {
     return getByIndexSync(r'title', [title]);
   }
 
-  Future<bool> deleteByTitle(String title) {
+  Future<bool> deleteByTitle(String? title) {
     return deleteByIndex(r'title', [title]);
   }
 
-  bool deleteByTitleSync(String title) {
+  bool deleteByTitleSync(String? title) {
     return deleteByIndexSync(r'title', [title]);
   }
 
-  Future<List<Category?>> getAllByTitle(List<String> titleValues) {
+  Future<List<Category?>> getAllByTitle(List<String?> titleValues) {
     final values = titleValues.map((e) => [e]).toList();
     return getAllByIndex(r'title', values);
   }
 
-  List<Category?> getAllByTitleSync(List<String> titleValues) {
+  List<Category?> getAllByTitleSync(List<String?> titleValues) {
     final values = titleValues.map((e) => [e]).toList();
     return getAllByIndexSync(r'title', values);
   }
 
-  Future<int> deleteAllByTitle(List<String> titleValues) {
+  Future<int> deleteAllByTitle(List<String?> titleValues) {
     final values = titleValues.map((e) => [e]).toList();
     return deleteAllByIndex(r'title', values);
   }
 
-  int deleteAllByTitleSync(List<String> titleValues) {
+  int deleteAllByTitleSync(List<String?> titleValues) {
     final values = titleValues.map((e) => [e]).toList();
     return deleteAllByIndexSync(r'title', values);
   }
@@ -244,8 +250,28 @@ extension CategoryQueryWhere on QueryBuilder<Category, Category, QWhereClause> {
     });
   }
 
+  QueryBuilder<Category, Category, QAfterWhereClause> titleIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addWhereClause(IndexWhereClause.equalTo(
+        indexName: r'title',
+        value: [null],
+      ));
+    });
+  }
+
+  QueryBuilder<Category, Category, QAfterWhereClause> titleIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addWhereClause(IndexWhereClause.between(
+        indexName: r'title',
+        lower: [null],
+        includeLower: false,
+        upper: [],
+      ));
+    });
+  }
+
   QueryBuilder<Category, Category, QAfterWhereClause> titleEqualTo(
-      String title) {
+      String? title) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(IndexWhereClause.equalTo(
         indexName: r'title',
@@ -255,7 +281,7 @@ extension CategoryQueryWhere on QueryBuilder<Category, Category, QWhereClause> {
   }
 
   QueryBuilder<Category, Category, QAfterWhereClause> titleNotEqualTo(
-      String title) {
+      String? title) {
     return QueryBuilder.apply(this, (query) {
       if (query.whereSort == Sort.asc) {
         return query
@@ -344,8 +370,24 @@ extension CategoryQueryFilter
     });
   }
 
+  QueryBuilder<Category, Category, QAfterFilterCondition> titleIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'title',
+      ));
+    });
+  }
+
+  QueryBuilder<Category, Category, QAfterFilterCondition> titleIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'title',
+      ));
+    });
+  }
+
   QueryBuilder<Category, Category, QAfterFilterCondition> titleEqualTo(
-    String value, {
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -358,7 +400,7 @@ extension CategoryQueryFilter
   }
 
   QueryBuilder<Category, Category, QAfterFilterCondition> titleGreaterThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -373,7 +415,7 @@ extension CategoryQueryFilter
   }
 
   QueryBuilder<Category, Category, QAfterFilterCondition> titleLessThan(
-    String value, {
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -388,8 +430,8 @@ extension CategoryQueryFilter
   }
 
   QueryBuilder<Category, Category, QAfterFilterCondition> titleBetween(
-    String lower,
-    String upper, {
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -553,7 +595,7 @@ extension CategoryQueryProperty
     });
   }
 
-  QueryBuilder<Category, String, QQueryOperations> titleProperty() {
+  QueryBuilder<Category, String?, QQueryOperations> titleProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'title');
     });

@@ -21,7 +21,7 @@ class DropdownCategory extends StatelessWidget {
         items: isar.categories.map<DropdownMenuItem<Category>>((Category category) {
           return DropdownMenuItem<Category>(
               value: category, 
-              child: Text(category.title)
+              child: Text('${category.title}')
               );
         }).toList(),
       ),

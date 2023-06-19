@@ -4,7 +4,6 @@ import 'package:meal/config/theme.dart';
 import 'package:meal/controllers/meals/meal_controller.dart';
 import 'package:meal/models/meal/meal.dart';
 import 'package:meal/services/isar_service.dart';
-import 'package:meal/ui/components/texts/title_text.dart';
 import 'package:meal/ui/widgets/meals/meal_item.dart';
 
 class FavouriteScreen extends StatelessWidget {
@@ -18,7 +17,7 @@ class FavouriteScreen extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: ThemePalette.lightPink,
-          title: const TitleText(text: 'Favourite'),
+          title: const Text('Favourite'),
           centerTitle: true,
         ),
         body: StreamBuilder<List<Meal>>(

@@ -13,7 +13,7 @@ class CategoryScreen extends StatelessWidget {
   });
 
   final CategoryController cc = Get.put(CategoryController());
-  final IsarService isar = Get.find();
+  final IsarService isar = Get.put(IsarService());
 
   @override
   Widget build(BuildContext context) {

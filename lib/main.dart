@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:meal/config/theme.dart';
-import 'package:meal/ui/screens/main_screen.dart';
+import 'package:meal/ui/screens/auth/login_screen.dart';
 import 'package:meal/utils/bindings/meal_binding.dart';
 
 void main() async {
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       title: 'Recipes',
       debugShowCheckedModeBanner: false,
       theme: buildTheme(),
-      home: MainScreen(),
+      home: LoginScreen(),
       // getPages: AppRoute.routes,
       initialBinding: MealBinding(),
     );

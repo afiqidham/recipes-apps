@@ -2,18 +2,51 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
+import 'package:isar/isar.dart';
+import 'package:meal/models/auth/auth.dart';
+import 'package:meal/models/category/category.dart';
+import 'package:meal/models/meal/meal.dart';
+import 'package:meal/models/user/user.dart';
 import 'package:meal/utils/api_endpoint.dart';
 import 'package:http/http.dart' as http;
+import 'package:path_provider/path_provider.dart';
 
 class LoginController extends GetxController {
   GlobalKey formKey = GlobalKey();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  final box = GetStorage();
+  late Future<Isar> db;
+
+  // isarService() {
+  //   db = openIsar();
+  // }
+
+  @override
+  void onInit() {
+    db = openIsar();
+    super.onInit();
+  }
+
+  Future<Isar> openIsar() async {
+    final dir = await getApplicationDocumentsDirectory();
+    if (Isar.instanceNames.isEmpty) {
+      return await Isar.open(
+        [
+          CategorySchema,
+          MealSchema,
+          UserSchema,
+          AuthSchema,
+        ],
+        inspector: true,
+        directory: dir.path,
+      );
+    }
+    return Future.value(Isar.getInstance());
+  }
 
   Future<void> login() async {
+    final isar = await db;
     try {
       var headers = {'Content-Type': 'application/json'};
       var url = Uri.parse(ApiEndpoint.baseUrl + ApiEndpoint.authEndPoint.login);
@@ -33,7 +66,10 @@ class LoginController extends GetxController {
           var token = json['data']['Token'];
           print(token);
 
-          await box.write('token', token);
+          final auth = Auth()..token = token;
+          await isar.writeTxn(() async {
+            await isar.auths.put(auth);
+          });
 
           emailController.clear();
           passwordController.clear();

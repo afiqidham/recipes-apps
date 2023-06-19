@@ -22,7 +22,7 @@ class MealDetailScreen extends StatelessWidget {
 
   final Meal meal;
   final MealController mc = Get.put(MealController());
-  final IsarService isar = Get.find();
+  final IsarService isar = Get.put(IsarService());
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +74,7 @@ class MealDetailScreen extends StatelessWidget {
             addVerticalSpace(10),
             MealInfo(meal: meal),
             addVerticalSpace(20),
-            MealIngredient(meal: meal),
+            MealIngredient(),
             addVerticalSpace(15),
             MealStep(meal: meal),
           ],

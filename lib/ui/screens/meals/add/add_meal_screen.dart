@@ -32,48 +32,51 @@ class AddMealScreen extends StatelessWidget {
             ),
             addVerticalSpace(10),
             Form(
-              child: PrimaryInput(
-                key: mc.formKey,
-                width: 250,
-                text: 'Meal Title',
-                controller: mc.titleController,
-                textInputType: TextInputType.text,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Please fill in meal title';
-                  }
-                  return null;
-                },
+              child: Column(
+                children: [
+                  PrimaryInput(
+                    width: 250,
+                    text: 'Meal Title',
+                    controller: mc.titleController,
+                    textInputType: TextInputType.text,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Please fill in meal title';
+                      }
+                      return null;
+                    },
+                  ),
+                  addVerticalSpace(10),
+                  PrimaryInput(
+                    width: 250,
+                    text: 'Duration',
+                    controller: mc.durationController,
+                    textInputType: TextInputType.text,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (value) {
+                      if (value!.isEmpty && value.isNumericOnly) {
+                        return 'Please fill meal duration in minutes';
+                      }
+                      return null;
+                    },
+                  ),
+                  addVerticalSpace(10),
+                  PrimaryInput(
+                    width: 250,
+                    text: 'Serving',
+                    controller: mc.servingController,
+                    textInputType: TextInputType.text,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (value) {
+                      if (value!.isEmpty && value.isNumericOnly) {
+                        return 'Please fill serving in number';
+                      }
+                      return null;
+                    },
+                  ),
+                ],
               ),
-            ),
-            addVerticalSpace(10),
-            PrimaryInput(
-              width: 250,
-              text: 'Duration',
-              controller: mc.durationController,
-              textInputType: TextInputType.text,
-              autovalidateMode: AutovalidateMode.onUserInteraction,
-              validator: (value) {
-                  if (value!.isEmpty && value.isNumericOnly) {
-                    return 'Please fill meal duration in minutes';
-                  }
-                  return null;
-                },
-            ),
-            addVerticalSpace(10),
-            PrimaryInput(
-              width: 250,
-              text: 'Serving',
-              controller: mc.servingController,
-              textInputType: TextInputType.text,
-              autovalidateMode: AutovalidateMode.onUserInteraction,
-              validator: (value) {
-                  if (value!.isEmpty && value.isNumericOnly) {
-                    return 'Please fill serving in number';
-                  }
-                  return null;
-                },
             ),
             addVerticalSpace(10),
             Row(
@@ -109,9 +112,7 @@ class AddMealScreen extends StatelessWidget {
             PrimaryButton(
                 text: 'Add Meal',
                 onPressed: () {
-                  if(mc.titleController.text.isEmpty){
-                    
-                  }
+                  if (mc.titleController.text.isEmpty) {}
                   Get.to(() => AddIngredientScreen());
                 }),
           ],

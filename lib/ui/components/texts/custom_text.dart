@@ -7,8 +7,17 @@ class CustomText extends StatelessWidget {
   final int? maxlines;
   final bool? softWrap;
   final TextOverflow? textOverflow;
+  final Color? color;
 
-  const CustomText({super.key, required this.text, this.textAlign, this.fontSize,this.maxlines, this.softWrap, this.textOverflow});
+  const CustomText(
+      {super.key,
+      required this.text,
+      this.textAlign,
+      this.fontSize,
+      this.maxlines,
+      this.softWrap,
+      this.color,
+      this.textOverflow});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +30,7 @@ class CustomText extends StatelessWidget {
       style: TextStyle(
         fontSize: fontSize,
         fontWeight: FontWeight.bold,
-        color: Colors.white,
+        color: color,
       ),
     );
   }

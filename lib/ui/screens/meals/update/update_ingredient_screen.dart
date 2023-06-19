@@ -18,6 +18,16 @@ class UpdateIngredientScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    ic.ingredient1Controller.text ='${meal.ingredient1}';
+    ic.ingredient2Controller.text ='${meal.ingredient2}';
+    ic.ingredient3Controller.text ='${meal.ingredient3}';
+    ic.ingredient4Controller.text ='${meal.ingredient4}';
+    ic.ingredient5Controller.text ='${meal.ingredient5}';
+    ic.ingredient6Controller.text ='${meal.ingredient6}';
+    ic.ingredient7Controller.text ='${meal.ingredient7}';
+    ic.ingredient8Controller.text ='${meal.ingredient8}';
+
     return Scaffold(
       backgroundColor: ThemePalette.whiteColor,
       body: SingleChildScrollView(
@@ -41,7 +51,7 @@ class UpdateIngredientScreen extends StatelessWidget {
                 children: [
                   Form(
                     child: IngredientInput(
-                      text: '${meal.ingredient1}',
+                      text: 'Ingredient 1',
                       controller: ic.ingredient1Controller,
                       textInputType: TextInputType.text,
                     ),
@@ -50,7 +60,7 @@ class UpdateIngredientScreen extends StatelessWidget {
                     width: 10,
                   ),
                   IngredientInput(
-                    text: '${meal.ingredient2}',
+                    text: 'Ingredient 2',
                     controller: ic.ingredient2Controller,
                     textInputType: TextInputType.text,
                   ),
@@ -62,7 +72,7 @@ class UpdateIngredientScreen extends StatelessWidget {
               child: Row(
                 children: [
                   IngredientInput(
-                    text: '${meal.ingredient3}',
+                    text: 'Ingredient 3',
                     controller: ic.ingredient3Controller,
                     textInputType: TextInputType.text,
                   ),
@@ -70,7 +80,7 @@ class UpdateIngredientScreen extends StatelessWidget {
                     width: 10,
                   ),
                   IngredientInput(
-                    text: '${meal.ingredient4}',
+                    text: 'Ingredient 4',
                     controller: ic.ingredient4Controller,
                     textInputType: TextInputType.text,
                   ),
@@ -82,7 +92,7 @@ class UpdateIngredientScreen extends StatelessWidget {
               child: Row(
                 children: [
                   IngredientInput(
-                    text: '${meal.ingredient5}',
+                    text: 'Ingredient 5',
                     controller: ic.ingredient5Controller,
                     textInputType: TextInputType.text,
                   ),
@@ -90,7 +100,7 @@ class UpdateIngredientScreen extends StatelessWidget {
                     width: 10,
                   ),
                   IngredientInput(
-                    text: '${meal.ingredient6}',
+                    text: 'Ingredient 6',
                     controller: ic.ingredient6Controller,
                     textInputType: TextInputType.text,
                   ),
@@ -102,7 +112,7 @@ class UpdateIngredientScreen extends StatelessWidget {
               child: Row(
                 children: [
                   IngredientInput(
-                    text: '${meal.ingredient7}',
+                    text: 'Ingredient 7',
                     controller: ic.ingredient7Controller,
                     textInputType: TextInputType.text,
                   ),
@@ -110,7 +120,7 @@ class UpdateIngredientScreen extends StatelessWidget {
                     width: 10,
                   ),
                   IngredientInput(
-                    text: '${meal.ingredient8}',
+                    text: 'Ingredient 8',
                     controller: ic.ingredient8Controller,
                     textInputType: TextInputType.text,
                   ),

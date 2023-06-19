@@ -13,8 +13,8 @@ import 'package:meal/utils/widget.dart';
 class AddStepScreen extends StatelessWidget {
   AddStepScreen({super.key});
 
-  final StepController sc = Get.find();
-  final IsarService isar = Get.find();
+  final StepController sc = Get.put(StepController());
+  final IsarService isar = Get.put(IsarService());
 
   @override
   Widget build(BuildContext context) {
