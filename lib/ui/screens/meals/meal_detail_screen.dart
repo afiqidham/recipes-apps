@@ -74,7 +74,7 @@ class MealDetailScreen extends StatelessWidget {
             addVerticalSpace(10),
             MealInfo(meal: meal),
             addVerticalSpace(20),
-            MealIngredient(meal: meal,),
+            MealIngredient(meal: meal),
             addVerticalSpace(15),
             MealStep(meal: meal),
           ],
