@@ -5,7 +5,6 @@ import 'package:iconly/iconly.dart';
 import 'package:meal/config/theme.dart';
 import 'package:meal/controllers/meals/meal_controller.dart';
 import 'package:meal/models/meal/meal.dart';
-import 'package:meal/services/isar_service.dart';
 import 'package:meal/ui/components/buttons/icon_button.dart';
 import 'package:meal/ui/screens/main_screen.dart';
 import 'package:meal/ui/screens/meals/update/update_meal_screen.dart';
@@ -22,7 +21,6 @@ class MealDetailScreen extends StatelessWidget {
 
   final Meal meal;
   final MealController mc = Get.put(MealController());
-  final IsarService isar = Get.put(IsarService());
 
   @override
   Widget build(BuildContext context) {
@@ -35,21 +33,21 @@ class MealDetailScreen extends StatelessWidget {
         actions: [
           Obx(
             () => IconsButton(
-              icon: Icon(isar.favourites.isTrue
+              icon: Icon(mc.favourites.isTrue
                   ? Icons.favorite_rounded
                   : Icons.favorite_outline_rounded),
-              color: isar.favourites.value
+              color: mc.favourites.value
                   ? ThemePalette.red
                   : ThemePalette.whiteColor,
               onPressed: () {
-                isar.mealFavouriteStatus(meal);
+                mc.mealFavouriteStatus(meal);
               },
             ),
           ),
           IconsButton(
             icon: const Icon(Icons.delete),
             onPressed: () {
-              isar.deleteMeal(meal);
+              mc.deleteMeal(meal);
               Get.off(() => MainScreen());
             },
           )

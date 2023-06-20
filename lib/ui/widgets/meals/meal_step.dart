@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:meal/config/theme.dart';
 import 'package:meal/models/meal/meal.dart';
-import 'package:meal/services/isar_service.dart';
 import 'package:meal/ui/components/display_container.dart';
 import 'package:meal/ui/components/texts/title_text.dart';
 import 'package:meal/utils/widget.dart';
 
 
 class MealStep extends StatelessWidget {
-  MealStep({required this.meal, super.key});
+  const MealStep({required this.meal, super.key});
 
-  final IsarService isar = Get.put(IsarService());
   final Meal meal;
 
   @override

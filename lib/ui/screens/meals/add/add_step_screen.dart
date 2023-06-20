@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:meal/config/theme.dart';
+import 'package:meal/controllers/meals/meal_controller.dart';
 import 'package:meal/controllers/meals/step_controller.dart';
-import 'package:meal/services/isar_service.dart';
 import 'package:meal/ui/components/buttons/primary_button.dart';
 import 'package:meal/ui/components/inputs/step_input.dart';
 import 'package:meal/ui/components/texts/custom_text.dart';
@@ -14,7 +14,7 @@ class AddStepScreen extends StatelessWidget {
   AddStepScreen({super.key});
 
   final StepController sc = Get.put(StepController());
-  final IsarService isar = Get.put(IsarService());
+  final MealController mc = Get.put(MealController());
 
   @override
   Widget build(BuildContext context) {
@@ -111,7 +111,7 @@ class AddStepScreen extends StatelessWidget {
             PrimaryButton(
                 text: 'Add Steps',
                 onPressed: () {
-                  isar.addNewMeal();
+                  mc.addNewMeal();
                   Get.offAll(() => MainScreen());
                 }),
           ],

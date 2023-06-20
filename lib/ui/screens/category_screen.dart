@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:meal/config/theme.dart';
 import 'package:meal/controllers/category_controller.dart';
-import 'package:meal/services/isar_service.dart';
+import 'package:meal/controllers/meals/meal_controller.dart';
 import 'package:meal/ui/components/texts/custom_text.dart';
 import 'package:meal/ui/widgets/category_grid_item.dart';
 import 'package:meal/ui/widgets/profile_picture.dart';
@@ -13,7 +13,7 @@ class CategoryScreen extends StatelessWidget {
   });
 
   final CategoryController cc = Get.put(CategoryController());
-  final IsarService isar = Get.put(IsarService());
+  final MealController mc = Get.put(MealController());
 
   @override
   Widget build(BuildContext context) {
@@ -38,14 +38,14 @@ class CategoryScreen extends StatelessWidget {
               crossAxisSpacing: 20,
               mainAxisSpacing: 20,
             ),
-            itemCount: isar.categories.length,
+            itemCount: cc.categories.length,
             itemBuilder: (context, index) {
-              final category = isar.categories[index];
+              final category = cc.categories[index];
       
               return CategoryGridItem(
                   category: category,
                   onSelectCategory: () {
-                    isar.getMeal(category);
+                    mc.getMeal(category);
                   });
             },
           ),

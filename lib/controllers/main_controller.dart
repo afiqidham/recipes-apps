@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:meal/models/meal/meal.dart';
-import 'package:meal/services/isar_service.dart';
 import 'package:meal/ui/screens/category_screen.dart';
 import 'package:meal/ui/screens/favourite_screen.dart';
 
 class MainController extends GetxController {
-  IsarService isar = Get.put(IsarService());
   late PageController pageController;
   RxInt currentPage = 0.obs;
   final meal = Meal();

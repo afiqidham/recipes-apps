@@ -43,14 +43,7 @@ const CategorySchema = CollectionSchema(
       ],
     )
   },
-  links: {
-    r'meals': LinkSchema(
-      id: -3653465812062585993,
-      name: r'meals',
-      target: r'Meal',
-      single: true,
-    )
-  },
+  links: {},
   embeddedSchemas: {},
   getId: _categoryGetId,
   getLinks: _categoryGetLinks,
@@ -114,12 +107,11 @@ Id _categoryGetId(Category object) {
 }
 
 List<IsarLinkBase<dynamic>> _categoryGetLinks(Category object) {
-  return [object.meals];
+  return [];
 }
 
 void _categoryAttach(IsarCollection<dynamic> col, Id id, Category object) {
   object.id = id;
-  object.meals.attach(col, col.isar.collection<Meal>(), r'meals', id);
 }
 
 extension CategoryByIndex on IsarCollection<Category> {
@@ -521,20 +513,7 @@ extension CategoryQueryObject
     on QueryBuilder<Category, Category, QFilterCondition> {}
 
 extension CategoryQueryLinks
-    on QueryBuilder<Category, Category, QFilterCondition> {
-  QueryBuilder<Category, Category, QAfterFilterCondition> meals(
-      FilterQuery<Meal> q) {
-    return QueryBuilder.apply(this, (query) {
-      return query.link(q, r'meals');
-    });
-  }
-
-  QueryBuilder<Category, Category, QAfterFilterCondition> mealsIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.linkLength(r'meals', 0, true, 0, true);
-    });
-  }
-}
+    on QueryBuilder<Category, Category, QFilterCondition> {}
 
 extension CategoryQuerySortBy on QueryBuilder<Category, Category, QSortBy> {
   QueryBuilder<Category, Category, QAfterSortBy> sortByTitle() {

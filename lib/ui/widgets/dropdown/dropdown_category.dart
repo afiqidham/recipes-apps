@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:meal/config/theme.dart';
+import 'package:meal/controllers/category_controller.dart';
 import 'package:meal/models/category/category.dart';
-import 'package:meal/services/isar_service.dart';
+
 
 class DropdownCategory extends StatelessWidget {
   DropdownCategory({super.key});
 
-  final IsarService isar = Get.put(IsarService());
+  final CategoryController cc = Get.put(CategoryController());
 
   @override
   Widget build(BuildContext context) {
@@ -15,10 +16,10 @@ class DropdownCategory extends StatelessWidget {
         dropdownColor: ThemePalette.backgroundColor,
         borderRadius: BorderRadius.circular(10),
         onChanged: (Category? newValue) {
-          isar.selectCategory.value = newValue!;
+          cc.selectCategory.value = newValue;
         },
-        value: isar.selectCategory.value,
-        items: isar.categories.map<DropdownMenuItem<Category>>((Category category) {
+        value: cc.selectCategory.value,
+        items: cc.categories.map<DropdownMenuItem<Category>>((Category category) {
           return DropdownMenuItem<Category>(
               value: category, 
               child: Text('${category.title}')

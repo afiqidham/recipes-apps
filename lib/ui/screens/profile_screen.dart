@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/route_manager.dart';
 import 'package:iconly/iconly.dart';
 import 'package:meal/config/theme.dart';
 import 'package:meal/controllers/auth/registration_controller.dart';

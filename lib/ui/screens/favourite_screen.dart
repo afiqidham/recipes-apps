@@ -3,13 +3,11 @@ import 'package:get/get.dart';
 import 'package:meal/config/theme.dart';
 import 'package:meal/controllers/meals/meal_controller.dart';
 import 'package:meal/models/meal/meal.dart';
-import 'package:meal/services/isar_service.dart';
 import 'package:meal/ui/widgets/meals/meal_item.dart';
 
 class FavouriteScreen extends StatelessWidget {
   FavouriteScreen({super.key});
 
-  final IsarService isar = Get.put(IsarService());
   final MealController mc = Get.put(MealController());
 
   @override
@@ -21,19 +19,19 @@ class FavouriteScreen extends StatelessWidget {
           centerTitle: true,
         ),
         body: StreamBuilder<List<Meal>>(
-          stream: isar.getFavouriteMeal(),
+          stream: mc.getFavouriteMeal(),
           builder: ((context, snapshot) {
             if (snapshot.hasData) {
-              final fav = isar.meals;
+              final fav = mc.meals;
               if (fav.isEmpty) {
                 return const Center(
                   child: Text('No Favourite Meals'),
                 );
               }
               return ListView.builder(
-                itemCount: isar.meals.length,
+                itemCount: mc.meals.length,
                 itemBuilder: (context, index) {
-                  final meal = isar.meals[index];
+                  final meal = mc.meals[index];
                   return MealItem(
                     meal: meal,
                     onSelectMeal: (meal) {
