@@ -29,9 +29,9 @@ class MealController extends GetxController {
 
   RxList<Meal> favouriteMeals = <Meal>[].obs;
   RxList<Meal> meals = <Meal>[].obs;
-  Rx<bool> fav = false.obs;
-  File? image;
+  Rx<File?> image = Rx<File?>(null);
   RxBool favourites = false.obs;
+  String? errorMessage;
 
   GlobalKey formKey = GlobalKey();
 
@@ -79,38 +79,55 @@ class MealController extends GetxController {
   Future<void> addNewMeal() async {
     final isar = await db;
 
-    final newMeal = Meal()
-      ..title = titleController.text
-      ..duration = int.parse(durationController.text)
-      ..serving = int.parse(servingController.text)
-      ..category.value = cc.selectCategory.value
-      ..imageUrl = image!.path
-      ..favourite = fav.value
-      ..ingredient1 = ic.ingredient1Controller.text
-      ..ingredient2 = ic.ingredient2Controller.text
-      ..ingredient3 = ic.ingredient3Controller.text
-      ..ingredient4 = ic.ingredient4Controller.text
-      ..ingredient5 = ic.ingredient5Controller.text
-      ..ingredient6 = ic.ingredient6Controller.text
-      ..ingredient7 = ic.ingredient7Controller.text
-      ..ingredient8 = ic.ingredient8Controller.text
-      ..step1 = sc.step1Controller.text
-      ..step2 = sc.step2Controller.text
-      ..step3 = sc.step3Controller.text
-      ..step4 = sc.step4Controller.text
-      ..step5 = sc.step5Controller.text
-      ..step6 = sc.step6Controller.text
-      ..step7 = sc.step7Controller.text
-      ..step8 = sc.step8Controller.text
-      ..affordability = ic.selected.value
-      ..complexity = sc.selected.value;
+    if (image.value == null) {
+      Get.dialog(const AlertDialog(
+        title: Text('Error'),
+        content: Text('Please Upload Image'),
+      ));
+      return;
+    }
 
-    await isar.writeTxnSync(() async {
-      isar.meals.putSync(newMeal);
-    });
+    try {
+      final newMeal = Meal()
+        ..title = titleController.text
+        ..duration = int.parse(durationController.text)
+        ..serving = int.parse(servingController.text)
+        ..category.value = cc.selectCategory.value
+        ..imageUrl = image.value!.path
+        ..favourite = favourites.value
+        ..ingredient1 = ic.ingredient1Controller.text
+        ..ingredient2 = ic.ingredient2Controller.text
+        ..ingredient3 = ic.ingredient3Controller.text
+        ..ingredient4 = ic.ingredient4Controller.text
+        ..ingredient5 = ic.ingredient5Controller.text
+        ..ingredient6 = ic.ingredient6Controller.text
+        ..ingredient7 = ic.ingredient7Controller.text
+        ..ingredient8 = ic.ingredient8Controller.text
+        ..step1 = sc.step1Controller.text
+        ..step2 = sc.step2Controller.text
+        ..step3 = sc.step3Controller.text
+        ..step4 = sc.step4Controller.text
+        ..step5 = sc.step5Controller.text
+        ..step6 = sc.step6Controller.text
+        ..step7 = sc.step7Controller.text
+        ..step8 = sc.step8Controller.text
+        ..affordability = ic.selected.value
+        ..complexity = sc.selected.value;
+
+      await isar.writeTxnSync(() async {
+        isar.meals.putSync(newMeal);
+      });
+    } catch (e) {
+      Get.dialog(AlertDialog(
+        title: Text('Error'),
+        content: Text('$e'),
+      ));
+    }
+
     titleController.clear();
     durationController.clear();
     servingController.clear();
+    image.value = null;
     ic.ingredient1Controller.clear();
     ic.ingredient2Controller.clear();
     ic.ingredient3Controller.clear();
@@ -136,8 +153,12 @@ class MealController extends GetxController {
     final getMeals = await isar.meals.where().filter().category((q) {
       return q.idEqualTo(category.id);
     }).findAll();
-    Get.to(() =>
-        MealScreen(title: isar.meals.name, meals: meals.value = getMeals));
+
+    final getTitle = category.title;
+    Get.to(() => MealScreen(
+          meals: meals.value = getMeals,
+          title: '$getTitle',
+        ));
   }
 
   Future<void> updateMeal(Meal meal) async {
@@ -150,8 +171,8 @@ class MealController extends GetxController {
       update.duration = int.parse(durationController.text);
       update.serving = int.parse(servingController.text);
       update.category.value = cc.selectCategory.value;
-      update.imageUrl = image!.path;
-      update.favourite = fav.value;
+      update.imageUrl = image.value!.path;
+      update.favourite = favourites.value;
       update.ingredient1 = ic.ingredient1Controller.text;
       update.ingredient2 = ic.ingredient2Controller.text;
       update.ingredient3 = ic.ingredient3Controller.text;
@@ -176,6 +197,7 @@ class MealController extends GetxController {
     titleController.clear();
     durationController.clear();
     servingController.clear();
+    image.value = null;
     ic.ingredient1Controller.clear();
     ic.ingredient2Controller.clear();
     ic.ingredient3Controller.clear();
@@ -220,44 +242,40 @@ class MealController extends GetxController {
     });
   }
 
-  Stream<List<Meal>> getFavouriteMeal() async* {
-    final isar = await db;
-    yield* isar.meals
-        .filter()
-        .favouriteEqualTo(true)
-        .watch(fireImmediately: false);
+  Future<void> favIcon(Meal meal) async {
+    if (meal.favourite == true) {
+      Icon(Icons.favorite);
+    } else {
+      Icon(Icons.favorite_border_outlined);
+    }
   }
 
-  // void mealFavouriteStatus(Meal meal) async {
-  //   // fav.value = meal.favourite;
-  //   // meal.favourite = meals.contains(meal);
-  //   fav.value = meals.contains(meal);
-  //   if (fav.value) {
-  //     meal.favourite = false;
-  //     // favouriteMeals.remove(meal);
-  //   } else {
-  //     // favouriteMeals.add(meal);
-  //     meal.favourite = true;
-  //   }
-  // }
+  Stream<List<Meal>> getFavouriteMeal() async* {
+    final isar = await db;
+    final favouriteMeals = isar.meals.filter().favouriteEqualTo(true);
 
-  Future uploadImage() async {
+    Stream<List<Meal>> favourite = favouriteMeals.watch(fireImmediately: true);
+
+    favourite.listen((meals) {
+      print('$meals');
+    });
+  }
+
+  Future uploadImageMeal() async {
     try {
-      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+      final uploadImage =
+          await ImagePicker().pickImage(source: ImageSource.gallery);
 
-      final imageTemp = File(image!.path);
-
-      this.image = imageTemp;
+      if (uploadImage != null) {
+        image.value = File(uploadImage.path);
+      }
     } on PlatformException {
       Get.dialog(const AlertDialog(
         title: TitleText(text: 'Error'),
         content: DisplayText(text: 'Failed to upload image..'),
       ));
     } catch (e) {
-      Get.dialog(const AlertDialog(
-        title: Text('Error'),
-        content: Text('Please upload image'),
-      ));
+      errorMessage = e.toString();
     }
   }
 }

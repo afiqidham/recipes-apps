@@ -17,7 +17,7 @@ class DisplayContainer extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
         color: ThemePalette.blackLiteColor
       ),
-      child: CustomText(text: text, textAlign: TextAlign.justify, ),
+      child: CustomText(text: text, textAlign: TextAlign.justify, color: ThemePalette.whiteColor,),
     );
   }
 }

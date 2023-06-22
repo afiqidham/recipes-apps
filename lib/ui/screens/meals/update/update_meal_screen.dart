@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:meal/config/theme.dart';
@@ -9,6 +11,7 @@ import 'package:meal/ui/components/buttons/label_icon_button.dart';
 import 'package:meal/ui/components/buttons/primary_button.dart';
 import 'package:meal/ui/components/inputs/primary_input.dart';
 import 'package:meal/ui/components/texts/custom_text.dart';
+import 'package:meal/ui/screens/meals/meal_detail_screen.dart';
 import 'package:meal/ui/screens/meals/update/update_ingredient_screen.dart';
 import 'package:meal/ui/widgets/dropdown/dropdown_category.dart';
 import 'package:meal/utils/widget.dart';
@@ -22,115 +25,126 @@ class UpdateMealScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     mc.titleController.text = '${meal.title}';
     mc.durationController.text = '${meal.duration}';
     mc.servingController.text = '${meal.serving}';
 
     return Scaffold(
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            addVerticalSpace(50),
-            logo(),
-            // Container(
-            //   margin: const EdgeInsets.symmetric(horizontal: 20,),
-            //   child: ClipRRect(
-            //     borderRadius: BorderRadius.circular(10),
-            //     child: Image.file(
-            //       File('${meal.imageUrl}'),
-            //       height: 250,
-            //       width: 250,
-            //       fit: BoxFit.cover,
-            //     ),
-            //   ),
-            // ),
-            const CustomText(
-              text: 'Update Meal',
-              fontSize: 25,
-            ),
-            addVerticalSpace(5),
-            Form(
-              child: PrimaryInput(
+        child: Center(
+          child: Column(
+            children: [
+              addVerticalSpace(50),
+              logo(),
+              // Obx(() {
+              //   final image = mc.image.value;
+              //   if (image == null) {
+              //     return const Text('No image upload');
+              //   } else {
+              //     return ClipRRect(
+              //         borderRadius: BorderRadius.circular(10),
+              //         child: Image.file(
+              //           image,
+              //           fit: BoxFit.cover,
+              //           width: 250,
+              //           height: 200,
+              //         ));
+              //   }
+              // }),
+              // IconsButton(
+              //     icon: const Icon(Icons.camera_alt_rounded),
+              //     onPressed: () {
+              //       mc.uploadImageMeal();
+              //     }),
+              addVerticalSpace(5),
+              Form(
+                child: PrimaryInput(
+                  width: 250,
+                  text: 'Meal Title',
+                  controller: mc.titleController,
+                  textInputType: TextInputType.text,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Please fill in meal title';
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              addVerticalSpace(10),
+              PrimaryInput(
                 width: 250,
-                text: 'Meal Title',
-                controller: mc.titleController,
+                text: 'Duration',
+                controller: mc.durationController,
                 textInputType: TextInputType.text,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Please fill in meal title';
+                  if (value!.isEmpty && value.isNumericOnly) {
+                    return 'Please fill meal duration in minutes';
                   }
                   return null;
                 },
               ),
-            ),
-            addVerticalSpace(10),
-            PrimaryInput(
-              width: 250,
-              text: 'Duration',
-              controller: mc.durationController,
-              textInputType: TextInputType.text,
-              autovalidateMode: AutovalidateMode.onUserInteraction,
-              validator: (value) {
-                if (value!.isEmpty && value.isNumericOnly) {
-                  return 'Please fill meal duration in minutes';
-                }
-                return null;
-              },
-            ),
-            addVerticalSpace(10),
-            PrimaryInput(
-              width: 250,
-              text: 'Serving',
-              controller: mc.servingController,
-              textInputType: TextInputType.text,
-              autovalidateMode: AutovalidateMode.onUserInteraction,
-              validator: (value) {
-                if (value!.isEmpty && value.isNumericOnly) {
-                  return 'Please fill serving in number';
-                }
-                return null;
-              },
-            ),
-            addVerticalSpace(10),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                    margin: const EdgeInsets.only(left: 47),
-                    width: 250,
-                    padding: const EdgeInsets.all(5),
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                          color: ThemePalette.backgroundColor,
-                        ),
-                        borderRadius: BorderRadius.circular(10)),
-                    child: DropdownCategory()),
-                IconsButton(
-                  icon: const Icon(Icons.add),
+              addVerticalSpace(10),
+              PrimaryInput(
+                width: 250,
+                text: 'Serving',
+                controller: mc.servingController,
+                textInputType: TextInputType.text,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: (value) {
+                  if (value!.isEmpty && value.isNumericOnly) {
+                    return 'Please fill serving in number';
+                  }
+                  return null;
+                },
+              ),
+              addVerticalSpace(10),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   children: [
+              //     Container(
+              //         margin: const EdgeInsets.only(left: 47),
+              //         width: 250,
+              //         padding: const EdgeInsets.all(5),
+              //         decoration: BoxDecoration(
+              //             border: Border.all(
+              //               color: ThemePalette.backgroundColor,
+              //             ),
+              //             borderRadius: BorderRadius.circular(10)),
+              //         child: DropdownCategory()),
+              //     IconsButton(
+              //       icon: const Icon(Icons.add),
+              //       onPressed: () {
+              //         cc.addCategory();
+              //       },
+              //     ),
+              //   ],
+              // ),
+             
+              addVerticalSpace(5),
+              PrimaryButton(
+                  text: 'Update Meal',
                   onPressed: () {
-                    cc.addCategory();
-                  },
-                ),
-              ],
-            ),
-            addVerticalSpace(10),
-            LabelIconButton(
-              icon: const Icon(Icons.file_upload_outlined),
-              onPressed: () {
-                mc.uploadImage();
-              },
-              text: 'Upload Image',
-            ),
-            addVerticalSpace(5),
-            PrimaryButton(
-                text: 'Add Meal',
+                    if (mc.titleController.text.isEmpty) {}
+                    Get.to(UpdateIngredientScreen(meal: meal));
+                  }),
+              addVerticalSpace(5),
+              PrimaryButton(
+                text: 'Cancel Meal',
                 onPressed: () {
-                  if (mc.titleController.text.isEmpty) {}
-                  Get.to(UpdateIngredientScreen(meal: meal));
-                }),
-          ],
+                  mc.durationController.clear();
+                  mc.image.value = null;
+                  mc.servingController.clear();
+                  mc.titleController.clear();
+                  Get.off(() => MealDetailScreen(
+                        meal: meal,
+                      ));
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -10,7 +10,6 @@ class MealScreen extends StatelessWidget {
   MealScreen({super.key, required this.title, required this.meals});
 
   final MealController mc = Get.put(MealController());
-
   final String title;
   final List<Meal> meals;
 

@@ -61,7 +61,7 @@ class RegistrationController extends GetxController {
       ..name = nameController.text.trim()
       ..phone = phoneController.text.trim()
       ..password = passwordController.text.trim()
-      ..imageUrl = mc.image!.path;
+      ..imageUrl = mc.image.value!.path;
 
     await isar.writeTxn(() async {
       await isar.users.put(register);

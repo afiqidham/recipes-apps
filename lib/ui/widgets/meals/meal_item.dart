@@ -54,6 +54,7 @@ class MealItem extends StatelessWidget {
                       textAlign: TextAlign.center,
                       softWrap: true,
                       textOverflow: TextOverflow.clip,
+                      color: ThemePalette.whiteColor,
                     ),
                     addVerticalSpace(12),
                     Row(

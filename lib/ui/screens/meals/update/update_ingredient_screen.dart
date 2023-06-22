@@ -142,7 +142,7 @@ class UpdateIngredientScreen extends StatelessWidget {
                   child: DropdownAffordability()),
             ),
             PrimaryButton(
-                text: 'Add Ingredients',
+                text: 'Update Ingredients',
                 onPressed: () {
                   Get.to(UpdateStepScreen(meal: meal));
                 }),

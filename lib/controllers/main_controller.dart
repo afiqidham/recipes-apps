@@ -8,7 +8,6 @@ class MainController extends GetxController {
   late PageController pageController;
   RxInt currentPage = 0.obs;
   final meal = Meal();
-  
 
   List<Widget> pages = [
     CategoryScreen(),

@@ -71,7 +71,7 @@ class ProfileScreen extends StatelessWidget {
             addVerticalSpace(50),
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 10),
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 5),
               child: Row(
                 children: [
                   const Icon(
@@ -84,7 +84,7 @@ class ProfileScreen extends StatelessWidget {
                     fontSize: 15,
                     color: ThemePalette.lightPink,
                   ),
-                  addHorizontalSpace(160),
+                  addHorizontalSpace(195),
                   IconsButton(
                       icon: const Icon(
                         IconlyLight.arrow_right_2,
@@ -96,7 +96,7 @@ class ProfileScreen extends StatelessWidget {
             ),
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 10),
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 5),
               child: Row(
                 children: [
                   const Icon(
@@ -109,7 +109,7 @@ class ProfileScreen extends StatelessWidget {
                     fontSize: 15,
                     color: ThemePalette.lightPink,
                   ),
-                  addHorizontalSpace(130),
+                  addHorizontalSpace(165),
                   IconsButton(
                       icon: const Icon(
                         IconlyLight.arrow_right_2,
@@ -121,7 +121,7 @@ class ProfileScreen extends StatelessWidget {
             ),
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 10),
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 5),
               child: Row(
                 children: [
                   const Icon(
@@ -134,7 +134,7 @@ class ProfileScreen extends StatelessWidget {
                     fontSize: 15,
                     color: ThemePalette.lightPink,
                   ),
-                  addHorizontalSpace(153),
+                  addHorizontalSpace(188),
                   IconsButton(
                       icon: const Icon(
                         IconlyLight.arrow_right_2,

@@ -121,7 +121,7 @@ class UpdateStepScreen extends StatelessWidget {
                   child: DropdownComplexity()),
             ),
             PrimaryButton(
-                text: 'Add Steps',
+                text: 'Update Steps',
                 onPressed: () {
                   mc.updateMeal(meal);
                   Get.offAll(() => MainScreen());

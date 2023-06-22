@@ -33,7 +33,8 @@ class MealDetailScreen extends StatelessWidget {
         actions: [
           Obx(
             () => IconsButton(
-              icon: Icon(mc.favourites.isTrue
+              icon: 
+              Icon(mc.favourites.value
                   ? Icons.favorite_rounded
                   : Icons.favorite_outline_rounded),
               color: mc.favourites.value

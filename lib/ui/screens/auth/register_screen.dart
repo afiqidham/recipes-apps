@@ -35,7 +35,7 @@ class RegisterScreen extends StatelessWidget {
                 child: IconsButton(
                   icon: const Icon(IconlyLight.camera),
                   onPressed: () {
-                    mc.uploadImage();
+                    mc.uploadImageMeal();
                   },
                 ),
               ),

@@ -111,6 +111,7 @@ class AddStepScreen extends StatelessWidget {
             PrimaryButton(
                 text: 'Add Steps',
                 onPressed: () {
+                  
                   mc.addNewMeal();
                   Get.offAll(() => MainScreen());
                 }),
