@@ -1,19 +1,13 @@
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:meal/config/theme.dart';
 import 'package:meal/controllers/category_controller.dart';
 import 'package:meal/controllers/meals/meal_controller.dart';
 import 'package:meal/models/meal/meal.dart';
-import 'package:meal/ui/components/buttons/icon_button.dart';
-import 'package:meal/ui/components/buttons/label_icon_button.dart';
 import 'package:meal/ui/components/buttons/primary_button.dart';
 import 'package:meal/ui/components/inputs/primary_input.dart';
-import 'package:meal/ui/components/texts/custom_text.dart';
 import 'package:meal/ui/screens/meals/meal_detail_screen.dart';
 import 'package:meal/ui/screens/meals/update/update_ingredient_screen.dart';
-import 'package:meal/ui/widgets/dropdown/dropdown_category.dart';
 import 'package:meal/utils/widget.dart';
 
 class UpdateMealScreen extends StatelessWidget {

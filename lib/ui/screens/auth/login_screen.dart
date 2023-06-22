@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:meal/config/theme.dart';
 import 'package:meal/controllers/auth/login_controller.dart';
+import 'package:meal/controllers/meals/meal_controller.dart';
 import 'package:meal/ui/components/buttons/primary_button.dart';
 import 'package:meal/ui/components/buttons/text_button.dart';
 import 'package:meal/ui/components/inputs/primary_input.dart';
@@ -13,6 +14,7 @@ class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
 
   final LoginController lc = Get.put(LoginController());
+  final MealController mc = Get.put(MealController());
 
   @override
   Widget build(BuildContext context) {
@@ -65,8 +67,10 @@ class LoginScreen extends StatelessWidget {
               addVerticalSpace(20),
               PrimaryButton(
                   text: 'Login',
-                  onPressed: () {
+                  onPressed: () async {
                     // lc.login();
+
+                    await mc.getFavouriteMeals();
                     Get.offAll(MainScreen());
                   }),
               addVerticalSpace(10),

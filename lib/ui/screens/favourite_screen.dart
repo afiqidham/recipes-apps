@@ -8,7 +8,7 @@ import 'package:meal/ui/widgets/meals/meal_item.dart';
 class FavouriteScreen extends StatelessWidget {
   FavouriteScreen({super.key});
 
-  final MealController mc = Get.put(MealController());
+  // final MealController mc = Get.put(MealController());
 
   @override
   Widget build(BuildContext context) {
@@ -18,31 +18,47 @@ class FavouriteScreen extends StatelessWidget {
           title: const Text('Favourite'),
           centerTitle: true,
         ),
-        body: StreamBuilder<List<Meal>>(
-          stream: mc.getFavouriteMeal(),
-          builder: ((context, snapshot) {
-            if (snapshot.hasData) {
-              final fav = mc.meals;
-              if (fav.isEmpty) {
-                return const Center(
-                  child: Text('No Favourite Meals'),
+        body: GetBuilder<MealController>(
+          init: MealController(),
+          builder: (mc) => ListView.builder(
+              itemCount: mc.favouriteMeals.length,
+              itemBuilder: (context, index) {
+                final meal = mc.favouriteMeals[index];
+                return MealItem(
+                  meal: meal,
+                  onSelectMeal: (meal) {
+                    mc.selectMeal(meal);
+                  },
                 );
-              }
-              return ListView.builder(
-                itemCount: mc.meals.length,
-                itemBuilder: (context, index) {
-                  final meal = mc.meals[index];
-                  return MealItem(
-                    meal: meal,
-                    onSelectMeal: (meal) {
-                      mc.selectMeal(meal);
-                    },
-                  );
-                },
-              );
-            }
-            return const Center(child: CircularProgressIndicator());
-          }),
+              }),
         ));
+
+    // FutureBuilder<List<Meal>>(
+    //   initialData: mc.favouriteMeals,
+    //   future: mc.getFavouriteMeals(),
+    //   builder: ((context, snapshot) {
+    //     if (snapshot.hasData) {
+    //       final fav = mc.meals;
+    //       if (fav.isEmpty) {
+    //         return const Center(
+    //           child: Text('No Favourite Meals'),
+    //         );
+    //       }
+    //       return ListView.builder(
+    //         itemCount: snapshot.data!.length,
+    //         itemBuilder: (context, index) {
+    //           final meal = snapshot.data![index];
+    //           return MealItem(
+    //             meal: meal,
+    //             onSelectMeal: (meal) {
+    //               mc.selectMeal(meal);
+    //             },
+    //           );
+    //         },
+    //       );
+    //     }
+    //     return const Center(child: CircularProgressIndicator());
+    //   }),
+    // ));
   }
 }
